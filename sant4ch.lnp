@@ -1,0 +1,9 @@
+"timer.obj",
+"logic.obj",
+"key.obj",
+"STARTUP.obj",
+"main.obj",
+"key_driver.obj",
+"led.obj" 
+TO "sant4ch" 
+RAMSIZE(256) 

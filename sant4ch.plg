@@ -1,0 +1,1200 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+G:\三同学习\sant_4ch\sant4ch_code\sant4ch.uvproj
+Project File Date:  06/29/2017
+
+<h2>Output:</h2>
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+CODE\KEY\KEY.C(3): error C129: missing ';' before 'key1_is_press'
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+code\driver\key_driver.c(1): warning C318: can't open file 'key_dirver.h'
+CODE\DRIVER\KEY_DRIVER.C(7): error C141: syntax error near 'KeyIsPressCb'
+CODE\DRIVER\KEY_DRIVER.C(7): error C129: missing ';' before '_key_is_press_cb'
+compiling led.c...
+CODE\LED\LED.C(5): error C202: 'P0M1': undefined identifier
+Target not created
+compiling led.c...
+code\led\led.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling key.c...
+CODE\KEY\KEY.C(3): error C129: missing ';' before 'key1_is_press'
+compiling key_driver.c...
+code\driver\key_driver.c(1): warning C318: can't open file 'key_dirver.h'
+CODE\DRIVER\KEY_DRIVER.C(7): error C141: syntax error near 'KeyIsPressCb'
+CODE\DRIVER\KEY_DRIVER.C(7): error C129: missing ';' before '_key_is_press_cb'
+Target not created
+compiling key_driver.c...
+code\driver\key_driver.c(1): warning C318: can't open file 'key_dirver.h'
+code\driver\key_driver.c - 0 Error(s), 1 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+CODE\KEY\KEY.C(3): error C129: missing ';' before 'key1_is_press'
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+code\driver\key_driver.c(1): warning C318: can't open file 'key_dirver.h'
+compiling led.c...
+Target not created
+compiling key.c...
+code\key\key.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=9.0 xdata=0 code=20
+"sant4ch" - 0 Error(s), 1 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+code\driver\key_driver.c(1): warning C318: can't open file 'key_dirver.h'
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=9.0 xdata=0 code=20
+"sant4ch" - 0 Error(s), 2 Warning(s).
+compiling key_driver.c...
+CODE\DRIVER\KEY_DRIVER.H(11): error C141: syntax error near '*'
+CODE\DRIVER\KEY_DRIVER.H(14): error C141: syntax error near '_key_is_press', expected ')'
+code\driver\key_driver.c - 2 Error(s), 0 Warning(s).
+compiling key_driver.c...
+code\driver\key_driver.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=9.0 xdata=0 code=20
+"sant4ch" - 0 Error(s), 1 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=9.0 xdata=0 code=20
+"sant4ch" - 0 Error(s), 1 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=9.0 xdata=0 code=20
+"sant4ch" - 0 Error(s), 1 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=9.0 xdata=0 code=22
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=22
+"sant4ch" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+CODE\SANT4CH\MAIN.C(7): error C202: 'MODE_LED': undefined identifier
+CODE\SANT4CH\MAIN.C(8): error C202: 'RF_LED': undefined identifier
+code\sant4ch\main.c - 2 Error(s), 0 Warning(s).
+compiling main.c...
+.\CODE\LED\LED.H(4): error C202: 'P0': undefined identifier
+.\CODE\LED\LED.H(5): error C202: 'P0': undefined identifier
+CODE\SANT4CH\MAIN.C(7): error C202: 'MODE_LED': undefined identifier
+CODE\SANT4CH\MAIN.C(8): error C202: 'RF_LED': undefined identifier
+code\sant4ch\main.c - 4 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 30 bytes programmed.
+Flash Verify Done: 30 bytes verified.
+Build target 'sant4ch'
+compiling key_driver.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=9.0 xdata=0 code=30
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+linking...
+Program Size: data=9.0 xdata=0 code=34
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+compiling main.c...
+CODE\SANT4CH\MAIN.C(7): error C141: syntax error near 'cnt'
+code\sant4ch\main.c - 1 Error(s), 0 Warning(s).
+compiling main.c...
+CODE\SANT4CH\MAIN.C(7): warning C280: 'cnt': unreferenced local variable
+code\sant4ch\main.c - 0 Error(s), 1 Warning(s).
+compiling main.c...
+CODE\SANT4CH\MAIN.C(7): warning C280: 'cnt': unreferenced local variable
+code\sant4ch\main.c - 0 Error(s), 1 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+compiling timer.c...
+CODE\TIMER\TIMER.C(8): error C202: 'TKCON': undefined identifier
+CODE\TIMER\TIMER.C(18): error C202: 'uint16_t': undefined identifier
+CODE\TIMER\TIMER.C(18): error C141: syntax error near 'i'
+code\timer\timer.c - 3 Error(s), 0 Warning(s).
+compiling timer.c...
+CODE\TIMER\TIMER.C(8): error C202: 'TKCON': undefined identifier
+code\timer\timer.c - 1 Error(s), 0 Warning(s).
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+compiling timer.c...
+.\CODE\COMMON\N76E003.H(7): error C231: 'P0': redefinition
+.\CODE\COMMON\N76E003.H(8): error C231: 'SP': redefinition
+.\CODE\COMMON\N76E003.H(9): error C231: 'DPL': redefinition
+.\CODE\COMMON\N76E003.H(10): error C231: 'DPH': redefinition
+.\CODE\COMMON\N76E003.H(11): error C231: 'RWK': redefinition
+.\CODE\COMMON\N76E003.H(12): error C231: 'PCON': redefinition
+.\CODE\COMMON\N76E003.H(14): error C231: 'TCON': redefinition
+.\CODE\COMMON\N76E003.H(15): error C231: 'TMOD': redefinition
+.\CODE\COMMON\N76E003.H(16): error C231: 'TL0': redefinition
+.\CODE\COMMON\N76E003.H(17): error C231: 'TL1': redefinition
+.\CODE\COMMON\N76E003.H(18): error C231: 'TH0': redefinition
+.\CODE\COMMON\N76E003.H(19): error C231: 'TH1': redefinition
+.\CODE\COMMON\N76E003.H(20): error C231: 'CKCON': redefinition
+.\CODE\COMMON\N76E003.H(21): error C231: 'WKCON': redefinition
+.\CODE\COMMON\N76E003.H(23): error C231: 'P1': redefinition
+.\CODE\COMMON\N76E003.H(24): error C231: 'SFRS': redefinition
+.\CODE\COMMON\N76E003.H(25): error C231: 'CAPCON0': redefinition
+.\CODE\COMMON\N76E003.H(26): error C231: 'CAPCON1': redefinition
+.\CODE\COMMON\N76E003.H(27): error C231: 'CAPCON2': redefinition
+.\CODE\COMMON\N76E003.H(28): error C231: 'CKDIV': redefinition
+.\CODE\COMMON\N76E003.H(29): error C231: 'CKSWT': redefinition
+.\CODE\COMMON\N76E003.H(30): error C231: 'CKEN': redefinition
+.\CODE\COMMON\N76E003.H(32): error C231: 'SCON': redefinition
+.\CODE\COMMON\N76E003.H(33): error C231: 'SBUF': redefinition
+.\CODE\COMMON\N76E003.H(34): error C231: 'SBUF_1': redefinition
+.\CODE\COMMON\N76E003.H(35): error C231: 'EIE': redefinition
+.\CODE\COMMON\N76E003.H(36): error C231: 'EIE1': redefinition
+.\CODE\COMMON\N76E003.H(37): error C231: 'CHPCON': redefinition
+.\CODE\COMMON\N76E003.H(39): error C231: 'P2': redefinition
+.\CODE\COMMON\N76E003.H(40): error C231: 'AUXR1': redefinition
+.\CODE\COMMON\N76E003.H(41): error C231: 'BODCON0': redefinition
+.\CODE\COMMON\N76E003.H(42): error C231: 'IAPTRG': redefinition
+.\CODE\COMMON\N76E003.H(43): error C231: 'IAPUEN': redefinition
+.\CODE\COMMON\N76E003.H(44): error C231: 'IAPAL': redefinition
+.\CODE\COMMON\N76E003.H(45): error C231: 'IAPAH': redefinition
+.\CODE\COMMON\N76E003.H(47): error C231: 'IE': redefinition
+.\CODE\COMMON\N76E003.H(48): error C231: 'SADDR': redefinition
+.\CODE\COMMON\N76E003.H(49): error C231: 'WDCON': redefinition
+.\CODE\COMMON\N76E003.H(50): error C231: 'BODCON1': redefinition
+.\CODE\COMMON\N76E003.H(51): error C231: 'P3M1': redefinition
+.\CODE\COMMON\N76E003.H(52): error C231: 'P3S': redefinition
+.\CODE\COMMON\N76E003.H(53): error C231: 'P3M2': redefinition
+.\CODE\COMMON\N76E003.H(54): error C231: 'P3SR': redefinition
+.\CODE\COMMON\N76E003.H(55): error C231: 'IAPFD': redefinition
+.\CODE\COMMON\N76E003.H(56): error C231: 'IAPCN': redefinition
+.\CODE\COMMON\N76E003.H(58): error C231: 'P3': redefinition
+.\CODE\COMMON\N76E003.H(59): error C231: 'P0M1': redefinition
+.\CODE\COMMON\N76E003.H(60): error C231: 'P0S': redefinition
+.\CODE\COMMON\N76E003.H(61): error C231: 'P0M2': redefinition
+.\CODE\COMMON\N76E003.H(62): error C231: 'P0SR': redefinition
+.\CODE\COMMON\N76E003.H(63): error C231: 'P1M1': redefinition
+.\CODE\COMMON\N76E003.H(64): error C231: 'P1S': redefinition
+.\CODE\COMMON\N76E003.H(65): error C231: 'P1M2': redefinition
+.\CODE\COMMON\N76E003.H(66): error C231: 'P1SR': redefinition
+.\CODE\COMMON\N76E003.H(67): error C231: 'P2S': redefinition
+.\CODE\COMMON\N76E003.H(68): error C231: 'IPH': redefinition
+.\CODE\COMMON\N76E003.H(69): error C231: 'PWMINTC': redefinition
+.\CODE\COMMON\N76E003.H(71): error C231: 'IP': redefinition
+.\CODE\COMMON\N76E003.H(72): error C231: 'SADEN': redefinition
+.\CODE\COMMON\N76E003.H(73): error C231: 'SADEN_1': redefinition
+.\CODE\COMMON\N76E003.H(74): error C231: 'SADDR_1': redefinition
+.\CODE\COMMON\N76E003.H(75): error C231: 'I2DAT': redefinition
+.\CODE\COMMON\N76E003.H(76): error C231: 'I2STAT': redefinition
+.\CODE\COMMON\N76E003.H(77): error C231: 'I2CLK': redefinition
+.\CODE\COMMON\N76E003.H(78): error C231: 'I2TOC': redefinition
+.\CODE\COMMON\N76E003.H(80): error C231: 'I2CON': redefinition
+.\CODE\COMMON\N76E003.H(81): error C231: 'I2ADDR': redefinition
+.\CODE\COMMON\N76E003.H(82): error C231: 'ADCRL': redefinition
+.\CODE\COMMON\N76E003.H(83): error C231: 'ADCRH': redefinition
+.\CODE\COMMON\N76E003.H(84): error C231: 'T3CON': redefinition
+.\CODE\COMMON\N76E003.H(85): error C231: 'PWM4H': redefinition
+.\CODE\COMMON\N76E003.H(86): error C231: 'RL3': redefinition
+.\CODE\COMMON\N76E003.H(87): error C231: 'PWM5H': redefinition
+.\CODE\COMMON\N76E003.H(88): error C231: 'RH3': redefinition
+.\CODE\COMMON\N76E003.H(89): error C231: 'PIOCON1': redefinition
+.\CODE\COMMON\N76E003.H(90): error C231: 'TA': redefinition
+.\CODE\COMMON\N76E003.H(92): error C231: 'T2CON': redefinition
+.\CODE\COMMON\N76E003.H(93): error C231: 'T2MOD': redefinition
+.\CODE\COMMON\N76E003.H(94): error C231: 'RCMP2L': redefinition
+.\CODE\COMMON\N76E003.H(95): error C231: 'RCMP2H': redefinition
+.\CODE\COMMON\N76E003.H(96): error C231: 'TL2': redefinition
+.\CODE\COMMON\N76E003.H(97): error C231: 'PWM4L': redefinition
+.\CODE\COMMON\N76E003.H(98): error C231: 'TH2': redefinition
+.\CODE\COMMON\N76E003.H(99): error C231: 'PWM5L': redefinition
+.\CODE\COMMON\N76E003.H(100): error C231: 'ADCMPL': redefinition
+.\CODE\COMMON\N76E003.H(101): error C231: 'ADCMPH': redefinition
+.\CODE\COMMON\N76E003.H(103): error C231: 'PSW': redefinition
+.\CODE\COMMON\N76E003.H(104): error C231: 'PWMPH': redefinition
+.\CODE\COMMON\N76E003.H(105): error C231: 'PWM0H': redefinition
+.\CODE\COMMON\N76E003.H(106): error C231: 'PWM1H': redefinition
+.\CODE\COMMON\N76E003.H(107): error C231: 'PWM2H': redefinition
+.\CODE\COMMON\N76E003.H(108): error C231: 'PWM3H': redefinition
+.\CODE\COMMON\N76E003.H(109): error C231: 'PNP': redefinition
+.\CODE\COMMON\N76E003.H(110): error C231: 'FBD': redefinition
+.\CODE\COMMON\N76E003.H(112): error C231: 'PWMCON0': redefinition
+.\CODE\COMMON\N76E003.H(113): error C231: 'PWMPL': redefinition
+.\CODE\COMMON\N76E003.H(114): error C231: 'PWM0L': redefinition
+.\CODE\COMMON\N76E003.H(115): error C231: 'PWM1L': redefinition
+.\CODE\COMMON\N76E003.H(116): error C231: 'PWM2L': redefinition
+.\CODE\COMMON\N76E003.H(117): error C231: 'PWM3L': redefinition
+.\CODE\COMMON\N76E003.H(118): error C231: 'PIOCON0': redefinition
+.\CODE\COMMON\N76E003.H(119): error C231: 'PWMCON1': redefinition
+.\CODE\COMMON\N76E003.H(121): error C231: 'ACC': redefinition
+.\CODE\COMMON\N76E003.H(122): error C231: 'ADCCON1': redefinition
+.\CODE\COMMON\N76E003.H(123): error C231: 'ADCCON2': redefinition
+.\CODE\COMMON\N76E003.H(124): error C231: 'ADCDLY': redefinition
+.\CODE\COMMON\N76E003.H(125): error C231: 'C0L': redefinition
+.\CODE\COMMON\N76E003.H(126): error C231: 'C0H': redefinition
+.\CODE\COMMON\N76E003.H(127): error C231: 'C1L': redefinition
+.\CODE\COMMON\N76E003.H(128): error C231: 'C1H': redefinition
+.\CODE\COMMON\N76E003.H(130): error C231: 'ADCCON0': redefinition
+.\CODE\COMMON\N76E003.H(131): error C231: 'PICON': redefinition
+.\CODE\COMMON\N76E003.H(132): error C231: 'PINEN': redefinition
+.\CODE\COMMON\N76E003.H(133): error C231: 'PIPEN': redefinition
+.\CODE\COMMON\N76E003.H(134): error C231: 'PIF': redefinition
+.\CODE\COMMON\N76E003.H(135): error C231: 'C2L': redefinition
+.\CODE\COMMON\N76E003.H(136): error C231: 'C2H': redefinition
+.\CODE\COMMON\N76E003.H(137): error C231: 'EIP': redefinition
+.\CODE\COMMON\N76E003.H(139): error C231: 'B': redefinition
+.\CODE\COMMON\N76E003.H(140): error C231: 'CAPCON3': redefinition
+.\CODE\COMMON\N76E003.H(141): error C231: 'CAPCON4': redefinition
+.\CODE\COMMON\N76E003.H(142): error C231: 'SPCR': redefinition
+.\CODE\COMMON\N76E003.H(143): error C231: 'SPCR2': redefinition
+.\CODE\COMMON\N76E003.H(144): error C231: 'SPSR': redefinition
+.\CODE\COMMON\N76E003.H(145): error C231: 'SPDR': redefinition
+.\CODE\COMMON\N76E003.H(146): error C231: 'AINDIDS': redefinition
+.\CODE\COMMON\N76E003.H(147): error C231: 'EIPH': redefinition
+.\CODE\COMMON\N76E003.H(149): error C231: 'SCON_1': redefinition
+.\CODE\COMMON\N76E003.H(150): error C231: 'PDTEN': redefinition
+.\CODE\COMMON\N76E003.H(151): error C231: 'PDTCNT': redefinition
+.\CODE\COMMON\N76E003.H(152): error C231: 'PMEN': redefinition
+.\CODE\COMMON\N76E003.H(153): error C231: 'PMD': redefinition
+.\CODE\COMMON\N76E003.H(154): error C231: 'EIP1': redefinition
+.\CODE\COMMON\N76E003.H(155): error C231: 'EIPH1': redefinition
+.\CODE\COMMON\N76E003.H(160): error C231: 'P00': redefinition
+.\CODE\COMMON\N76E003.H(161): error C231: 'P01': redefinition
+.\CODE\COMMON\N76E003.H(162): error C231: 'P02': redefinition
+.\CODE\COMMON\N76E003.H(163): error C231: 'P03': redefinition
+.\CODE\COMMON\N76E003.H(164): error C231: 'P04': redefinition
+.\CODE\COMMON\N76E003.H(165): error C231: 'P05': redefinition
+.\CODE\COMMON\N76E003.H(166): error C231: 'P06': redefinition
+.\CODE\COMMON\N76E003.H(167): error C231: 'P07': redefinition
+.\CODE\COMMON\N76E003.H(170): error C231: 'TF1': redefinition
+.\CODE\COMMON\N76E003.H(171): error C231: 'TR1': redefinition
+.\CODE\COMMON\N76E003.H(172): error C231: 'TF0': redefinition
+.\CODE\COMMON\N76E003.H(173): error C231: 'TR0': redefinition
+.\CODE\COMMON\N76E003.H(174): error C231: 'IE1': redefinition
+.\CODE\COMMON\N76E003.H(175): error C231: 'IT1': redefinition
+.\CODE\COMMON\N76E003.H(176): error C231: 'IE0': redefinition
+.\CODE\COMMON\N76E003.H(177): error C231: 'IT0': redefinition
+.\CODE\COMMON\N76E003.H(180): error C231: 'P10': redefinition
+.\CODE\COMMON\N76E003.H(181): error C231: 'P11': redefinition
+.\CODE\COMMON\N76E003.H(182): error C231: 'P12': redefinition
+.\CODE\COMMON\N76E003.H(183): error C231: 'P13': redefinition
+.\CODE\COMMON\N76E003.H(184): error C231: 'SCL': redefinition
+.\CODE\COMMON\N76E003.H(185): error C231: 'P14': redefinition
+.\CODE\COMMON\N76E003.H(186): error C231: 'SDA': redefinition
+.\CODE\COMMON\N76E003.H(187): error C231: 'P17': redefinition
+.\CODE\COMMON\N76E003.H(191): error C231: 'SM0': redefinition
+.\CODE\COMMON\N76E003.H(192): error C231: 'FE': redefinition
+.\CODE\COMMON\N76E003.H(193): error C231: 'SM1': redefinition
+.\CODE\COMMON\N76E003.H(194): error C231: 'SM2': redefinition
+.\CODE\COMMON\N76E003.H(195): error C231: 'REN': redefinition
+.\CODE\COMMON\N76E003.H(196): error C231: 'TB8': redefinition
+.\CODE\COMMON\N76E003.H(197): error C231: 'RB8': redefinition
+.\CODE\COMMON\N76E003.H(198): error C231: 'TI': redefinition
+.\CODE\COMMON\N76E003.H(199): error C231: 'RI': redefinition
+.\CODE\COMMON\N76E003.H(202): error C231: 'P20': redefinition
+.\CODE\COMMON\N76E003.H(205): error C231: 'EA': redefinition
+.\CODE\COMMON\N76E003.H(206): error C231: 'EADC': redefinition
+.\CODE\COMMON\N76E003.H(207): error C231: 'EBOD': redefinition
+.\CODE\COMMON\N76E003.H(208): error C231: 'ES': redefinition
+.\CODE\COMMON\N76E003.H(209): error C231: 'ET1': redefinition
+.\CODE\COMMON\N76E003.H(210): error C231: 'EX1': redefinition
+.\CODE\COMMON\N76E003.H(211): error C231: 'ET0': redefinition
+.\CODE\COMMON\N76E003.H(212): error C231: 'EX0': redefinition
+.\CODE\COMMON\N76E003.H(215): error C231: 'P30': redefinition
+.\CODE\COMMON\N76E003.H(216): error C231: 'INT0': redefinition
+.\CODE\COMMON\N76E003.H(219): error C231: 'PADC': redefinition
+.\CODE\COMMON\N76E003.H(220): error C231: 'PBOD': redefinition
+.\CODE\COMMON\N76E003.H(221): error C231: 'PS': redefinition
+.\CODE\COMMON\N76E003.H(222): error C231: 'PT1': redefinition
+.\CODE\COMMON\N76E003.H(223): error C231: 'PX1': redefinition
+.\CODE\COMMON\N76E003.H(224): error C231: 'PT0': redefinition
+.\CODE\COMMON\N76E003.H(225): error C231: 'PX0': redefinition
+.\CODE\COMMON\N76E003.H(228): error C231: 'I2CEN': redefinition
+.\CODE\COMMON\N76E003.H(229): error C231: 'STA': redefinition
+.\CODE\COMMON\N76E003.H(230): error C231: 'STO': redefinition
+.\CODE\COMMON\N76E003.H(231): error C231: 'SI': redefinition
+.\CODE\COMMON\N76E003.H(232): error C231: 'AA': redefinition
+.\CODE\COMMON\N76E003.H(233): error C231: 'I2CPX': redefinition
+.\CODE\COMMON\N76E003.H(236): error C231: 'TF2': redefinition
+.\CODE\COMMON\N76E003.H(237): error C231: 'TR2': redefinition
+.\CODE\COMMON\N76E003.H(238): error C231: 'CM_RL2': redefinition
+.\CODE\COMMON\N76E003.H(241): error C231: 'CY': redefinition
+.\CODE\COMMON\N76E003.H(242): error C231: 'AC': redefinition
+.\CODE\COMMON\N76E003.H(243): error C231: 'F0': redefinition
+.\CODE\COMMON\N76E003.H(244): error C231: 'RS1': redefinition
+.\CODE\COMMON\N76E003.H(245): error C231: 'RS0': redefinition
+.\CODE\COMMON\N76E003.H(246): error C231: 'OV': redefinition
+.\CODE\COMMON\N76E003.H(247): error C231: 'P': redefinition
+.\CODE\COMMON\N76E003.H(250): error C231: 'PWMRUN': redefinition
+.\CODE\COMMON\N76E003.H(251): error C231: 'LOAD': redefinition
+.\CODE\COMMON\N76E003.H(252): error C231: 'PWMF': redefinition
+.\CODE\COMMON\N76E003.H(253): error C231: 'CLRPWM': redefinition
+.\CODE\COMMON\N76E003.H(256): error C231: 'ADCF': redefinition
+.\CODE\COMMON\N76E003.H(257): error C231: 'ADCS': redefinition
+.\CODE\COMMON\N76E003.H(258): error C231: 'ETGSEL1': redefinition
+.\CODE\COMMON\N76E003.H(259): error C231: 'ETGSEL0': redefinition
+.\CODE\COMMON\N76E003.H(260): error C231: 'ADCHS3': redefinition
+.\CODE\COMMON\N76E003.H(261): error C231: 'ADCHS2': redefinition
+.\CODE\COMMON\N76E003.H(262): error C231: 'ADCHS1': redefinition
+.\CODE\COMMON\N76E003.H(263): error C231: 'ADCHS0': redefinition
+.\CODE\COMMON\N76E003.H(266): error C231: 'SM0_1': redefinition
+.\CODE\COMMON\N76E003.H(267): error C231: 'FE_1': redefinition
+.\CODE\COMMON\N76E003.H(268): error C231: 'SM1_1': redefinition
+.\CODE\COMMON\N76E003.H(269): error C231: 'SM2_1': redefinition
+.\CODE\COMMON\N76E003.H(270): error C231: 'REN_1': redefinition
+.\CODE\COMMON\N76E003.H(271): error C231: 'TB8_1': redefinition
+.\CODE\COMMON\N76E003.H(272): error C231: 'RB8_1': redefinition
+.\CODE\COMMON\N76E003.H(273): error C231: 'TI_1': redefinition
+.\CODE\COMMON\N76E003.H(274): error C231: 'RI_1': redefinition
+code\timer\timer.c - 222 Error(s), 0 Warning(s).
+compiling timer.c...
+.\CODE\COMMON\N76E003.H(7): error C231: 'P0': redefinition
+.\CODE\COMMON\N76E003.H(8): error C231: 'SP': redefinition
+.\CODE\COMMON\N76E003.H(9): error C231: 'DPL': redefinition
+.\CODE\COMMON\N76E003.H(10): error C231: 'DPH': redefinition
+.\CODE\COMMON\N76E003.H(11): error C231: 'RWK': redefinition
+.\CODE\COMMON\N76E003.H(12): error C231: 'PCON': redefinition
+.\CODE\COMMON\N76E003.H(14): error C231: 'TCON': redefinition
+.\CODE\COMMON\N76E003.H(15): error C231: 'TMOD': redefinition
+.\CODE\COMMON\N76E003.H(16): error C231: 'TL0': redefinition
+.\CODE\COMMON\N76E003.H(17): error C231: 'TL1': redefinition
+.\CODE\COMMON\N76E003.H(18): error C231: 'TH0': redefinition
+.\CODE\COMMON\N76E003.H(19): error C231: 'TH1': redefinition
+.\CODE\COMMON\N76E003.H(20): error C231: 'CKCON': redefinition
+.\CODE\COMMON\N76E003.H(21): error C231: 'WKCON': redefinition
+.\CODE\COMMON\N76E003.H(23): error C231: 'P1': redefinition
+.\CODE\COMMON\N76E003.H(24): error C231: 'SFRS': redefinition
+.\CODE\COMMON\N76E003.H(25): error C231: 'CAPCON0': redefinition
+.\CODE\COMMON\N76E003.H(26): error C231: 'CAPCON1': redefinition
+.\CODE\COMMON\N76E003.H(27): error C231: 'CAPCON2': redefinition
+.\CODE\COMMON\N76E003.H(28): error C231: 'CKDIV': redefinition
+.\CODE\COMMON\N76E003.H(29): error C231: 'CKSWT': redefinition
+.\CODE\COMMON\N76E003.H(30): error C231: 'CKEN': redefinition
+.\CODE\COMMON\N76E003.H(32): error C231: 'SCON': redefinition
+.\CODE\COMMON\N76E003.H(33): error C231: 'SBUF': redefinition
+.\CODE\COMMON\N76E003.H(34): error C231: 'SBUF_1': redefinition
+.\CODE\COMMON\N76E003.H(35): error C231: 'EIE': redefinition
+.\CODE\COMMON\N76E003.H(36): error C231: 'EIE1': redefinition
+.\CODE\COMMON\N76E003.H(37): error C231: 'CHPCON': redefinition
+.\CODE\COMMON\N76E003.H(39): error C231: 'P2': redefinition
+.\CODE\COMMON\N76E003.H(40): error C231: 'AUXR1': redefinition
+.\CODE\COMMON\N76E003.H(41): error C231: 'BODCON0': redefinition
+.\CODE\COMMON\N76E003.H(42): error C231: 'IAPTRG': redefinition
+.\CODE\COMMON\N76E003.H(43): error C231: 'IAPUEN': redefinition
+.\CODE\COMMON\N76E003.H(44): error C231: 'IAPAL': redefinition
+.\CODE\COMMON\N76E003.H(45): error C231: 'IAPAH': redefinition
+.\CODE\COMMON\N76E003.H(47): error C231: 'IE': redefinition
+.\CODE\COMMON\N76E003.H(48): error C231: 'SADDR': redefinition
+.\CODE\COMMON\N76E003.H(49): error C231: 'WDCON': redefinition
+.\CODE\COMMON\N76E003.H(50): error C231: 'BODCON1': redefinition
+.\CODE\COMMON\N76E003.H(51): error C231: 'P3M1': redefinition
+.\CODE\COMMON\N76E003.H(52): error C231: 'P3S': redefinition
+.\CODE\COMMON\N76E003.H(53): error C231: 'P3M2': redefinition
+.\CODE\COMMON\N76E003.H(54): error C231: 'P3SR': redefinition
+.\CODE\COMMON\N76E003.H(55): error C231: 'IAPFD': redefinition
+.\CODE\COMMON\N76E003.H(56): error C231: 'IAPCN': redefinition
+.\CODE\COMMON\N76E003.H(58): error C231: 'P3': redefinition
+.\CODE\COMMON\N76E003.H(59): error C231: 'P0M1': redefinition
+.\CODE\COMMON\N76E003.H(60): error C231: 'P0S': redefinition
+.\CODE\COMMON\N76E003.H(61): error C231: 'P0M2': redefinition
+.\CODE\COMMON\N76E003.H(62): error C231: 'P0SR': redefinition
+.\CODE\COMMON\N76E003.H(63): error C231: 'P1M1': redefinition
+.\CODE\COMMON\N76E003.H(64): error C231: 'P1S': redefinition
+.\CODE\COMMON\N76E003.H(65): error C231: 'P1M2': redefinition
+.\CODE\COMMON\N76E003.H(66): error C231: 'P1SR': redefinition
+.\CODE\COMMON\N76E003.H(67): error C231: 'P2S': redefinition
+.\CODE\COMMON\N76E003.H(68): error C231: 'IPH': redefinition
+.\CODE\COMMON\N76E003.H(69): error C231: 'PWMINTC': redefinition
+.\CODE\COMMON\N76E003.H(71): error C231: 'IP': redefinition
+.\CODE\COMMON\N76E003.H(72): error C231: 'SADEN': redefinition
+.\CODE\COMMON\N76E003.H(73): error C231: 'SADEN_1': redefinition
+.\CODE\COMMON\N76E003.H(74): error C231: 'SADDR_1': redefinition
+.\CODE\COMMON\N76E003.H(75): error C231: 'I2DAT': redefinition
+.\CODE\COMMON\N76E003.H(76): error C231: 'I2STAT': redefinition
+.\CODE\COMMON\N76E003.H(77): error C231: 'I2CLK': redefinition
+.\CODE\COMMON\N76E003.H(78): error C231: 'I2TOC': redefinition
+.\CODE\COMMON\N76E003.H(80): error C231: 'I2CON': redefinition
+.\CODE\COMMON\N76E003.H(81): error C231: 'I2ADDR': redefinition
+.\CODE\COMMON\N76E003.H(82): error C231: 'ADCRL': redefinition
+.\CODE\COMMON\N76E003.H(83): error C231: 'ADCRH': redefinition
+.\CODE\COMMON\N76E003.H(84): error C231: 'T3CON': redefinition
+.\CODE\COMMON\N76E003.H(85): error C231: 'PWM4H': redefinition
+.\CODE\COMMON\N76E003.H(86): error C231: 'RL3': redefinition
+.\CODE\COMMON\N76E003.H(87): error C231: 'PWM5H': redefinition
+.\CODE\COMMON\N76E003.H(88): error C231: 'RH3': redefinition
+.\CODE\COMMON\N76E003.H(89): error C231: 'PIOCON1': redefinition
+.\CODE\COMMON\N76E003.H(90): error C231: 'TA': redefinition
+.\CODE\COMMON\N76E003.H(92): error C231: 'T2CON': redefinition
+.\CODE\COMMON\N76E003.H(93): error C231: 'T2MOD': redefinition
+.\CODE\COMMON\N76E003.H(94): error C231: 'RCMP2L': redefinition
+.\CODE\COMMON\N76E003.H(95): error C231: 'RCMP2H': redefinition
+.\CODE\COMMON\N76E003.H(96): error C231: 'TL2': redefinition
+.\CODE\COMMON\N76E003.H(97): error C231: 'PWM4L': redefinition
+.\CODE\COMMON\N76E003.H(98): error C231: 'TH2': redefinition
+.\CODE\COMMON\N76E003.H(99): error C231: 'PWM5L': redefinition
+.\CODE\COMMON\N76E003.H(100): error C231: 'ADCMPL': redefinition
+.\CODE\COMMON\N76E003.H(101): error C231: 'ADCMPH': redefinition
+.\CODE\COMMON\N76E003.H(103): error C231: 'PSW': redefinition
+.\CODE\COMMON\N76E003.H(104): error C231: 'PWMPH': redefinition
+.\CODE\COMMON\N76E003.H(105): error C231: 'PWM0H': redefinition
+.\CODE\COMMON\N76E003.H(106): error C231: 'PWM1H': redefinition
+.\CODE\COMMON\N76E003.H(107): error C231: 'PWM2H': redefinition
+.\CODE\COMMON\N76E003.H(108): error C231: 'PWM3H': redefinition
+.\CODE\COMMON\N76E003.H(109): error C231: 'PNP': redefinition
+.\CODE\COMMON\N76E003.H(110): error C231: 'FBD': redefinition
+.\CODE\COMMON\N76E003.H(112): error C231: 'PWMCON0': redefinition
+.\CODE\COMMON\N76E003.H(113): error C231: 'PWMPL': redefinition
+.\CODE\COMMON\N76E003.H(114): error C231: 'PWM0L': redefinition
+.\CODE\COMMON\N76E003.H(115): error C231: 'PWM1L': redefinition
+.\CODE\COMMON\N76E003.H(116): error C231: 'PWM2L': redefinition
+.\CODE\COMMON\N76E003.H(117): error C231: 'PWM3L': redefinition
+.\CODE\COMMON\N76E003.H(118): error C231: 'PIOCON0': redefinition
+.\CODE\COMMON\N76E003.H(119): error C231: 'PWMCON1': redefinition
+.\CODE\COMMON\N76E003.H(121): error C231: 'ACC': redefinition
+.\CODE\COMMON\N76E003.H(122): error C231: 'ADCCON1': redefinition
+.\CODE\COMMON\N76E003.H(123): error C231: 'ADCCON2': redefinition
+.\CODE\COMMON\N76E003.H(124): error C231: 'ADCDLY': redefinition
+.\CODE\COMMON\N76E003.H(125): error C231: 'C0L': redefinition
+.\CODE\COMMON\N76E003.H(126): error C231: 'C0H': redefinition
+.\CODE\COMMON\N76E003.H(127): error C231: 'C1L': redefinition
+.\CODE\COMMON\N76E003.H(128): error C231: 'C1H': redefinition
+.\CODE\COMMON\N76E003.H(130): error C231: 'ADCCON0': redefinition
+.\CODE\COMMON\N76E003.H(131): error C231: 'PICON': redefinition
+.\CODE\COMMON\N76E003.H(132): error C231: 'PINEN': redefinition
+.\CODE\COMMON\N76E003.H(133): error C231: 'PIPEN': redefinition
+.\CODE\COMMON\N76E003.H(134): error C231: 'PIF': redefinition
+.\CODE\COMMON\N76E003.H(135): error C231: 'C2L': redefinition
+.\CODE\COMMON\N76E003.H(136): error C231: 'C2H': redefinition
+.\CODE\COMMON\N76E003.H(137): error C231: 'EIP': redefinition
+.\CODE\COMMON\N76E003.H(139): error C231: 'B': redefinition
+.\CODE\COMMON\N76E003.H(140): error C231: 'CAPCON3': redefinition
+.\CODE\COMMON\N76E003.H(141): error C231: 'CAPCON4': redefinition
+.\CODE\COMMON\N76E003.H(142): error C231: 'SPCR': redefinition
+.\CODE\COMMON\N76E003.H(143): error C231: 'SPCR2': redefinition
+.\CODE\COMMON\N76E003.H(144): error C231: 'SPSR': redefinition
+.\CODE\COMMON\N76E003.H(145): error C231: 'SPDR': redefinition
+.\CODE\COMMON\N76E003.H(146): error C231: 'AINDIDS': redefinition
+.\CODE\COMMON\N76E003.H(147): error C231: 'EIPH': redefinition
+.\CODE\COMMON\N76E003.H(149): error C231: 'SCON_1': redefinition
+.\CODE\COMMON\N76E003.H(150): error C231: 'PDTEN': redefinition
+.\CODE\COMMON\N76E003.H(151): error C231: 'PDTCNT': redefinition
+.\CODE\COMMON\N76E003.H(152): error C231: 'PMEN': redefinition
+.\CODE\COMMON\N76E003.H(153): error C231: 'PMD': redefinition
+.\CODE\COMMON\N76E003.H(154): error C231: 'EIP1': redefinition
+.\CODE\COMMON\N76E003.H(155): error C231: 'EIPH1': redefinition
+.\CODE\COMMON\N76E003.H(160): error C231: 'P00': redefinition
+.\CODE\COMMON\N76E003.H(161): error C231: 'P01': redefinition
+.\CODE\COMMON\N76E003.H(162): error C231: 'P02': redefinition
+.\CODE\COMMON\N76E003.H(163): error C231: 'P03': redefinition
+.\CODE\COMMON\N76E003.H(164): error C231: 'P04': redefinition
+.\CODE\COMMON\N76E003.H(165): error C231: 'P05': redefinition
+.\CODE\COMMON\N76E003.H(166): error C231: 'P06': redefinition
+.\CODE\COMMON\N76E003.H(167): error C231: 'P07': redefinition
+.\CODE\COMMON\N76E003.H(170): error C231: 'TF1': redefinition
+.\CODE\COMMON\N76E003.H(171): error C231: 'TR1': redefinition
+.\CODE\COMMON\N76E003.H(172): error C231: 'TF0': redefinition
+.\CODE\COMMON\N76E003.H(173): error C231: 'TR0': redefinition
+.\CODE\COMMON\N76E003.H(174): error C231: 'IE1': redefinition
+.\CODE\COMMON\N76E003.H(175): error C231: 'IT1': redefinition
+.\CODE\COMMON\N76E003.H(176): error C231: 'IE0': redefinition
+.\CODE\COMMON\N76E003.H(177): error C231: 'IT0': redefinition
+.\CODE\COMMON\N76E003.H(180): error C231: 'P10': redefinition
+.\CODE\COMMON\N76E003.H(181): error C231: 'P11': redefinition
+.\CODE\COMMON\N76E003.H(182): error C231: 'P12': redefinition
+.\CODE\COMMON\N76E003.H(183): error C231: 'P13': redefinition
+.\CODE\COMMON\N76E003.H(184): error C231: 'SCL': redefinition
+.\CODE\COMMON\N76E003.H(185): error C231: 'P14': redefinition
+.\CODE\COMMON\N76E003.H(186): error C231: 'SDA': redefinition
+.\CODE\COMMON\N76E003.H(187): error C231: 'P17': redefinition
+.\CODE\COMMON\N76E003.H(191): error C231: 'SM0': redefinition
+.\CODE\COMMON\N76E003.H(192): error C231: 'FE': redefinition
+.\CODE\COMMON\N76E003.H(193): error C231: 'SM1': redefinition
+.\CODE\COMMON\N76E003.H(194): error C231: 'SM2': redefinition
+.\CODE\COMMON\N76E003.H(195): error C231: 'REN': redefinition
+.\CODE\COMMON\N76E003.H(196): error C231: 'TB8': redefinition
+.\CODE\COMMON\N76E003.H(197): error C231: 'RB8': redefinition
+.\CODE\COMMON\N76E003.H(198): error C231: 'TI': redefinition
+.\CODE\COMMON\N76E003.H(199): error C231: 'RI': redefinition
+.\CODE\COMMON\N76E003.H(202): error C231: 'P20': redefinition
+.\CODE\COMMON\N76E003.H(205): error C231: 'EA': redefinition
+.\CODE\COMMON\N76E003.H(206): error C231: 'EADC': redefinition
+.\CODE\COMMON\N76E003.H(207): error C231: 'EBOD': redefinition
+.\CODE\COMMON\N76E003.H(208): error C231: 'ES': redefinition
+.\CODE\COMMON\N76E003.H(209): error C231: 'ET1': redefinition
+.\CODE\COMMON\N76E003.H(210): error C231: 'EX1': redefinition
+.\CODE\COMMON\N76E003.H(211): error C231: 'ET0': redefinition
+.\CODE\COMMON\N76E003.H(212): error C231: 'EX0': redefinition
+.\CODE\COMMON\N76E003.H(215): error C231: 'P30': redefinition
+.\CODE\COMMON\N76E003.H(216): error C231: 'INT0': redefinition
+.\CODE\COMMON\N76E003.H(219): error C231: 'PADC': redefinition
+.\CODE\COMMON\N76E003.H(220): error C231: 'PBOD': redefinition
+.\CODE\COMMON\N76E003.H(221): error C231: 'PS': redefinition
+.\CODE\COMMON\N76E003.H(222): error C231: 'PT1': redefinition
+.\CODE\COMMON\N76E003.H(223): error C231: 'PX1': redefinition
+.\CODE\COMMON\N76E003.H(224): error C231: 'PT0': redefinition
+.\CODE\COMMON\N76E003.H(225): error C231: 'PX0': redefinition
+.\CODE\COMMON\N76E003.H(228): error C231: 'I2CEN': redefinition
+.\CODE\COMMON\N76E003.H(229): error C231: 'STA': redefinition
+.\CODE\COMMON\N76E003.H(230): error C231: 'STO': redefinition
+.\CODE\COMMON\N76E003.H(231): error C231: 'SI': redefinition
+.\CODE\COMMON\N76E003.H(232): error C231: 'AA': redefinition
+.\CODE\COMMON\N76E003.H(233): error C231: 'I2CPX': redefinition
+.\CODE\COMMON\N76E003.H(236): error C231: 'TF2': redefinition
+.\CODE\COMMON\N76E003.H(237): error C231: 'TR2': redefinition
+.\CODE\COMMON\N76E003.H(238): error C231: 'CM_RL2': redefinition
+.\CODE\COMMON\N76E003.H(241): error C231: 'CY': redefinition
+.\CODE\COMMON\N76E003.H(242): error C231: 'AC': redefinition
+.\CODE\COMMON\N76E003.H(243): error C231: 'F0': redefinition
+.\CODE\COMMON\N76E003.H(244): error C231: 'RS1': redefinition
+.\CODE\COMMON\N76E003.H(245): error C231: 'RS0': redefinition
+.\CODE\COMMON\N76E003.H(246): error C231: 'OV': redefinition
+.\CODE\COMMON\N76E003.H(247): error C231: 'P': redefinition
+.\CODE\COMMON\N76E003.H(250): error C231: 'PWMRUN': redefinition
+.\CODE\COMMON\N76E003.H(251): error C231: 'LOAD': redefinition
+.\CODE\COMMON\N76E003.H(252): error C231: 'PWMF': redefinition
+.\CODE\COMMON\N76E003.H(253): error C231: 'CLRPWM': redefinition
+.\CODE\COMMON\N76E003.H(256): error C231: 'ADCF': redefinition
+.\CODE\COMMON\N76E003.H(257): error C231: 'ADCS': redefinition
+.\CODE\COMMON\N76E003.H(258): error C231: 'ETGSEL1': redefinition
+.\CODE\COMMON\N76E003.H(259): error C231: 'ETGSEL0': redefinition
+.\CODE\COMMON\N76E003.H(260): error C231: 'ADCHS3': redefinition
+.\CODE\COMMON\N76E003.H(261): error C231: 'ADCHS2': redefinition
+.\CODE\COMMON\N76E003.H(262): error C231: 'ADCHS1': redefinition
+.\CODE\COMMON\N76E003.H(263): error C231: 'ADCHS0': redefinition
+.\CODE\COMMON\N76E003.H(266): error C231: 'SM0_1': redefinition
+.\CODE\COMMON\N76E003.H(267): error C231: 'FE_1': redefinition
+.\CODE\COMMON\N76E003.H(268): error C231: 'SM1_1': redefinition
+.\CODE\COMMON\N76E003.H(269): error C231: 'SM2_1': redefinition
+.\CODE\COMMON\N76E003.H(270): error C231: 'REN_1': redefinition
+.\CODE\COMMON\N76E003.H(271): error C231: 'TB8_1': redefinition
+.\CODE\COMMON\N76E003.H(272): error C231: 'RB8_1': redefinition
+.\CODE\COMMON\N76E003.H(273): error C231: 'TI_1': redefinition
+.\CODE\COMMON\N76E003.H(274): error C231: 'RI_1': redefinition
+code\timer\timer.c - 222 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling led.c...
+linking...
+Program Size: data=11.0 xdata=0 code=66
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=11.0 xdata=0 code=226
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=11.0 xdata=0 code=226
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 226 bytes programmed.
+Flash Verify Done: 226 bytes verified.
+compiling key_driver.c...
+.\CODE\COMMON\TYPEDEF.H(10): error C129: missing ';' before 'uint8_t'
+code\driver\key_driver.c - 1 Error(s), 0 Warning(s).
+compiling key_driver.c...
+.\CODE\COMMON\TYPEDEF.H(11): error C129: missing ';' before '1'
+code\driver\key_driver.c - 1 Error(s), 0 Warning(s).
+compiling key_driver.c...
+.\CODE\COMMON\TYPEDEF.H(11): error C129: missing ';' before '1'
+code\driver\key_driver.c - 1 Error(s), 0 Warning(s).
+compiling key_driver.c...
+CODE\DRIVER\KEY_DRIVER.H(18): error C141: syntax error near '_key_is_press', expected ')'
+CODE\DRIVER\KEY_DRIVER.C(8): error C141: syntax error near 'KeyIsPressCb'
+CODE\DRIVER\KEY_DRIVER.C(8): error C129: missing ';' before '_key_is_press_cb'
+code\driver\key_driver.c - 3 Error(s), 0 Warning(s).
+compiling key_driver.c...
+CODE\DRIVER\KEY_DRIVER.C(71): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(98): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(112): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(153): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(154): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(163): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(178): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(190): error C202: 'FALSE': undefined identifier
+CODE\DRIVER\KEY_DRIVER.C(199): error C202: 'FALSE': undefined identifier
+code\driver\key_driver.c - 9 Error(s), 0 Warning(s).
+compiling key_driver.c...
+CODE\DRIVER\KEY_DRIVER.C(223): error C249: 'DATA': SEGMENT TOO LARGE
+code\driver\key_driver.c - 1 Error(s), 0 Warning(s).
+compiling key_driver.c...
+code\driver\key_driver.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KEYREGISTERSINGLE?KEY_DRIVER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYSCAN?KEY_DRIVER
+Program Size: data=37.0 xdata=146 code=1950
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 2 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KEYREGISTERSINGLE?KEY_DRIVER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYSCAN?KEY_DRIVER
+Program Size: data=37.0 xdata=146 code=1950
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 2 Warning(s).
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KEYREGISTERSINGLE?KEY_DRIVER
+Program Size: data=35.0 xdata=146 code=2000
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 1 Warning(s).
+compiling key_driver.c...
+code\driver\key_driver.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KEYREGISTERSINGLE?KEY_DRIVER
+Program Size: data=181.0 xdata=0 code=1544
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 1 Warning(s).
+compiling key.c...
+code\key\key.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling main.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+Program Size: data=181.0 xdata=0 code=1883
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 1 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=181.0 xdata=0 code=1886
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=181.0 xdata=0 code=1886
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1886 bytes programmed.
+Flash Verify Done: 1886 bytes verified.
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=181.0 xdata=0 code=1886
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=181.0 xdata=0 code=1886
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1886 bytes programmed.
+Flash Verify Done: 1886 bytes verified.
+compiling timer.c...
+code\timer\timer.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=183.0 xdata=0 code=1917
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=183.0 xdata=0 code=1917
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1917 bytes programmed.
+Flash Verify Done: 1917 bytes verified.
+compiling main.c...
+CODE\SANT4CH\MAIN.C(13): error C207: 'SendTo595': declared with 'void' parameter list
+code\sant4ch\main.c - 1 Error(s), 0 Warning(s).
+compiling main.c...
+.\CODE\LOGIC\LOGIC.H(8): error C141: syntax error near 'val', expected ')'
+code\sant4ch\main.c - 1 Error(s), 0 Warning(s).
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(5): error C231: 'SI': redefinition
+CODE\LOGIC\LOGIC.C(16): error C141: syntax error near 'val', expected ')'
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+Target not created
+Build target 'sant4ch'
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(5): error C231: 'SI': redefinition
+CODE\LOGIC\LOGIC.C(16): error C141: syntax error near 'val', expected ')'
+Target not created
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(16): error C141: syntax error near 'val', expected ')'
+code\logic\logic.c - 1 Error(s), 0 Warning(s).
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(25): warning C206: '_nop_': missing function-prototype
+CODE\LOGIC\LOGIC.C(25): error C264: intrinsic '_nop_': declaration/activation error
+code\logic\logic.c - 1 Error(s), 1 Warning(s).
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(26): warning C206: '_nop_': missing function-prototype
+CODE\LOGIC\LOGIC.C(26): error C264: intrinsic '_nop_': declaration/activation error
+code\logic\logic.c - 1 Error(s), 1 Warning(s).
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(26): warning C206: '_nop_': missing function-prototype
+CODE\LOGIC\LOGIC.C(26): error C264: intrinsic '_nop_': declaration/activation error
+code\logic\logic.c - 1 Error(s), 1 Warning(s).
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(26): warning C206: '_nop_': missing function-prototype
+CODE\LOGIC\LOGIC.C(26): error C264: intrinsic '_nop_': declaration/activation error
+code\logic\logic.c - 1 Error(s), 1 Warning(s).
+compiling logic.c...
+CODE\LOGIC\LOGIC.C(26): warning C206: '_nop_': missing function-prototype
+CODE\LOGIC\LOGIC.C(26): error C264: intrinsic '_nop_': declaration/activation error
+code\logic\logic.c - 1 Error(s), 1 Warning(s).
+compiling logic.c...
+code\logic\logic.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling main.c...
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1974 bytes programmed.
+Flash Verify Done: 1974 bytes verified.
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1974 bytes programmed.
+Flash Verify Done: 1974 bytes verified.
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOGICINIT?LOGIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1958
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 4 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOGICINIT?LOGIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1958
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 4 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1958 bytes programmed.
+Flash Verify Done: 1958 bytes verified.
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOGICINIT?LOGIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1958
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 4 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1958 bytes programmed.
+Flash Verify Done: 1958 bytes verified.
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOGICINIT?LOGIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1958
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 4 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOGICINIT?LOGIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1958
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 4 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1961
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 3 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1961
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 3 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1961 bytes programmed.
+Flash Verify Done: 1961 bytes verified.
+compiling logic.c...
+code\logic\logic.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1961
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 3 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMERINIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYINIT?KEY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDINIT?LED
+Program Size: data=183.0 xdata=0 code=1961
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 3 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1961 bytes programmed.
+Flash Verify Done: 1961 bytes verified.
+compiling main.c...
+code\sant4ch\main.c - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Build target 'sant4ch'
+compiling timer.c...
+compiling logic.c...
+compiling key.c...
+assembling STARTUP.A51...
+compiling main.c...
+compiling key_driver.c...
+compiling led.c...
+linking...
+Program Size: data=183.0 xdata=0 code=1974
+creating hex file from "sant4ch"...
+"sant4ch" - 0 Error(s), 0 Warning(s).
+Load "G:\\三同学习\\sant_4ch\\sant4ch_code\\sant4ch" 
+Flash Erase Done.
+Flash Write Done: 1974 bytes programmed.
+Flash Verify Done: 1974 bytes verified.

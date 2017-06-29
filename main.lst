@@ -1,0 +1,41 @@
+C51 COMPILER V9.01   MAIN                                                                  06/29/2017 23:48:33 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.obj
+COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\sant4ch\main.c BROWSE INCDIR(.\code\key;.\code\logic;.\c
+                    -ode\timer;.\code\driver;.\code\led;.\code\common) DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(main.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "led.h"
+   3          #include "timer.h"
+   4          #include "key.h"
+   5          #include "logic.h"
+   6          
+   7          void main(void)
+   8          {
+   9   1              ledInit();   
+  10   1              timerInit();
+  11   1              keyInit();
+  12   1              logicInit();
+  13   1              SendTo595(0xff);
+  14   1              MODE_LED = 1;
+  15   1              RF_LED = 1;
+  16   1              while(1);
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     23    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

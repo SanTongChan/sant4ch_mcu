@@ -1,0 +1,110 @@
+C51 COMPILER V9.01   KEY                                                                   06/29/2017 23:48:33 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN key.obj
+COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\key\key.c BROWSE INCDIR(.\code\key;.\code\logic;.\code\t
+                    -imer;.\code\driver;.\code\led;.\code\common) DEBUG OBJECTEXTEND PRINT(.\key.lst) OBJECT(key.obj)
+
+line level    source
+
+   1          #include "key.h"
+   2          #include "key_driver.h"
+   3          #include "led.h"
+   4          
+   5          sbit KEY1 = P1^3;
+   6          sbit KEY2 = P1^2;
+   7          sbit KEY3 = P1^1;
+   8          sbit KEY4 = P1^0;
+   9          sbit KEY5 = P1^4;
+  10          static bool key1_is_press(void)
+  11          {
+  12   1          if(0 == KEY1)
+  13   1          {
+  14   2              return true;
+  15   2          }
+  16   1          return false;
+  17   1      }
+  18          static bool key2_is_press(void)
+  19          {
+  20   1          if(0 == KEY2)
+  21   1          {
+  22   2              return true;
+  23   2          }
+  24   1          return false;
+  25   1      }
+  26          static bool key3_is_press(void)
+  27          {
+  28   1          if(0 == KEY3)
+  29   1          {
+  30   2              return true;
+  31   2          }
+  32   1          return false;
+  33   1      }
+  34          static bool key4_is_press(void)
+  35          {
+  36   1          if(0 == KEY4)
+  37   1          {
+  38   2              return true;
+  39   2          }
+  40   1          return false;
+  41   1      }
+  42          static bool key5_is_press(void)
+  43          {
+  44   1          if(0 == KEY5)
+  45   1          {
+  46   2              return true;
+  47   2          }
+  48   1          return false;
+  49   1      }
+  50          
+  51          static void key1_short_press(void)
+  52          {
+  53   1          MODE_LED = !MODE_LED;
+  54   1      }
+C51 COMPILER V9.01   KEY                                                                   06/29/2017 23:48:33 PAGE 2   
+
+  55          static void key2_short_press(void)
+  56          {
+  57   1          MODE_LED = !MODE_LED;
+  58   1      }
+  59          static void key3_short_press(void)
+  60          {
+  61   1          MODE_LED = !MODE_LED;
+  62   1      }
+  63          static void key4_short_press(void)
+  64          {
+  65   1          MODE_LED = !MODE_LED;
+  66   1      }
+  67          static void key5_short_press(void)
+  68          {
+  69   1          MODE_LED = !MODE_LED;
+  70   1      }
+  71          static void registerKeys(void)
+  72          {
+  73   1          keyRegisterSingle(key1_is_press,key1_short_press,NULL,NULL,NULL,NULL);
+  74   1          keyRegisterSingle(key2_is_press,key2_short_press,NULL,NULL,NULL,NULL);
+  75   1          keyRegisterSingle(key3_is_press,key3_short_press,NULL,NULL,NULL,NULL);
+  76   1          keyRegisterSingle(key4_is_press,key4_short_press,NULL,NULL,NULL,NULL);
+  77   1          keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+  78   1      }
+  79          void keyInit(void)
+  80          {
+  81   1              P1M1 |= 0x1f;//初始化P10 -> P14为输入
+  82   1              P1M2 &= 0Xe0;
+  83   1              registerKeys();
+  84   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    339    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,59 @@
+C51 COMPILER V9.01   LOGIC                                                                 06/29/2017 23:48:33 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
+OBJECT MODULE PLACED IN logic.obj
+COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\logic\logic.c BROWSE INCDIR(.\code\key;.\code\logic;.\co
+                    -de\timer;.\code\driver;.\code\led;.\code\common) DEBUG OBJECTEXTEND PRINT(.\logic.lst) OBJECT(logic.obj)
+
+line level    source
+
+   1          #include <intrins.h>
+   2          #include "logic.h"
+   3          
+   4          sbit RCK = P1^7;
+   5          sbit SCK = P1^6;
+   6          sbit SER = P3^0;
+   7          
+   8          void logicInit(void)
+   9          {
+  10   1          //初始化P16 P17 P30为推挽输出
+  11   1          P1M1 &= 0x3f;
+  12   1              P1M2 |= 0Xc0;
+  13   1              P3M1 &= 0xfe;
+  14   1          P3M2 |= 0x01;
+  15   1          SER = 1;
+  16   1      }
+  17          void SendTo595(uint8_t val)
+  18          {
+  19   1              char i=0;
+  20   1              uint8_t temp = val;
+  21   1              for(i = 0; i < 8; i++)
+  22   1              {
+  23   2                      SER = temp>>7;
+  24   2                      temp= temp<<1;
+  25   2                      SCK = 0;
+  26   2                      _nop_();
+  27   2                      SCK = 1;
+  28   2              }
+  29   1              RCK = 0;
+  30   1              _nop_();
+  31   1              RCK = 1;
+  32   1              SER = 0;
+  33   1      }
+  34          
+  35          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     49    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
