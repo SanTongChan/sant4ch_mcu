@@ -2,7 +2,7 @@
 #include "N76E003.h"
 #include "typedef.h"
 #include "led.h"
-#include "key_driver.h"
+#include "logic.h"
 
 void timerInit(void)
 {
@@ -19,19 +19,26 @@ void timerInit(void)
 void Timer0_ISR(void) interrupt 1
 {
 	//100us的自动重装定时器
-	static uint16_t cnt = 0;
-	static uint16_t cnt1 = 0;
-	cnt++;
-	cnt1++;
-   	if(cnt >= 100)
+	static uint16_t key_cnt = 0;
+	static uint16_t update_cnt = 0;
+	static uint16_t led_cnt = 0;
+	static uint16_t update_threod = 0;
+	key_cnt++;
+	update_cnt++;
+	led_cnt++;
+	if(key_cnt >= 100)
 	{
-		cnt = 0;	
-		keyScan();
+	    key_cnt = 0;
+        key_scan_flag = true;
 	}
-	if(cnt1 >= 5000)
+	if(update_cnt >= 15000 - update_threod)
 	{
-		cnt1 = 0;
-		RF_LED = ~RF_LED;
+        update_threod = 13000;
+        update_status_flag = true;
 	}
-	
+	if(led_cnt >= 5000)
+	{
+        led_cnt = 0;
+        RF_LED = ~RF_LED;
+	}
 }

@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   TIMER                                                                 06/29/2017 23:48:32 PAGE 1   
+C51 COMPILER V9.01   TIMER                                                                 06/30/2017 03:13:16 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
@@ -12,7 +12,7 @@ line level    source
    2          #include "N76E003.h"
    3          #include "typedef.h"
    4          #include "led.h"
-   5          #include "key_driver.h"
+   5          #include "logic.h"
    6          
    7          void timerInit(void)
    8          {
@@ -29,32 +29,41 @@ line level    source
   19          void Timer0_ISR(void) interrupt 1
   20          {
   21   1              //100us的自动重装定时器
-  22   1              static uint16_t cnt = 0;
-  23   1              static uint16_t cnt1 = 0;
-  24   1              cnt++;
-  25   1              cnt1++;
-  26   1              if(cnt >= 100)
-  27   1              {
-  28   2                      cnt = 0;        
-  29   2                      keyScan();
-  30   2              }
-  31   1              if(cnt1 >= 5000)
-  32   1              {
-  33   2                      cnt1 = 0;
-  34   2                      RF_LED = ~RF_LED;
-  35   2              }
-  36   1              
-  37   1      }
+  22   1              static uint16_t key_cnt = 0;
+  23   1              static uint16_t update_cnt = 0;
+  24   1              static uint16_t led_cnt = 0;
+  25   1              static uint16_t update_threod = 0;
+  26   1              key_cnt++;
+  27   1              update_cnt++;
+  28   1              led_cnt++;
+  29   1              if(key_cnt >= 100)
+  30   1              {
+  31   2                  key_cnt = 0;
+  32   2              key_scan_flag = true;
+  33   2              }
+  34   1              if(update_cnt >= 15000 - update_threod)
+  35   1              {
+  36   2              update_threod = 13000;
+  37   2              update_status_flag = true;
+  38   2              }
+  39   1              if(led_cnt >= 5000)
+  40   1              {
+  41   2              led_cnt = 0;
+  42   2              RF_LED = ~RF_LED;
+  43   2              }
+  44   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    133    ----
+   CODE SIZE        =    134    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      4    ----
+   DATA SIZE        =      8    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V9.01   TIMER                                                                 06/30/2017 03:13:16 PAGE 2   
+
 END OF MODULE INFORMATION.
 
 

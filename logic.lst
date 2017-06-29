@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 06/29/2017 23:48:33 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 06/30/2017 03:13:16 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -10,47 +10,95 @@ line level    source
 
    1          #include <intrins.h>
    2          #include "logic.h"
-   3          
-   4          sbit RCK = P1^7;
-   5          sbit SCK = P1^6;
-   6          sbit SER = P3^0;
-   7          
-   8          void logicInit(void)
-   9          {
-  10   1          //初始化P16 P17 P30为推挽输出
-  11   1          P1M1 &= 0x3f;
-  12   1              P1M2 |= 0Xc0;
-  13   1              P3M1 &= 0xfe;
-  14   1          P3M2 |= 0x01;
-  15   1          SER = 1;
-  16   1      }
-  17          void SendTo595(uint8_t val)
-  18          {
-  19   1              char i=0;
-  20   1              uint8_t temp = val;
-  21   1              for(i = 0; i < 8; i++)
-  22   1              {
-  23   2                      SER = temp>>7;
-  24   2                      temp= temp<<1;
-  25   2                      SCK = 0;
-  26   2                      _nop_();
-  27   2                      SCK = 1;
-  28   2              }
-  29   1              RCK = 0;
-  30   1              _nop_();
-  31   1              RCK = 1;
-  32   1              SER = 0;
-  33   1      }
-  34          
-  35          
+   3          #include "N76E003.h"
+   4          #include "key.h"
+   5          #include "led.h"
+   6          #include "timer.h"
+   7          #include "key_driver.h"
+   8          
+   9          sbit RCK = P1^7;
+  10          sbit SCK = P1^6;
+  11          sbit SER = P3^0;
+  12          bool key_scan_flag = false;
+  13          bool update_status_flag = false;
+  14          bool led_blink_flag = false;
+  15          
+  16          static void h595Init(void)
+  17          {
+  18   1          //初始化P16 P17 P30为推挽输出
+  19   1          P1M1 &= 0x3f;
+  20   1              P1M2 |= 0Xc0;
+  21   1              P3M1 &= 0xfe;
+  22   1          P3M2 |= 0x01;
+  23   1          SER = 1;
+  24   1      }
+  25          static void relayInit(void)
+  26          {
+  27   1          P0M1 |= 0x0f;//初始化relay脚 P00 -> P03     为输入
+  28   1              P0M2 &= 0Xf0;  
+  29   1      }
+  30          static void updateDeviceStatus(void)
+  31          {
+  32   1          uint8_t temp = 0;
+  33   1          temp = (((uint8_t)RELAY1 << 7) | ((uint8_t)RELAY2 << 6) | ((uint8_t)RELAY3 << 5) | ((uint8_t)RELAY4 <<
+             - 4));
+  34   1          if((temp & 0xf0) != (h595_val & 0xf0))
+  35   1          {
+  36   2              h595_val = ((h595_val & 0x0f) | (temp & 0xf0));
+  37   2              SendTo595(h595_val);
+  38   2          }
+  39   1      }
+  40          void dealLogic(void)
+  41          {
+  42   1          if(key_scan_flag)
+  43   1          {
+  44   2              key_scan_flag = false;
+  45   2              keyScan();
+  46   2          }
+  47   1          if(update_status_flag)
+  48   1          {
+  49   2              updateDeviceStatus();
+  50   2              update_status_flag = false;
+  51   2          }
+  52   1      }
+  53          void logicInit(void)
+C51 COMPILER V9.01   LOGIC                                                                 06/30/2017 03:13:16 PAGE 2   
+
+  54          {
+  55   1          h595Init();
+  56   1          SendTo595(0x0f);
+  57   1          ledInit();   
+  58   1              keyInit();
+  59   1          relayInit();
+  60   1          timerInit();
+  61   1      }
+  62          void SendTo595(uint8_t val)
+  63          {
+  64   1              char i=0;
+  65   1              uint8_t temp = val;
+  66   1              for(i = 0; i < 8; i++)
+  67   1              {
+  68   2                      SER = temp>>7;
+  69   2                      temp= temp<<1;
+  70   2                      SCK = 0;
+  71   2                      _nop_();
+  72   2                      SCK = 1;
+  73   2              }
+  74   1              RCK = 0;
+  75   1              _nop_();
+  76   1              RCK = 1;
+  77   1              SER = 0;
+  78   1      }
+  79          
+  80          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     49    ----
+   CODE SIZE        =    162    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      3    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
