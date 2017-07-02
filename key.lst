@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 10:23:21 PAGE 1   
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE KEY
@@ -62,118 +62,126 @@ line level    source
   52   1      }
   53          
   54          static void key1_short_press(void)
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 10:23:21 PAGE 2   
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 2   
 
   55          {
   56   1          if(h595_val | KEY1_595)
   57   1          {
   58   2              h595_val = h595_val & (~KEY1_595);
-  59   2                  SendTo595(h595_val);
-  60   2          }
-  61   1      }
-  62          static void key2_short_press(void)
-  63          {
-  64   1          if(h595_val | KEY2_595)
-  65   1          {
-  66   2              h595_val = h595_val & (~KEY2_595);
-  67   2              SendTo595(h595_val);
-  68   2              }
-  69   1      }
-  70          static void key3_short_press(void)
-  71          {
-  72   1          if(h595_val | KEY3_595)
-  73   1          {
-  74   2              h595_val = h595_val & (~KEY3_595);
-  75   2              SendTo595(h595_val);
-  76   2              }
-  77   1      }
-  78          static void key4_short_press(void)
-  79          {
-  80   1          if(h595_val | KEY4_595)
-  81   1          {
-  82   2              h595_val = h595_val & (~KEY4_595);
-  83   2              SendTo595(h595_val);
-  84   2              }
-  85   1      }
-  86          static void key5_short_press(void)
-  87          {
-  88   1          
+  59   2              jogging_cnt = 0;
+  60   2                  SendTo595(h595_val);
+  61   2          }
+  62   1      }
+  63          static void key2_short_press(void)
+  64          {
+  65   1          if(h595_val | KEY2_595)
+  66   1          {
+  67   2              h595_val = h595_val & (~KEY2_595);
+  68   2              jogging_cnt = 0;
+  69   2              SendTo595(h595_val);
+  70   2              }
+  71   1      }
+  72          static void key3_short_press(void)
+  73          {
+  74   1          if(h595_val | KEY3_595)
+  75   1          {
+  76   2              h595_val = h595_val & (~KEY3_595);
+  77   2              jogging_cnt = 0;
+  78   2              SendTo595(h595_val);
+  79   2              }
+  80   1      }
+  81          static void key4_short_press(void)
+  82          {
+  83   1          if(h595_val | KEY4_595)
+  84   1          {
+  85   2              h595_val = h595_val & (~KEY4_595);
+  86   2              jogging_cnt = 0;
+  87   2              SendTo595(h595_val);
+  88   2              }
   89   1      }
-  90          static void key1_short_up_press(void)
+  90          static void key5_short_press(void)
   91          {
-  92   1          if(!(h595_val & KEY1_595))
-  93   1          {
-  94   2              if(RELAY1)
-  95   2              {
-  96   3                  h595_val &= (~RELAY1_595);
-  97   3                  h595_val |= KEY1_595;
-  98   3              }
-  99   2              else
- 100   2              {
- 101   3                  h595_val |= (KEY1_595 | RELAY1_595); 
+  92   1          
+  93   1      }
+  94          static void key1_short_up_press(void)
+  95          {
+  96   1          if(!(h595_val & KEY1_595))
+  97   1          {
+  98   2              if(RELAY1)
+  99   2              {
+ 100   3                  h595_val &= (~RELAY1_595);
+ 101   3                  h595_val |= KEY1_595;
  102   3              }
- 103   2              SendTo595(h595_val);
- 104   2          }
- 105   1      }
- 106          static void key2_short_up_press(void)
- 107          {
- 108   1              if(RELAY2)
- 109   1          {
- 110   2              h595_val &= (~RELAY2_595);
- 111   2              h595_val |= KEY2_595;
- 112   2          }
- 113   1          else
+ 103   2              else
+ 104   2              {
+ 105   3                  h595_val |= (KEY1_595 | RELAY1_595); 
+ 106   3              }
+ 107   2              jogging_cnt = 0;
+ 108   2              SendTo595(h595_val);
+ 109   2          }
+ 110   1      }
+ 111          static void key2_short_up_press(void)
+ 112          {
+ 113   1              if(RELAY2)
  114   1          {
- 115   2              h595_val |= (KEY2_595 | RELAY2_595); 
- 116   2          }
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 10:23:21 PAGE 3   
+ 115   2              h595_val &= (~RELAY2_595);
+ 116   2              h595_val |= KEY2_595;
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 3   
 
- 117   1          SendTo595(h595_val);
- 118   1      }
- 119          static void key3_short_up_press(void)
- 120          {
- 121   1              if(RELAY3)
- 122   1          {
- 123   2              h595_val &= (~RELAY3_595);
- 124   2              h595_val |= KEY3_595;
- 125   2          }
- 126   1          else
- 127   1          {
- 128   2              h595_val |= (KEY3_595 | RELAY3_595); 
- 129   2          }
- 130   1          SendTo595(h595_val);
- 131   1      }
- 132          static void key4_short_up_press(void)
- 133          {
- 134   1              if(RELAY4)
- 135   1          {
- 136   2              h595_val &= (~RELAY4_595);
- 137   2              h595_val |= KEY4_595;
- 138   2          }
- 139   1          else
- 140   1          {
- 141   2              h595_val |= (KEY4_595 | RELAY4_595); 
- 142   2          }
- 143   1          SendTo595(h595_val);
- 144   1      }
- 145          static void registerKeys(void)
- 146          {
- 147   1          keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,NULL,NULL);
- 148   1          keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,NULL,NULL);
- 149   1          keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,NULL,NULL);
- 150   1          keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,NULL,NULL);
- 151   1          keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+ 117   2          }
+ 118   1          else
+ 119   1          {
+ 120   2              h595_val |= (KEY2_595 | RELAY2_595); 
+ 121   2          }
+ 122   1          jogging_cnt = 0;
+ 123   1          SendTo595(h595_val);
+ 124   1      }
+ 125          static void key3_short_up_press(void)
+ 126          {
+ 127   1              if(RELAY3)
+ 128   1          {
+ 129   2              h595_val &= (~RELAY3_595);
+ 130   2              h595_val |= KEY3_595;
+ 131   2          }
+ 132   1          else
+ 133   1          {
+ 134   2              h595_val |= (KEY3_595 | RELAY3_595); 
+ 135   2          }
+ 136   1          jogging_cnt = 0;
+ 137   1          SendTo595(h595_val);
+ 138   1      }
+ 139          static void key4_short_up_press(void)
+ 140          {
+ 141   1              if(RELAY4)
+ 142   1          {
+ 143   2              h595_val &= (~RELAY4_595);
+ 144   2              h595_val |= KEY4_595;
+ 145   2          }
+ 146   1          else
+ 147   1          {
+ 148   2              h595_val |= (KEY4_595 | RELAY4_595); 
+ 149   2          }
+ 150   1          jogging_cnt = 0;
+ 151   1          SendTo595(h595_val);
  152   1      }
- 153          void keyInit(void)
+ 153          static void registerKeys(void)
  154          {
- 155   1              P1M1 |= 0x1f;//初始化P10 -> P14为输入
- 156   1              P1M2 &= 0Xe0;
- 157   1              registerKeys();
- 158   1      }
+ 155   1          keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,NULL,NULL);
+ 156   1          keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,NULL,NULL);
+ 157   1          keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,NULL,NULL);
+ 158   1          keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,NULL,NULL);
+ 159   1          keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+ 160   1      }
+ 161          void keyInit(void)
+ 162          {
+ 163   1              P1M1 |= 0x1f;//初始化P10 -> P14为输入
+ 164   1              P1M2 &= 0Xe0;
+ 165   1              registerKeys();
+ 166   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    467    ----
+   CODE SIZE        =    507    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -30,7 +30,7 @@ void Timer0_ISR(void) interrupt 1
 	{
 	    key_cnt = 0;
         key_scan_flag = true;
-        deal_jogging = true;
+        deal_relay = true;
 	}
 	if(update_cnt >= 15000 - update_threod)
 	{

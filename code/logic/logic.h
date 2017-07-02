@@ -30,7 +30,9 @@ extern uint8_t h595_val;
 extern bool key_scan_flag;
 extern bool update_status_flag;
 extern bool led_blink_flag;
-extern bool deal_jogging;
+extern bool deal_relay;
+extern uint16_t jogging_cnt;
+
 void logicInit(void);
 void SendTo595(uint8_t val);
 void dealLogic(void);

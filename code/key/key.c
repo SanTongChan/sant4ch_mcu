@@ -56,6 +56,7 @@ static void key1_short_press(void)
     if(h595_val | KEY1_595)
     {
         h595_val = h595_val & (~KEY1_595);
+        jogging_cnt = 0;
 	    SendTo595(h595_val);
     }
 }
@@ -64,6 +65,7 @@ static void key2_short_press(void)
     if(h595_val | KEY2_595)
     {
         h595_val = h595_val & (~KEY2_595);
+        jogging_cnt = 0;
     	SendTo595(h595_val);
 	}
 }
@@ -72,6 +74,7 @@ static void key3_short_press(void)
     if(h595_val | KEY3_595)
     {
     	h595_val = h595_val & (~KEY3_595);
+    	jogging_cnt = 0;
     	SendTo595(h595_val);
 	}
 }
@@ -80,6 +83,7 @@ static void key4_short_press(void)
     if(h595_val | KEY4_595)
     {
     	h595_val = h595_val & (~KEY4_595);
+    	jogging_cnt = 0;
     	SendTo595(h595_val);
 	}
 }
@@ -100,6 +104,7 @@ static void key1_short_up_press(void)
         {
             h595_val |= (KEY1_595 | RELAY1_595); 
         }
+        jogging_cnt = 0;
         SendTo595(h595_val);
     }
 }
@@ -114,6 +119,7 @@ static void key2_short_up_press(void)
     {
         h595_val |= (KEY2_595 | RELAY2_595); 
     }
+    jogging_cnt = 0;
     SendTo595(h595_val);
 }
 static void key3_short_up_press(void)
@@ -127,6 +133,7 @@ static void key3_short_up_press(void)
     {
         h595_val |= (KEY3_595 | RELAY3_595); 
     }
+    jogging_cnt = 0;
     SendTo595(h595_val);
 }
 static void key4_short_up_press(void)
@@ -140,6 +147,7 @@ static void key4_short_up_press(void)
     {
         h595_val |= (KEY4_595 | RELAY4_595); 
     }
+    jogging_cnt = 0;
     SendTo595(h595_val);
 }
 static void registerKeys(void)

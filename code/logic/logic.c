@@ -12,9 +12,9 @@ sbit SER = P3^0;
 bool key_scan_flag = false;
 bool update_status_flag = false;
 bool led_blink_flag = false;
-bool deal_jogging = false;
+bool deal_relay = false;
 DevDef dev_def = {0};
-
+uint16_t jogging_cnt = 0;
 static void h595Init(void)
 {
     //初始化P16 P17 P30为推挽输出
@@ -67,15 +67,12 @@ static void updateDeviceStatus(void)
         SendTo595(h595_val);
     }
 }
-static void dealJogging(void)
+static void dealRealy(void)
 {
-    static uint16_t cnt = 0;
     //static bool lock = false;
-    cnt++;
+    jogging_cnt++;
     if(!dev_def.lock)
     {
-        MODE_LED = 1;
-        dev_def.dev_channel[0].timer_cnt++;
         if(dev_def.dev_channel[0].channel_mode == DEV_JOGGING)
         {
             dev_def.dev_channel[0].timer_cnt++;
@@ -92,7 +89,7 @@ static void dealJogging(void)
                     dev_def.dev_channel[0].get_status = false;
                     h595_val &= (~RELAY1_595);//关掉relay1
                     dev_def.dev_channel[0].update_flag = true;//允许更新标志位
-                    cnt = 0;
+                    jogging_cnt = 0;
                 }
             }
             else
@@ -104,14 +101,14 @@ static void dealJogging(void)
                     dev_def.dev_channel[0].update_flag = false;
                 }
             }
-            if(cnt == 50)
+            if(jogging_cnt == 50)
             {
                 if(dev_def.dev_channel[0].update_flag == true)
                 {
                     h595_val &= ~KEY1_595;
                 }
             }
-            else if(cnt > 60 && cnt <= 70)
+            else if(jogging_cnt > 60 && jogging_cnt <= 70)
             {
                 if(dev_def.dev_channel[0].update_flag == true)
                 {
@@ -121,11 +118,11 @@ static void dealJogging(void)
                     }
                 }
             }
-            else if(cnt > 70)
+            else if(jogging_cnt > 70)
             {
                 if(((uint8_t)RELAY1 << 7) == (h595_val & RELAY1_595))
                 {
-                    cnt = 0;
+                    jogging_cnt = 0;
                     dev_def.dev_channel[0].update_flag = false;
                 }
             }
@@ -155,10 +152,10 @@ void dealLogic(void)
         keyScan();
     }
     
-    if(deal_jogging)
+    if(deal_relay)
     {
-        dealJogging();
-        deal_jogging = false;
+        dealRealy();
+        deal_relay = false;
     }
     if(update_status_flag)
     {
