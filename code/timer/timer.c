@@ -4,7 +4,7 @@
 #include "led.h"
 #include "logic.h"
 
-void timerInit(void)
+void timer0Init(void)
 {
 	TMOD &= 0xf0;
 	TMOD |= 0X02; //开启定时器0模式2
@@ -30,6 +30,7 @@ void Timer0_ISR(void) interrupt 1
 	{
 	    key_cnt = 0;
         key_scan_flag = true;
+        deal_jogging = true;
 	}
 	if(update_cnt >= 15000 - update_threod)
 	{

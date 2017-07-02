@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 06/30/2017 03:13:16 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/02/2017 10:23:21 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -22,83 +22,207 @@ line level    source
   12          bool key_scan_flag = false;
   13          bool update_status_flag = false;
   14          bool led_blink_flag = false;
-  15          
-  16          static void h595Init(void)
-  17          {
-  18   1          //初始化P16 P17 P30为推挽输出
-  19   1          P1M1 &= 0x3f;
-  20   1              P1M2 |= 0Xc0;
-  21   1              P3M1 &= 0xfe;
-  22   1          P3M2 |= 0x01;
-  23   1          SER = 1;
-  24   1      }
-  25          static void relayInit(void)
-  26          {
-  27   1          P0M1 |= 0x0f;//初始化relay脚 P00 -> P03     为输入
-  28   1              P0M2 &= 0Xf0;  
-  29   1      }
-  30          static void updateDeviceStatus(void)
-  31          {
-  32   1          uint8_t temp = 0;
-  33   1          temp = (((uint8_t)RELAY1 << 7) | ((uint8_t)RELAY2 << 6) | ((uint8_t)RELAY3 << 5) | ((uint8_t)RELAY4 <<
+  15          bool deal_jogging = false;
+  16          DevDef dev_def = {0};
+  17          
+  18          static void h595Init(void)
+  19          {
+  20   1          //初始化P16 P17 P30为推挽输出
+  21   1          P1M1 &= 0x3f;
+  22   1              P1M2 |= 0Xc0;
+  23   1              P3M1 &= 0xfe;
+  24   1          P3M2 |= 0x01;
+  25   1          SER = 1;
+  26   1      }
+  27          static void relayInit(void)
+  28          {
+  29   1          P0M1 |= 0x0f;//初始化relay脚 P00 -> P03     为输入
+  30   1              P0M2 &= 0Xf0;  
+  31   1      }
+  32          static void updateDeviceStatus(void)
+  33          {
+  34   1      #if 0
+                  uint8_t temp = 0;
+                  temp = (((uint8_t)RELAY1 << 7) | ((uint8_t)RELAY2 << 6) | ((uint8_t)RELAY3 << 5) | ((uint8_t)RELAY4 <<
              - 4));
-  34   1          if((temp & 0xf0) != (h595_val & 0xf0))
-  35   1          {
-  36   2              h595_val = ((h595_val & 0x0f) | (temp & 0xf0));
-  37   2              SendTo595(h595_val);
-  38   2          }
-  39   1      }
-  40          void dealLogic(void)
-  41          {
-  42   1          if(key_scan_flag)
-  43   1          {
-  44   2              key_scan_flag = false;
-  45   2              keyScan();
-  46   2          }
-  47   1          if(update_status_flag)
-  48   1          {
-  49   2              updateDeviceStatus();
-  50   2              update_status_flag = false;
-  51   2          }
-  52   1      }
-  53          void logicInit(void)
-C51 COMPILER V9.01   LOGIC                                                                 06/30/2017 03:13:16 PAGE 2   
+                  if((temp & 0xf0) != (h595_val & 0xf0))
+                  {
+                      h595_val = ((h595_val & 0x0f) | (temp & 0xf0));
+                      SendTo595(h595_val);
+                  }
+              #endif
+  43   1          uint8_t last_val = 0;
+  44   1          last_val = h595_val;
+  45   1          if((((uint8_t)RELAY1 << 7) != (h595_val & RELAY1_595)) && (!dev_def.dev_channel[0].update_flag))
+  46   1          {
+  47   2              h595_val &= (~RELAY1_595);
+  48   2              h595_val |= ((uint8_t)RELAY1 << 7);
+  49   2          }
+  50   1          if((((uint8_t)RELAY2 << 6) != (h595_val & RELAY2_595)) && (!dev_def.dev_channel[1].update_flag))
+  51   1          {
+  52   2              h595_val &= (~RELAY2_595);
+  53   2              h595_val |= ((uint8_t)RELAY2 << 6);
+C51 COMPILER V9.01   LOGIC                                                                 07/02/2017 10:23:21 PAGE 2   
 
-  54          {
-  55   1          h595Init();
-  56   1          SendTo595(0x0f);
-  57   1          ledInit();   
-  58   1              keyInit();
-  59   1          relayInit();
-  60   1          timerInit();
-  61   1      }
-  62          void SendTo595(uint8_t val)
-  63          {
-  64   1              char i=0;
-  65   1              uint8_t temp = val;
-  66   1              for(i = 0; i < 8; i++)
-  67   1              {
-  68   2                      SER = temp>>7;
-  69   2                      temp= temp<<1;
-  70   2                      SCK = 0;
-  71   2                      _nop_();
-  72   2                      SCK = 1;
-  73   2              }
-  74   1              RCK = 0;
-  75   1              _nop_();
-  76   1              RCK = 1;
-  77   1              SER = 0;
-  78   1      }
-  79          
-  80          
+  54   2          }
+  55   1          if((((uint8_t)RELAY3 << 5) != (h595_val & RELAY3_595)) && (!dev_def.dev_channel[2].update_flag))
+  56   1          {
+  57   2              h595_val &= (~RELAY3_595);
+  58   2              h595_val |= ((uint8_t)RELAY3 << 5);
+  59   2          }
+  60   1          if((((uint8_t)RELAY4 << 4) != (h595_val & RELAY4_595)) && (!dev_def.dev_channel[3].update_flag))
+  61   1          {
+  62   2              h595_val &= (~RELAY4_595);
+  63   2              h595_val |= ((uint8_t)RELAY4 << 4);
+  64   2          }
+  65   1          if(last_val != h595_val)
+  66   1          {
+  67   2              SendTo595(h595_val);
+  68   2          }
+  69   1      }
+  70          static void dealJogging(void)
+  71          {
+  72   1          static uint16_t cnt = 0;
+  73   1          //static bool lock = false;
+  74   1          cnt++;
+  75   1          if(!dev_def.lock)
+  76   1          {
+  77   2              MODE_LED = 1;
+  78   2              dev_def.dev_channel[0].timer_cnt++;
+  79   2              if(dev_def.dev_channel[0].channel_mode == DEV_JOGGING)
+  80   2              {
+  81   3                  dev_def.dev_channel[0].timer_cnt++;
+  82   3                  if((h595_val & RELAY1_595))//如果relay1是按下的
+  83   3                  {
+  84   4                      if(dev_def.dev_channel[0].get_status == false)
+  85   4                      {
+  86   5                          dev_def.dev_channel[0].timer_cnt = 0;
+  87   5                          dev_def.dev_channel[0].get_status = true;
+  88   5                      }
+  89   4                      if(dev_def.dev_channel[0].timer_cnt >= 100)
+  90   4                      {
+  91   5                          dev_def.dev_channel[0].timer_cnt = 0;
+  92   5                          dev_def.dev_channel[0].get_status = false;
+  93   5                          h595_val &= (~RELAY1_595);//关掉relay1
+  94   5                          dev_def.dev_channel[0].update_flag = true;//允许更新标志位
+  95   5                          cnt = 0;
+  96   5                      }
+  97   4                  }
+  98   3                  else
+  99   3                  {
+ 100   4                      dev_def.dev_channel[0].timer_cnt = 0;
+ 101   4                      if(RELAY1 == 0 && dev_def.dev_channel[0].update_flag == true)
+ 102   4                      {
+ 103   5                          h595_val |= KEY1_595;
+ 104   5                          dev_def.dev_channel[0].update_flag = false;
+ 105   5                      }
+ 106   4                  }
+ 107   3                  if(cnt == 50)
+ 108   3                  {
+ 109   4                      if(dev_def.dev_channel[0].update_flag == true)
+ 110   4                      {
+ 111   5                          h595_val &= ~KEY1_595;
+ 112   5                      }
+ 113   4                  }
+ 114   3                  else if(cnt > 60 && cnt <= 70)
+ 115   3                  {
+C51 COMPILER V9.01   LOGIC                                                                 07/02/2017 10:23:21 PAGE 3   
+
+ 116   4                      if(dev_def.dev_channel[0].update_flag == true)
+ 117   4                      {
+ 118   5                          if((h595_val & KEY1_595) == 0)
+ 119   5                          {
+ 120   6                               h595_val |= KEY1_595;
+ 121   6                          }
+ 122   5                      }
+ 123   4                  }
+ 124   3                  else if(cnt > 70)
+ 125   3                  {
+ 126   4                      if(((uint8_t)RELAY1 << 7) == (h595_val & RELAY1_595))
+ 127   4                      {
+ 128   5                          cnt = 0;
+ 129   5                          dev_def.dev_channel[0].update_flag = false;
+ 130   5                      }
+ 131   4                  }
+ 132   3              }
+ 133   2              /*
+ 134   2              else
+ 135   2              {
+ 136   2                  if((h595_val & KEY1_595) || dev_def.dev_channel[0].update_flag)
+ 137   2                  {
+ 138   2                      h595_val |= KEY1_595;
+ 139   2                      dev_def.dev_channel[0].update_flag = false;
+ 140   2                  }
+ 141   2              }
+ 142   2              */
+ 143   2              SendTo595(h595_val);
+ 144   2          }
+ 145   1          else
+ 146   1          {
+ 147   2      
+ 148   2          }
+ 149   1      }
+ 150          void dealLogic(void)
+ 151          {
+ 152   1          if(key_scan_flag)
+ 153   1          {
+ 154   2              key_scan_flag = false;
+ 155   2              keyScan();
+ 156   2          }
+ 157   1          
+ 158   1          if(deal_jogging)
+ 159   1          {
+ 160   2              dealJogging();
+ 161   2              deal_jogging = false;
+ 162   2          }
+ 163   1          if(update_status_flag)
+ 164   1          {
+ 165   2              updateDeviceStatus();
+ 166   2              update_status_flag = false;
+ 167   2          }
+ 168   1      }
+ 169          void logicInit(void)
+ 170          {
+ 171   1          h595Init();
+ 172   1          SendTo595(0x0f);
+ 173   1          ledInit();   
+ 174   1              keyInit();
+ 175   1          relayInit();
+ 176   1          timer0Init();
+ 177   1          dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
+C51 COMPILER V9.01   LOGIC                                                                 07/02/2017 10:23:21 PAGE 4   
+
+ 178   1          MODE_LED = 0;
+ 179   1      }
+ 180          void SendTo595(uint8_t val)
+ 181          {
+ 182   1              char i=0;
+ 183   1              uint8_t temp = val;
+ 184   1              EA = 0;
+ 185   1              for(i = 0; i < 8; i++)
+ 186   1              {
+ 187   2                      SER = temp>>7;
+ 188   2                      temp= temp<<1;
+ 189   2                      SCK = 0;
+ 190   2                      _nop_();
+ 191   2                      SCK = 1;
+ 192   2              }
+ 193   1              RCK = 0;
+ 194   1              _nop_();
+ 195   1              RCK = 1;
+ 196   1              SER = 0;
+ 197   1              EA = 1;
+ 198   1      }
+ 199          
+ 200          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    162    ----
+   CODE SIZE        =    486    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      3    ----
+   DATA SIZE        =     27    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

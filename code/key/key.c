@@ -53,44 +53,55 @@ static bool key5_is_press(void)
 
 static void key1_short_press(void)
 {
-    MODE_LED = !MODE_LED;
-    h595_val = h595_val & (~KEY1_595);
-	SendTo595(h595_val);
+    if(h595_val | KEY1_595)
+    {
+        h595_val = h595_val & (~KEY1_595);
+	    SendTo595(h595_val);
+    }
 }
 static void key2_short_press(void)
 {
-    MODE_LED = !MODE_LED;
-    h595_val = h595_val & (~KEY2_595);
-	SendTo595(h595_val);
+    if(h595_val | KEY2_595)
+    {
+        h595_val = h595_val & (~KEY2_595);
+    	SendTo595(h595_val);
+	}
 }
 static void key3_short_press(void)
 {
-    MODE_LED = !MODE_LED;
-	h595_val = h595_val & (~KEY3_595);
-	SendTo595(h595_val);
+    if(h595_val | KEY3_595)
+    {
+    	h595_val = h595_val & (~KEY3_595);
+    	SendTo595(h595_val);
+	}
 }
 static void key4_short_press(void)
 {
-    MODE_LED = !MODE_LED;
-	h595_val = h595_val & (~KEY4_595);
-	SendTo595(h595_val);
+    if(h595_val | KEY4_595)
+    {
+    	h595_val = h595_val & (~KEY4_595);
+    	SendTo595(h595_val);
+	}
 }
 static void key5_short_press(void)
 {
-    MODE_LED = !MODE_LED;
+    
 }
 static void key1_short_up_press(void)
 {
-    if(RELAY1)
+    if(!(h595_val & KEY1_595))
     {
-        h595_val &= (~RELAY1_595);
-        h595_val |= KEY1_595;
+        if(RELAY1)
+        {
+            h595_val &= (~RELAY1_595);
+            h595_val |= KEY1_595;
+        }
+        else
+        {
+            h595_val |= (KEY1_595 | RELAY1_595); 
+        }
+        SendTo595(h595_val);
     }
-    else
-    {
-        h595_val |= (KEY1_595 | RELAY1_595); 
-    }
-    SendTo595(h595_val);
 }
 static void key2_short_up_press(void)
 {
@@ -137,7 +148,7 @@ static void registerKeys(void)
     keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,NULL,NULL);
     keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,NULL,NULL);
     keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,NULL,NULL);
-    keyRegisterSingle(key5_is_press,key5_short_press,key1_short_up_press,NULL,NULL,NULL);
+    keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
 }
 void keyInit(void)
 {

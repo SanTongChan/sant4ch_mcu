@@ -1,0 +1,38 @@
+---- key_val Matches (42 in 3 files) ----
+Key.c (key):static uint8_t key_val = 0x0f;
+Key.c (key):    key_val = key_val & (~KEY1_595);
+Key.c (key):	SendTo595(key_val);
+Key.c (key):    key_val = key_val & (~KEY2_595);
+Key.c (key):	SendTo595(key_val);
+Key.c (key):	key_val = key_val & (~KEY3_595);
+Key.c (key):	SendTo595(key_val);
+Key.c (key):	key_val = key_val & (~KEY4_595);
+Key.c (key):	SendTo595(key_val);
+Key.c (key):        key_val &= (~RELAY1_595);
+Key.c (key):        key_val |= KEY1_595;
+Key.c (key):        key_val |= (KEY1_595 | RELAY1_595); 
+Key.c (key):    SendTo595(key_val);
+Key.c (key):        key_val &= (~RELAY2_595);
+Key.c (key):        key_val |= KEY2_595;
+Key.c (key):        key_val |= (KEY2_595 | RELAY2_595); 
+Key.c (key):    SendTo595(key_val);
+Key.c (key):        key_val &= (~RELAY3_595);
+Key.c (key):        key_val |= KEY3_595;
+Key.c (key):        key_val |= (KEY3_595 | RELAY3_595); 
+Key.c (key):    SendTo595(key_val);
+Key.c (key):        key_val &= (~RELAY4_595);
+Key.c (key):        key_val |= KEY4_595;
+Key.c (key):        key_val |= (KEY4_595 | RELAY4_595); 
+Key.c (key):    SendTo595(key_val);
+Key_driver.c (driver):    uint8_t key_val = NO_KEY;
+Key_driver.c (driver):                key_val |= keys_dev._key_single[i]._key_val;
+Key_driver.c (driver):    return key_val;
+Key_driver.c (driver):static void keyDeal(uint8_t key_val,uint8_t key_id)
+Key_driver.c (driver):    if(key_val == NO_KEY || key_val != keys_ctl.key_ctl[key_id]._key_val)
+Key_driver.c (driver):            keys_ctl.key_ctl[key_id]._key_val = key_val;
+Key_driver.c (driver):static void keysDeal(uint8_t key_val)
+Key_driver.c (driver):        key_temp = key_val & (timer_cnt << i);
+Key_driver.c (driver):    uint8_t key_val = NO_KEY;
+Key_driver.c (driver):    key_val = keyGet();
+Key_driver.c (driver):    keysDeal(key_val);
+Logic.h (logic):extern uint8_t key_val;
