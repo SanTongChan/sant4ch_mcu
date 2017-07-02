@@ -18,6 +18,7 @@ typedef struct
     uint16_t timer_cnt;
     uint8_t update_flag;
     bool get_status;
+    bool lock;
     ChannelMode channel_mode;
 }DevChannelDef;
 typedef struct

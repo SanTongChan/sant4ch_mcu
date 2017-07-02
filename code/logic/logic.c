@@ -70,6 +70,93 @@ static void updateDeviceStatus(void)
 static void dealRealy(void)
 {
     //static bool lock = false;
+    uint8_t relay_array[4] = {0x80,0x40,0x20,0x10};
+    uint8_t key_array[4] = {0x04,0x02,0x01,0x08};
+    uint8_t relays[4] = {0};
+    uint8_t i = 0;
+    uint8_t last_val = 0;
+    relays[0] = (uint8_t)RELAY1;
+    relays[1] = (uint8_t)RELAY2;
+    relays[2] = (uint8_t)RELAY3;
+    relays[3] = (uint8_t)RELAY4;
+
+    jogging_cnt++;
+    last_val = h595_val;
+    if(!dev_def.lock)
+    {
+        for(i =  0; i < 4; i++)
+        {
+            if(dev_def.dev_channel[i].channel_mode == DEV_JOGGING)
+            {
+                dev_def.dev_channel[i].timer_cnt++;
+                if((h595_val & relay_array[i]))//如果relay1是按下的
+                {
+                    if(dev_def.dev_channel[i].get_status == false)
+                    {
+                        dev_def.dev_channel[i].timer_cnt = 0;
+                        dev_def.dev_channel[i].get_status = true;
+                    }
+                    if(dev_def.dev_channel[i].timer_cnt >= 100)
+                    {
+                        dev_def.dev_channel[i].timer_cnt = 0;
+                        dev_def.dev_channel[i].get_status = false;
+                        h595_val &= (~relay_array[i]);//关掉relay1
+                        dev_def.dev_channel[i].update_flag = true;//允许更新标志位
+                        jogging_cnt = 0;
+                    }
+                }
+                else
+                {
+                    dev_def.dev_channel[i].timer_cnt = 0;
+                    if(relays[i] == 0 && dev_def.dev_channel[i].update_flag == true)
+                    {
+                        h595_val |= key_array[i];
+                        dev_def.dev_channel[i].update_flag = false;
+                    }
+                }
+            }
+        }
+        if(jogging_cnt == 50)
+        {
+            for (i = 0; i < 4; i++)
+            {
+                if((dev_def.dev_channel[i].update_flag == true) 
+                    && ((h595_val & key_array[i]))
+                    && (!dev_def.dev_channel[i].lock))
+                {
+                    h595_val &= ~key_array[i];
+                }
+            }
+        }
+        else if(jogging_cnt == 60)
+        {
+            for(i = 0; i < 4; i++)
+            {
+                if((dev_def.dev_channel[i].update_flag == true)
+                    && ((h595_val & key_array[i]) == 0)
+                    && (!dev_def.dev_channel[i].lock))
+                {
+                    MODE_LED = 1;
+                    h595_val |= key_array[i];
+                    dev_def.dev_channel[i].lock = true;
+                }
+            }
+        }
+        for(i = 0; i < 4; i++)
+        {
+            if((relays[i] << (7 - i)) == (h595_val & relay_array[i])
+                && dev_def.dev_channel[i].lock == true)
+            {
+                dev_def.dev_channel[i].lock = false;
+                dev_def.dev_channel[i].update_flag = false;
+            }
+        }
+    }
+    if(last_val != h595_val)
+    {
+        SendTo595(h595_val);
+    }
+ #if 0
     jogging_cnt++;
     if(!dev_def.lock)
     {
@@ -143,6 +230,7 @@ static void dealRealy(void)
     {
 
     }
+#endif
 }
 void dealLogic(void)
 {
@@ -172,6 +260,9 @@ void logicInit(void)
     relayInit();
     timer0Init();
     dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
+    dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
+    dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
+    dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
     MODE_LED = 0;
 }
 void SendTo595(uint8_t val)

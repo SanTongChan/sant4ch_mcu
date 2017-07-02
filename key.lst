@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 1   
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 15:00:13 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE KEY
@@ -62,7 +62,7 @@ line level    source
   52   1      }
   53          
   54          static void key1_short_press(void)
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 2   
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 15:00:13 PAGE 2   
 
   55          {
   56   1          if(h595_val | KEY1_595)
@@ -126,7 +126,7 @@ line level    source
  114   1          {
  115   2              h595_val &= (~RELAY2_595);
  116   2              h595_val |= KEY2_595;
-C51 COMPILER V9.01   KEY                                                                   07/02/2017 12:53:51 PAGE 3   
+C51 COMPILER V9.01   KEY                                                                   07/02/2017 15:00:13 PAGE 3   
 
  117   2          }
  118   1          else
