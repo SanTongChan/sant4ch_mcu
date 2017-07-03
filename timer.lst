@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 10:57:12 PAGE 1   
+C51 COMPILER V9.01   TIMER                                                                 07/03/2017 11:04:04 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   2              led_cnt = 0;
   53   2              RF_LED = ~RF_LED;
   54   2              }
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 10:57:12 PAGE 2   
+C51 COMPILER V9.01   TIMER                                                                 07/03/2017 11:04:04 PAGE 2   
 
   55   1      }
 

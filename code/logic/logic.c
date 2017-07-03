@@ -187,6 +187,7 @@ static void dealLock(void)
                 }
                 else if(lock_channel == (i + 1))
                 {
+                /*
                     if(relays[i])
                     {
                         if(!(h595_val & relay_array[i]))
@@ -194,6 +195,9 @@ static void dealLock(void)
                             h595_val |= relay_array[i];
                         }
                     }
+                */
+                    h595_val &= 0x0f;
+                    h595_val |= relay_array[i];
                 }
             }
             dev_def.lock_cnt = 0;

@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -62,7 +62,7 @@ line level    source
   52   2              if((((uint8_t)RELAY3 << 5) != (h595_val & RELAY3_595)) && (!dev_def.dev_channel[2].update_flag))
   53   2              {
   54   3                  h595_val &= (~RELAY3_595);
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 2   
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 2   
 
   55   3                  h595_val |= ((uint8_t)RELAY3 << 5);
   56   3              }
@@ -126,7 +126,7 @@ line level    source
  114   2              {
  115   3                  for (i = 0; i < 4; i++)
  116   3                  {
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 3   
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 3   
 
  117   4                      if((dev_def.dev_channel[i].update_flag == true) 
  118   4                          && ((h595_val & key_array[i]))
@@ -190,7 +190,7 @@ line level    source
  176   3              }
  177   2              if(last_lock_channel != lock_channel)
  178   2              {
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 4   
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 4   
 
  179   3                  MODE_LED = !MODE_LED;
  180   3                  last_lock_channel = lock_channel;
@@ -203,135 +203,139 @@ line level    source
  187   5                      }
  188   4                      else if(lock_channel == (i + 1))
  189   4                      {
- 190   5                          if(relays[i])
- 191   5                          {
- 192   6                              if(!(h595_val & relay_array[i]))
- 193   6                              {
- 194   7                                  h595_val |= relay_array[i];
- 195   7                              }
- 196   6                          }
- 197   5                      }
- 198   4                  }
- 199   3                  dev_def.lock_cnt = 0;
- 200   3                  dev_def.lock_update = true;
- 201   3              }
- 202   2              else
- 203   2              {
- 204   3                  
- 205   3                  if(relays[lock_channel - 1])
- 206   3                  {
- 207   4                      if(!(h595_val & relay_array[lock_channel - 1]))
- 208   4                      {
- 209   5                          h595_val |= relay_array[lock_channel - 1];
- 210   5                      }
- 211   4                     
- 212   4                  }
- 213   3                  else
- 214   3                  {
- 215   4                      if(h595_val & relay_array[lock_channel - 1])
- 216   4                      {
- 217   5                          h595_val &= ~relay_array[lock_channel - 1];
- 218   5                      }
- 219   4                  }
- 220   3              }
- 221   2      #if 1
- 222   2              if(dev_def.lock_cnt >= 50 && dev_def.lock_update)
- 223   2              {
- 224   3                  dev_def.lock_cnt = 0;
- 225   3                  dev_def.lock_update = false;
- 226   3                  h595_val |= 0x0f;
- 227   3              }
- 228   2              if(h595_val != last_val)
- 229   2              {
- 230   3                  SendTo595(h595_val);
+ 190   5                      /*
+ 191   5                          if(relays[i])
+ 192   5                          {
+ 193   5                              if(!(h595_val & relay_array[i]))
+ 194   5                              {
+ 195   5                                  h595_val |= relay_array[i];
+ 196   5                              }
+ 197   5                          }
+ 198   5                      */
+ 199   5                          h595_val &= 0x0f;
+ 200   5                          h595_val |= relay_array[i];
+ 201   5                      }
+ 202   4                  }
+ 203   3                  dev_def.lock_cnt = 0;
+ 204   3                  dev_def.lock_update = true;
+ 205   3              }
+ 206   2              else
+ 207   2              {
+ 208   3                  
+ 209   3                  if(relays[lock_channel - 1])
+ 210   3                  {
+ 211   4                      if(!(h595_val & relay_array[lock_channel - 1]))
+ 212   4                      {
+ 213   5                          h595_val |= relay_array[lock_channel - 1];
+ 214   5                      }
+ 215   4                     
+ 216   4                  }
+ 217   3                  else
+ 218   3                  {
+ 219   4                      if(h595_val & relay_array[lock_channel - 1])
+ 220   4                      {
+ 221   5                          h595_val &= ~relay_array[lock_channel - 1];
+ 222   5                      }
+ 223   4                  }
+ 224   3              }
+ 225   2      #if 1
+ 226   2              if(dev_def.lock_cnt >= 50 && dev_def.lock_update)
+ 227   2              {
+ 228   3                  dev_def.lock_cnt = 0;
+ 229   3                  dev_def.lock_update = false;
+ 230   3                  h595_val |= 0x0f;
  231   3              }
- 232   2      #endif
- 233   2          }
- 234   1      }
- 235          /*
- 236          static void dealJogging(void)
- 237          {
- 238              uint8_t last_val = 0;
- 239              jogging_cnt++;
- 240              last_val = h595_val;
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 5   
+ 232   2              if(h595_val != last_val)
+ 233   2              {
+ 234   3                  SendTo595(h595_val);
+ 235   3              }
+ 236   2      #endif
+ 237   2          }
+ 238   1      }
+ 239          /*
+ 240          static void dealJogging(void)
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 5   
 
- 241              if(!dev_def.lock)
- 242              {
- 243                  dealJogging();
- 244              }
- 245              if(last_val != h595_val)
+ 241          {
+ 242              uint8_t last_val = 0;
+ 243              jogging_cnt++;
+ 244              last_val = h595_val;
+ 245              if(!dev_def.lock)
  246              {
- 247                  SendTo595(h595_val);
+ 247                  dealJogging();
  248              }
- 249          }
- 250          */
- 251          void dealLogic(void)
- 252          {
- 253   1          if(key_scan_flag)
- 254   1          {
- 255   2              key_scan_flag = false;
- 256   2              keyScan();
- 257   2          }
- 258   1          
- 259   1          if(deal_jogging)
- 260   1          {
- 261   2              dealJogging();
- 262   2              deal_jogging = false;
- 263   2          }
- 264   1          if(lock_flag)
- 265   1          {
- 266   2              lock_flag = false;
- 267   2              dealLock();
- 268   2          }
- 269   1          if(update_status_flag)
- 270   1          {
- 271   2              updateDeviceStatus();
- 272   2              update_status_flag = false;
- 273   2          }
- 274   1      }
- 275          void logicInit(void)
- 276          {
- 277   1          h595Init();
- 278   1          SendTo595(0x0f);
- 279   1          ledInit();   
- 280   1              keyInit();
- 281   1          relayInit();
- 282   1          timer0Init();
- 283   1          dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
- 284   1          dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
- 285   1          dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
- 286   1          dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
- 287   1          dev_def.lock = true;
- 288   1          MODE_LED = 0;
- 289   1      }
- 290          void SendTo595(uint8_t val)
- 291          {
- 292   1              char i=0;
- 293   1              uint8_t temp = val;
- 294   1              EA = 0;
- 295   1              for(i = 0; i < 8; i++)
- 296   1              {
- 297   2                      SER = temp>>7;
- 298   2                      temp= temp<<1;
- 299   2                      SCK = 0;
- 300   2                      _nop_();
- 301   2                      SCK = 1;
- 302   2              }
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 10:57:12 PAGE 6   
+ 249              if(last_val != h595_val)
+ 250              {
+ 251                  SendTo595(h595_val);
+ 252              }
+ 253          }
+ 254          */
+ 255          void dealLogic(void)
+ 256          {
+ 257   1          if(key_scan_flag)
+ 258   1          {
+ 259   2              key_scan_flag = false;
+ 260   2              keyScan();
+ 261   2          }
+ 262   1          
+ 263   1          if(deal_jogging)
+ 264   1          {
+ 265   2              dealJogging();
+ 266   2              deal_jogging = false;
+ 267   2          }
+ 268   1          if(lock_flag)
+ 269   1          {
+ 270   2              lock_flag = false;
+ 271   2              dealLock();
+ 272   2          }
+ 273   1          if(update_status_flag)
+ 274   1          {
+ 275   2              updateDeviceStatus();
+ 276   2              update_status_flag = false;
+ 277   2          }
+ 278   1      }
+ 279          void logicInit(void)
+ 280          {
+ 281   1          h595Init();
+ 282   1          SendTo595(0x0f);
+ 283   1          ledInit();   
+ 284   1              keyInit();
+ 285   1          relayInit();
+ 286   1          timer0Init();
+ 287   1          dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
+ 288   1          dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
+ 289   1          dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
+ 290   1          dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
+ 291   1          dev_def.lock = true;
+ 292   1          MODE_LED = 0;
+ 293   1      }
+ 294          void SendTo595(uint8_t val)
+ 295          {
+ 296   1              char i=0;
+ 297   1              uint8_t temp = val;
+ 298   1              EA = 0;
+ 299   1              for(i = 0; i < 8; i++)
+ 300   1              {
+ 301   2                      SER = temp>>7;
+ 302   2                      temp= temp<<1;
+C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 11:04:04 PAGE 6   
 
- 303   1              RCK = 0;
- 304   1              _nop_();
- 305   1              RCK = 1;
- 306   1              SER = 0;
- 307   1              EA = 1;
- 308   1      }
- 309          
- 310          
+ 303   2                      SCK = 0;
+ 304   2                      _nop_();
+ 305   2                      SCK = 1;
+ 306   2              }
+ 307   1              RCK = 0;
+ 308   1              _nop_();
+ 309   1              RCK = 1;
+ 310   1              SER = 0;
+ 311   1              EA = 1;
+ 312   1      }
+ 313          
+ 314          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1035    ----
+   CODE SIZE        =   1028    ----
    CONSTANT SIZE    =      8    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
