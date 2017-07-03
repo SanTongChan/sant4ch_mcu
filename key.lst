@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   KEY                                                                   07/03/2017 18:42:00 PAGE 1   
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE KEY
@@ -62,7 +62,7 @@ line level    source
   52   1      }
   53          
   54          static void key1_short_press(void)
-C51 COMPILER V9.01   KEY                                                                   07/03/2017 18:42:00 PAGE 2   
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 2   
 
   55          {
   56   1          if(h595_val | KEY1_595)
@@ -102,140 +102,236 @@ line level    source
   90   1      }
   91          static void key1_short_up_press(void)
   92          {
-  93   1          if(!(h595_val & KEY1_595))
+  93   1          if(RELAY1)
   94   1          {
-  95   2              if(RELAY1)
-  96   2              {
-  97   3                  h595_val &= (~RELAY1_595);
-  98   3              }
-  99   2              else
+  95   2              h595_val &= (~RELAY1_595);
+  96   2          }
+  97   1          else
+  98   1          {
+  99   2              if(dev_def.lock)
  100   2              {
- 101   3                  if(dev_def.lock)
- 102   3                  {
- 103   4                      h595_val &= 0x0f;
- 104   4                  }
- 105   3                  h595_val |= RELAY1_595;
- 106   3              }
- 107   2              h595_val |= KEY1_595;
- 108   2              SendTo595(h595_val);
- 109   2          }
- 110   1          dev_def.dev_channel[0].update_flag = true;
- 111   1          dev_def.dev_channel[1].update_flag = true;
- 112   1          dev_def.dev_channel[2].update_flag = true;
- 113   1          dev_def.dev_channel[3].update_flag = true;
- 114   1          dev_def.update_local_cnt = 0;
- 115   1      }
- 116          static void key2_short_up_press(void)
-C51 COMPILER V9.01   KEY                                                                   07/03/2017 18:42:00 PAGE 3   
+ 101   3                  h595_val &= 0x0f;
+ 102   3              }
+ 103   2              h595_val |= RELAY1_595;
+ 104   2          }
+ 105   1          h595_val |= KEY1_595;
+ 106   1          SendTo595(h595_val);
+ 107   1          if(dev_def.setting == true)
+ 108   1          {
+ 109   2              dev_def.setting = false;
+ 110   2          }
+ 111   1          else
+ 112   1          {
+ 113   2              update_time = 10;
+ 114   2          }
+ 115   1          dev_def.dev_channel[0].update_flag = true;
+ 116   1          dev_def.dev_channel[1].update_flag = true;
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 3   
 
- 117          {
- 118   1              if(RELAY2)
- 119   1          {
- 120   2              h595_val &= (~RELAY2_595);
- 121   2          }
- 122   1          else
- 123   1          {
- 124   2              if(dev_def.lock)
- 125   2              {
- 126   3                  h595_val &= 0x0f;
- 127   3              }
- 128   2              h595_val |= RELAY2_595; 
- 129   2          }
- 130   1          h595_val |= KEY2_595;
- 131   1          SendTo595(h595_val);
- 132   1          dev_def.dev_channel[0].update_flag = true;
- 133   1          dev_def.dev_channel[1].update_flag = true;
- 134   1          dev_def.dev_channel[2].update_flag = true;
- 135   1          dev_def.dev_channel[3].update_flag = true;
- 136   1          dev_def.update_local_cnt = 0;
- 137   1      }
- 138          static void key3_short_up_press(void)
- 139          {
- 140   1              if(RELAY3)
- 141   1          {
- 142   2              h595_val &= (~RELAY3_595);
- 143   2          }
- 144   1          else
- 145   1          {
- 146   2              if(dev_def.lock)
- 147   2              {
- 148   3                  h595_val &= 0x0f;
- 149   3              }
- 150   2              h595_val |= RELAY3_595;
- 151   2              
- 152   2          }
- 153   1          h595_val |= KEY3_595;
- 154   1          SendTo595(h595_val);
- 155   1          dev_def.dev_channel[0].update_flag = true;
- 156   1          dev_def.dev_channel[1].update_flag = true;
- 157   1          dev_def.dev_channel[2].update_flag = true;
- 158   1          dev_def.dev_channel[3].update_flag = true;
- 159   1          dev_def.update_local_cnt = 0;
- 160   1      }
- 161          static void key4_short_up_press(void)
- 162          {
- 163   1              if(RELAY4)
- 164   1          {
- 165   2              h595_val &= (~RELAY4_595);
- 166   2              
- 167   2          }
- 168   1          else
+ 117   1          dev_def.dev_channel[2].update_flag = true;
+ 118   1          dev_def.dev_channel[3].update_flag = true;
+ 119   1          dev_def.update_local_cnt = 0;
+ 120   1      }
+ 121          static void key2_short_up_press(void)
+ 122          {
+ 123   1              if(RELAY2)
+ 124   1          {
+ 125   2              h595_val &= (~RELAY2_595);
+ 126   2          }
+ 127   1          else
+ 128   1          {
+ 129   2              if(dev_def.lock)
+ 130   2              {
+ 131   3                  h595_val &= 0x0f;
+ 132   3              }
+ 133   2              h595_val |= RELAY2_595; 
+ 134   2          }
+ 135   1          h595_val |= KEY2_595;
+ 136   1          SendTo595(h595_val);
+ 137   1          if(dev_def.setting == true)
+ 138   1          {
+ 139   2              dev_def.setting = false;
+ 140   2          }
+ 141   1          else
+ 142   1          {
+ 143   2              update_time = 10;
+ 144   2          }
+ 145   1          dev_def.dev_channel[0].update_flag = true;
+ 146   1          dev_def.dev_channel[1].update_flag = true;
+ 147   1          dev_def.dev_channel[2].update_flag = true;
+ 148   1          dev_def.dev_channel[3].update_flag = true;
+ 149   1          dev_def.update_local_cnt = 0;
+ 150   1      }
+ 151          static void key3_short_up_press(void)
+ 152          {
+ 153   1              if(RELAY3)
+ 154   1          {
+ 155   2              h595_val &= (~RELAY3_595);
+ 156   2          }
+ 157   1          else
+ 158   1          {
+ 159   2              if(dev_def.lock)
+ 160   2              {
+ 161   3                  h595_val &= 0x0f;
+ 162   3              }
+ 163   2              h595_val |= RELAY3_595;
+ 164   2              
+ 165   2          }
+ 166   1          h595_val |= KEY3_595;
+ 167   1          SendTo595(h595_val);
+ 168   1          if(dev_def.setting == true)
  169   1          {
- 170   2              if(dev_def.lock)
- 171   2              {
- 172   3                  h595_val &= 0x0f;
- 173   3              }
- 174   2              h595_val |= RELAY4_595;
+ 170   2              dev_def.setting = false;
+ 171   2          }
+ 172   1          else
+ 173   1          {
+ 174   2              update_time = 10;
  175   2          }
- 176   1          h595_val |= KEY4_595;
- 177   1          SendTo595(h595_val);
- 178   1          dev_def.dev_channel[0].update_flag = true;
-C51 COMPILER V9.01   KEY                                                                   07/03/2017 18:42:00 PAGE 4   
+ 176   1          dev_def.dev_channel[0].update_flag = true;
+ 177   1          dev_def.dev_channel[1].update_flag = true;
+ 178   1          dev_def.dev_channel[2].update_flag = true;
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 4   
 
- 179   1          dev_def.dev_channel[1].update_flag = true;
- 180   1          dev_def.dev_channel[2].update_flag = true;
- 181   1          dev_def.dev_channel[3].update_flag = true;
- 182   1          dev_def.update_local_cnt = 0;
- 183   1      }
- 184          static void key1_long_up_press(void)
- 185          {
- 186   1          h595_val |= KEY1_595;
- 187   1          SendTo595(h595_val);
- 188   1      }
- 189          static void key2_long_up_press(void)
- 190          {
- 191   1              h595_val |= KEY2_595;
- 192   1              SendTo595(h595_val);
- 193   1      }
- 194          static void key3_long_up_press(void)
- 195          {
- 196   1              h595_val |= KEY3_595;
- 197   1              SendTo595(h595_val);
- 198   1      }
- 199          static void key4_long_up_press(void)
- 200          {
- 201   1              h595_val |= KEY4_595;
- 202   1              SendTo595(h595_val);
- 203   1      }
- 204          
- 205          static void registerKeys(void)
- 206          {
- 207   1          keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,key1_long_up_press,NULL);
- 208   1          keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,key2_long_up_press,NULL);
- 209   1          keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,key3_long_up_press,NULL);
- 210   1          keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,key4_long_up_press,NULL);
- 211   1          keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+ 179   1          dev_def.dev_channel[3].update_flag = true;
+ 180   1          dev_def.update_local_cnt = 0;
+ 181   1      }
+ 182          static void key4_short_up_press(void)
+ 183          {
+ 184   1              if(RELAY4)
+ 185   1          {
+ 186   2              h595_val &= (~RELAY4_595);
+ 187   2              
+ 188   2          }
+ 189   1          else
+ 190   1          {
+ 191   2              if(dev_def.lock)
+ 192   2              {
+ 193   3                  h595_val &= 0x0f;
+ 194   3              }
+ 195   2              h595_val |= RELAY4_595;
+ 196   2          }
+ 197   1          h595_val |= KEY4_595;
+ 198   1          SendTo595(h595_val);
+ 199   1          if(dev_def.setting == true)
+ 200   1          {
+ 201   2              dev_def.setting = false;
+ 202   2          }
+ 203   1          else
+ 204   1          {
+ 205   2              update_time = 10;
+ 206   2          }
+ 207   1          dev_def.dev_channel[0].update_flag = true;
+ 208   1          dev_def.dev_channel[1].update_flag = true;
+ 209   1          dev_def.dev_channel[2].update_flag = true;
+ 210   1          dev_def.dev_channel[3].update_flag = true;
+ 211   1          dev_def.update_local_cnt = 0;
  212   1      }
- 213          void keyInit(void)
+ 213          static void key1_long_up_press(void)
  214          {
- 215   1              P1M1 |= 0x1f;//初始化P10 -> P14为输入
- 216   1              P1M2 &= 0Xe0;
- 217   1              registerKeys();
- 218   1      }
+ 215   1          h595_val |= KEY1_595;
+ 216   1          update_time = 10;
+ 217   1          dev_def.setting = true;
+ 218   1          SendTo595(h595_val);
+ 219   1      }
+ 220          static void key2_long_up_press(void)
+ 221          {
+ 222   1              h595_val |= KEY2_595;
+ 223   1              update_time = 10;
+ 224   1              dev_def.setting = true;
+ 225   1              SendTo595(h595_val);
+ 226   1      }
+ 227          static void key3_long_up_press(void)
+ 228          {
+ 229   1              h595_val |= KEY3_595;
+ 230   1              update_time = 10;
+ 231   1              dev_def.setting = true;
+ 232   1              SendTo595(h595_val);
+ 233   1      }
+ 234          static void key4_long_up_press(void)
+ 235          {
+ 236   1              h595_val |= KEY4_595;
+ 237   1              update_time = 10;
+ 238   1              dev_def.setting = true;
+ 239   1              SendTo595(h595_val);
+ 240   1      }
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 5   
+
+ 241          static void key1_twice_press(void)
+ 242          {
+ 243   1          if(dev_def.dev_channel[0].channel_mode == DEV_JOGGING)
+ 244   1          {
+ 245   2              dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
+ 246   2          }
+ 247   1          else
+ 248   1          {
+ 249   2              dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
+ 250   2          }
+ 251   1          dev_def.dev_channel[0].update_flag = true; 
+ 252   1          dev_def.update_local_cnt = 0;
+ 253   1      }
+ 254          static void key2_twice_press(void)
+ 255          {
+ 256   1          if(dev_def.dev_channel[1].channel_mode == DEV_JOGGING)
+ 257   1          {
+ 258   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
+ 259   2          }
+ 260   1          else
+ 261   1          {
+ 262   2              dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
+ 263   2          }
+ 264   1          dev_def.dev_channel[1].update_flag = true; 
+ 265   1          dev_def.update_local_cnt = 0;
+ 266   1      }
+ 267          static void key3_twice_press(void)
+ 268          {
+ 269   1          if(dev_def.dev_channel[2].channel_mode == DEV_JOGGING)
+ 270   1          {
+ 271   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
+ 272   2          }
+ 273   1          else
+ 274   1          {
+ 275   2              dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
+ 276   2          }
+ 277   1          dev_def.dev_channel[2].update_flag = true; 
+ 278   1          dev_def.update_local_cnt = 0;
+ 279   1      }
+ 280          static void key4_twice_press(void)
+ 281          {
+ 282   1          if(dev_def.dev_channel[3].channel_mode == DEV_JOGGING)
+ 283   1          {
+ 284   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+ 285   2          }
+ 286   1          else
+ 287   1          {
+ 288   2              dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
+ 289   2          }
+ 290   1          dev_def.dev_channel[3].update_flag = true; 
+ 291   1          dev_def.update_local_cnt = 0;
+ 292   1      }
+ 293          static void registerKeys(void)
+ 294          {
+ 295   1          keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,key1_long_up_press,key1_twic
+             -e_press);
+ 296   1          keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,key2_long_up_press,key2_twic
+             -e_press);
+ 297   1          keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,key3_long_up_press,key3_twic
+             -e_press);
+ 298   1          keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,key4_long_up_press,key4_twic
+             -e_press);
+C51 COMPILER V9.01   KEY                                                                   07/03/2017 19:39:55 PAGE 6   
+
+ 299   1          keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+ 300   1      }
+ 301          void keyInit(void)
+ 302          {
+ 303   1              P1M1 |= 0x1f;//初始化P10 -> P14为输入
+ 304   1              P1M2 &= 0Xe0;
+ 305   1              registerKeys();
+ 306   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    630    ----
+   CODE SIZE        =    833    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

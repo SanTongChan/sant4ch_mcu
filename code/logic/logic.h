@@ -25,6 +25,7 @@ typedef struct
     DevChannelDef dev_channel[4];
     uint8_t update_local_cnt;
     bool lock;
+    bool setting;
 }DevDef;
 extern xdata DevDef dev_def;
 extern uint8_t h595_val;
@@ -33,7 +34,7 @@ extern bool update_local_flag;
 extern bool syn_app_flag;
 extern bool deal_jogging;
 extern bool deal_lock;
-
+extern uint8_t update_time;
 void logicInit(void);
 void SendTo595(uint8_t val);
 void dealLogic(void);

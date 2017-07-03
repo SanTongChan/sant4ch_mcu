@@ -16,6 +16,7 @@ bool update_local_flag = false;
 bool deal_jogging = false;
 bool deal_lock = false;
 bool syn_app_flag = false;
+uint8_t update_time = 5;
 
 uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
 uint8_t code key_array[4] = {0x04,0x02,0x01,0x08};
@@ -80,6 +81,8 @@ static void syncApp(void)
             dev_def.dev_channel[2].update_flag = true;
             dev_def.dev_channel[3].update_flag = true;
             dev_def.update_local_cnt = 0;
+            dev_def.setting = false;
+            update_time = 5;
         }
         else
         {
@@ -93,6 +96,8 @@ static void syncApp(void)
                     dev_def.dev_channel[2].update_flag = true;
                     dev_def.dev_channel[3].update_flag = true;
                     dev_def.update_local_cnt = 0;
+                    dev_def.setting = false;
+                    update_time = 5;
                 }
                
             }
@@ -106,6 +111,8 @@ static void syncApp(void)
                     dev_def.dev_channel[2].update_flag = true;
                     dev_def.dev_channel[3].update_flag = true;
                     dev_def.update_local_cnt = 0;
+                    dev_def.setting = false;
+                    update_time = 5;
                 }
             }
         }
@@ -131,6 +138,8 @@ static void syncApp(void)
                         h595_val &= (~relay_array[i]);//关掉relay1
                         dev_def.dev_channel[i].update_flag = true;//允许更新标志位
                         dev_def.update_local_cnt = 0;
+                        dev_def.setting = false;
+                        update_time = 5;
                     }
                 }
             }
@@ -159,7 +168,7 @@ static void updateLocal(void)
     uint8_t last_key = h595_val;
     uint8_t relays[4] = {0};
     dev_def.update_local_cnt++;
-    if(dev_def.update_local_cnt == 10)
+    if(dev_def.update_local_cnt == update_time)
     {
         relays[0] = (uint8_t)RELAY1;
         relays[1] = (uint8_t)RELAY2;
@@ -186,7 +195,7 @@ static void updateLocal(void)
             SendTo595(h595_val);
         }
     }
-    else if(dev_def.update_local_cnt >= 11)
+    else if(dev_def.update_local_cnt >= update_time + 1)
     {
         dev_def.update_local_cnt = 0;
         for(i = 0; i < 4; i++)
