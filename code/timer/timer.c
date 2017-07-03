@@ -83,7 +83,7 @@ void Timer0_ISR(void) interrupt 1
     }
     if(syn_app_cnt >= 10000 - syn_threod)
     {
-        syn_threod = 8000;
+        syn_threod = 9000;
         syn_app_cnt = 0;
         syn_app_flag = true;
     }

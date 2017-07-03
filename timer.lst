@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 15:30:56 PAGE 1   
+C51 COMPILER V9.01   TIMER                                                                 07/03/2017 16:09:38 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
                       {
                       led_cnt = 0;
                       RF_LED = ~RF_LED;
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 15:30:56 PAGE 2   
+C51 COMPILER V9.01   TIMER                                                                 07/03/2017 16:09:38 PAGE 2   
 
                       }
               #endif
@@ -95,7 +95,7 @@ line level    source
   83   2          }
   84   1          if(syn_app_cnt >= 10000 - syn_threod)
   85   1          {
-  86   2              syn_threod = 8000;
+  86   2              syn_threod = 9000;
   87   2              syn_app_cnt = 0;
   88   2              syn_app_flag = true;
   89   2          }
@@ -126,7 +126,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     20    ----
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 15:30:56 PAGE 3   
+C51 COMPILER V9.01   TIMER                                                                 07/03/2017 16:09:38 PAGE 3   
 
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

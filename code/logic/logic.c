@@ -241,6 +241,7 @@ static void syncApp(void)
     uint8_t last_key = h595_val;
     uint8_t relays[4] = {0};
     uint8_t i = 0;
+    /*
     if(dev_def.dev_channel[0].update_flag 
         || dev_def.dev_channel[1].update_flag 
         || dev_def.dev_channel[2].update_flag
@@ -248,6 +249,7 @@ static void syncApp(void)
     {
         return;
     }
+    */
     relays[0] = RELAY1;
     relays[1] = RELAY2;
     relays[2] = RELAY3;
@@ -257,6 +259,13 @@ static void syncApp(void)
         static uint8_t lock_channel = 0;
         static uint8_t last_lock_channel = 0;
         static uint8_t last_relay_val[4] = {0};
+        if(dev_def.dev_channel[0].update_flag 
+            || dev_def.dev_channel[1].update_flag 
+            || dev_def.dev_channel[2].update_flag
+            || dev_def.dev_channel[3].update_flag)
+        {
+            return;
+        }
         for(i = 0; i < 4;i++)
         {
             if(relays[i] != last_relay_val[i] && relays[i] == 1)
@@ -275,8 +284,12 @@ static void syncApp(void)
                     h595_val &= 0x0f;
                     h595_val |= relay_array[i];
                 }
-                dev_def.dev_channel[i].update_flag = true;
             }
+            dev_def.dev_channel[0].update_flag = true;
+            dev_def.dev_channel[1].update_flag = true;
+            dev_def.dev_channel[2].update_flag = true;
+            dev_def.dev_channel[3].update_flag = true;
+            dev_def.update_local_cnt = 0;
         }
         else
         {
@@ -289,6 +302,7 @@ static void syncApp(void)
                     dev_def.dev_channel[1].update_flag = true;
                     dev_def.dev_channel[2].update_flag = true;
                     dev_def.dev_channel[3].update_flag = true;
+                    dev_def.update_local_cnt = 0;
                 }
                
             }
@@ -301,13 +315,48 @@ static void syncApp(void)
                     dev_def.dev_channel[1].update_flag = true;
                     dev_def.dev_channel[2].update_flag = true;
                     dev_def.dev_channel[3].update_flag = true;
+                    dev_def.update_local_cnt = 0;
                 }
             }
         }
     }
     else
     {
-
+        for(i =  0; i < 4; i++)
+        {
+            if(dev_def.dev_channel[i].channel_mode == DEV_JOGGING)
+            {
+                dev_def.dev_channel[i].timer_cnt++;
+                if((h595_val & relay_array[i]))//如果relay1是按下的
+                {
+                    if(dev_def.dev_channel[i].get_status == false)
+                    {
+                        dev_def.dev_channel[i].timer_cnt = 0;
+                        dev_def.dev_channel[i].get_status = true;
+                    }
+                    if(dev_def.dev_channel[i].timer_cnt >= 7)
+                    {
+                        dev_def.dev_channel[i].timer_cnt = 0;
+                        dev_def.dev_channel[i].get_status = false;
+                        h595_val &= (~relay_array[i]);//关掉relay1
+                        dev_def.dev_channel[i].update_flag = true;//允许更新标志位
+                        dev_def.update_local_cnt = 0;
+                        jogging_cnt = 0;
+                    }
+                }
+            }
+            if(!dev_def.dev_channel[i].update_flag)
+            {
+                if(relays[i])
+                {
+                    h595_val |= relay_array[i];
+                }
+                else
+                {
+                    h595_val &= (~relay_array[i]);
+                }
+            }
+        }
     }
     if(h595_val != last_key)
     {
@@ -373,13 +422,11 @@ void dealLogic(void)
         syn_app_flag = false;
         syncApp();
     }
-#if 1
     if(update_local_flag)
     {
         update_local_flag = false;
         updateLocal();//要在同步APP之后
     }
-#endif
  #if 0
     if(deal_jogging)
     {
@@ -410,7 +457,7 @@ void logicInit(void)
     dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
     dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
     dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
-    dev_def.lock = true;
+    dev_def.lock = false;
     MODE_LED = 0;
 }
 void SendTo595(uint8_t val)
