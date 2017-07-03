@@ -23,18 +23,28 @@ void Timer0_ISR(void) interrupt 1
 	static uint16_t update_cnt = 0;
 	static uint16_t led_cnt = 0;
 	static uint16_t update_threod = 0;
+	static uint16_t lock_cnt = 0;
+	static uint16_t lock_threod = 0;
 	key_cnt++;
 	update_cnt++;
 	led_cnt++;
+	lock_cnt++;
 	if(key_cnt >= 100)
 	{
 	    key_cnt = 0;
         key_scan_flag = true;
-        deal_relay = true;
+        deal_jogging = true;
+	}
+	if(lock_cnt >= 10000 - lock_threod)
+	{
+        lock_cnt = 0;
+        lock_threod = 9900;
+        lock_flag = true;
 	}
 	if(update_cnt >= 15000 - update_threod)
 	{
         update_threod = 13000;
+        update_cnt = 0;
         update_status_flag = true;
 	}
 	if(led_cnt >= 5000)
