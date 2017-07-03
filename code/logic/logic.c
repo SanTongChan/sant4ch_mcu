@@ -21,7 +21,6 @@ uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
 uint8_t code key_array[4] = {0x04,0x02,0x01,0x08};
 
 DevDef xdata dev_def = {0};
-uint16_t jogging_cnt = 0;
 static void h595Init(void)
 {
     //初始化P16 P17 P30为推挽输出
@@ -132,7 +131,6 @@ static void syncApp(void)
                         h595_val &= (~relay_array[i]);//关掉relay1
                         dev_def.dev_channel[i].update_flag = true;//允许更新标志位
                         dev_def.update_local_cnt = 0;
-                        jogging_cnt = 0;
                     }
                 }
             }
@@ -161,7 +159,7 @@ static void updateLocal(void)
     uint8_t last_key = h595_val;
     uint8_t relays[4] = {0};
     dev_def.update_local_cnt++;
-    if(dev_def.update_local_cnt == 5)
+    if(dev_def.update_local_cnt == 10)
     {
         relays[0] = (uint8_t)RELAY1;
         relays[1] = (uint8_t)RELAY2;
@@ -182,8 +180,13 @@ static void updateLocal(void)
                 }
             }
         }
+        if(h595_val != last_key)
+        {
+            MODE_LED = !MODE_LED;
+            SendTo595(h595_val);
+        }
     }
-    if(dev_def.update_local_cnt >= 6)
+    else if(dev_def.update_local_cnt >= 11)
     {
         dev_def.update_local_cnt = 0;
         for(i = 0; i < 4; i++)
@@ -194,11 +197,14 @@ static void updateLocal(void)
                 high_flag[i] = false;
             }
         }
+        if(h595_val != last_key)
+        {
+            MODE_LED = !MODE_LED;
+            SendTo595(h595_val);
+        }
     }
-    if(h595_val != last_key)
-    {
-        SendTo595(h595_val);
-    }
+
+    
 }
 void dealLogic(void)
 {
@@ -217,6 +223,7 @@ void dealLogic(void)
         update_local_flag = false;
         updateLocal();//要在同步APP之后
     }
+    
 }
 void logicInit(void)
 {
@@ -228,8 +235,8 @@ void logicInit(void)
     timer0Init();
     dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
     dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
-    dev_def.dev_channel[2].channel_mode = DEV_JOGGING;
-    dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
+    dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
+    dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
     dev_def.lock = false;
     MODE_LED = 0;
 }

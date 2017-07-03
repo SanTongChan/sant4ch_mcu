@@ -56,7 +56,6 @@ static void key1_short_press(void)
     if(h595_val | KEY1_595)
     {
         h595_val = h595_val & (~KEY1_595);
-        jogging_cnt = 0;
 	    SendTo595(h595_val);
     }
 }
@@ -65,8 +64,8 @@ static void key2_short_press(void)
     if(h595_val | KEY2_595)
     {
         h595_val = h595_val & (~KEY2_595);
-        jogging_cnt = 0;
     	SendTo595(h595_val);
+    	
 	}
 }
 static void key3_short_press(void)
@@ -74,7 +73,6 @@ static void key3_short_press(void)
     if(h595_val | KEY3_595)
     {
     	h595_val = h595_val & (~KEY3_595);
-    	jogging_cnt = 0;
     	SendTo595(h595_val);
 	}
 }
@@ -83,7 +81,6 @@ static void key4_short_press(void)
     if(h595_val | KEY4_595)
     {
     	h595_val = h595_val & (~KEY4_595);
-    	jogging_cnt = 0;
     	SendTo595(h595_val);
 	}
 }
@@ -108,7 +105,6 @@ static void key1_short_up_press(void)
             h595_val |= RELAY1_595;
         }
         h595_val |= KEY1_595;
-        jogging_cnt = 0;
         SendTo595(h595_val);
     }
     dev_def.dev_channel[0].update_flag = true;
@@ -132,7 +128,6 @@ static void key2_short_up_press(void)
         h595_val |= RELAY2_595; 
     }
     h595_val |= KEY2_595;
-    jogging_cnt = 0;
     SendTo595(h595_val);
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -153,9 +148,9 @@ static void key3_short_up_press(void)
             h595_val &= 0x0f;
         }
         h595_val |= RELAY3_595;
+        
     }
     h595_val |= KEY3_595;
-    jogging_cnt = 0;
     SendTo595(h595_val);
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -168,6 +163,7 @@ static void key4_short_up_press(void)
   	if(RELAY4)
     {
         h595_val &= (~RELAY4_595);
+        
     }
     else
     {
@@ -178,7 +174,6 @@ static void key4_short_up_press(void)
         h595_val |= RELAY4_595;
     }
     h595_val |= KEY4_595;
-    jogging_cnt = 0;
     SendTo595(h595_val);
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -186,12 +181,33 @@ static void key4_short_up_press(void)
     dev_def.dev_channel[3].update_flag = true;
     dev_def.update_local_cnt = 0;
 }
+static void key1_long_up_press(void)
+{
+    h595_val |= KEY1_595;
+    SendTo595(h595_val);
+}
+static void key2_long_up_press(void)
+{
+	h595_val |= KEY2_595;
+	SendTo595(h595_val);
+}
+static void key3_long_up_press(void)
+{
+	h595_val |= KEY3_595;
+	SendTo595(h595_val);
+}
+static void key4_long_up_press(void)
+{
+	h595_val |= KEY4_595;
+	SendTo595(h595_val);
+}
+
 static void registerKeys(void)
 {
-    keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,NULL,NULL);
-    keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,NULL,NULL);
-    keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,NULL,NULL);
-    keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,NULL,NULL);
+    keyRegisterSingle(key1_is_press,key1_short_press,key1_short_up_press,NULL,key1_long_up_press,NULL);
+    keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,key2_long_up_press,NULL);
+    keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,key3_long_up_press,NULL);
+    keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,key4_long_up_press,NULL);
     keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
 }
 void keyInit(void)

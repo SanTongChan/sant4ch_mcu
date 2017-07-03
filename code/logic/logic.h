@@ -33,7 +33,6 @@ extern bool update_local_flag;
 extern bool syn_app_flag;
 extern bool deal_jogging;
 extern bool deal_lock;
-extern uint16_t jogging_cnt;
 
 void logicInit(void);
 void SendTo595(uint8_t val);

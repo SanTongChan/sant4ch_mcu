@@ -6,8 +6,8 @@
 #include "typedef.h"
 
 #define  KEY_MAX_NUM      (5)
-#define  KEY_SCAN_TIMES  (2)
-#define  KEY_UP_TIMES     (2)
+#define  KEY_SCAN_TIMES  (3)
+#define  KEY_UP_TIMES     (3)
 #define  KEY_LONG_TIMES   (300)
 #define  KEY_TWICE_TIMES  (50)
 
