@@ -9,15 +9,23 @@
 sbit RCK = P1^7;
 sbit SCK = P1^6;
 sbit SER = P3^0;
-bool key_scan_flag = false;
-bool update_status_flag = false;
-bool led_blink_flag = false;
-bool deal_jogging = false;
-bool lock_flag = false;
-uint8_t relay_array[4] = {0x80,0x40,0x20,0x10};
-uint8_t key_array[4] = {0x04,0x02,0x01,0x08};
 
-DevDef dev_def = {0};
+
+
+bool led_blink_flag = false;
+
+
+
+bool key_scan_flag = false;
+bool update_local_flag = false;
+bool deal_jogging = false;
+bool deal_lock = false;
+bool syn_app_flag = false;
+
+uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
+uint8_t code key_array[4] = {0x04,0x02,0x01,0x08};
+
+DevDef xdata dev_def = {0};
 uint16_t jogging_cnt = 0;
 static void h595Init(void)
 {
@@ -33,6 +41,7 @@ static void relayInit(void)
     P0M1 |= 0x0f;//初始化relay脚 P00 -> P03	为输入
    	P0M2 &= 0Xf0;  
 }
+#if 0
 static void updateDeviceStatus(void)
 {
     uint8_t last_val = 0;
@@ -187,15 +196,6 @@ static void dealLock(void)
                 }
                 else if(lock_channel == (i + 1))
                 {
-                /*
-                    if(relays[i])
-                    {
-                        if(!(h595_val & relay_array[i]))
-                        {
-                            h595_val |= relay_array[i];
-                        }
-                    }
-                */
                     h595_val &= 0x0f;
                     h595_val |= relay_array[i];
                 }
@@ -205,7 +205,6 @@ static void dealLock(void)
         }
         else
         {
-            
             if(relays[lock_channel - 1])
             {
                 if(!(h595_val & relay_array[lock_channel - 1]))
@@ -222,36 +221,146 @@ static void dealLock(void)
                 }
             }
         }
-#if 1
-        if(dev_def.lock_cnt >= 50 && dev_def.lock_update)
+        if(dev_def.lock_cnt >= 30 && dev_def.lock_update)
         {
             dev_def.lock_cnt = 0;
             dev_def.lock_update = false;
             h595_val |= 0x0f;
+            //h595_val &= 0x0f;
+           // h595_val |= relay_array[lock_channel - 1];
         }
         if(h595_val != last_val)
         {
             SendTo595(h595_val);
         }
-#endif
     }
 }
-/*
-static void dealJogging(void)
+#endif
+static void syncApp(void)
 {
-    uint8_t last_val = 0;
-    jogging_cnt++;
-    last_val = h595_val;
-    if(!dev_def.lock)
+    uint8_t last_key = h595_val;
+    uint8_t relays[4] = {0};
+    uint8_t i = 0;
+    if(dev_def.dev_channel[0].update_flag 
+        || dev_def.dev_channel[1].update_flag 
+        || dev_def.dev_channel[2].update_flag
+        || dev_def.dev_channel[3].update_flag)
     {
-        dealJogging();
+        return;
     }
-    if(last_val != h595_val)
+    relays[0] = RELAY1;
+    relays[1] = RELAY2;
+    relays[2] = RELAY3;
+    relays[3] = RELAY4;
+    if(dev_def.lock)
+    {
+        static uint8_t lock_channel = 0;
+        static uint8_t last_lock_channel = 0;
+        static uint8_t last_relay_val[4] = {0};
+        for(i = 0; i < 4;i++)
+        {
+            if(relays[i] != last_relay_val[i] && relays[i] == 1)
+            {
+                lock_channel = i + 1;
+            }
+            last_relay_val[i] = relays[i];
+        }
+        if(last_lock_channel != lock_channel)
+        {
+            last_lock_channel = lock_channel;
+            for(i = 0; i < 4; i++)
+            {
+                if(lock_channel == (i + 1))
+                {
+                    h595_val &= 0x0f;
+                    h595_val |= relay_array[i];
+                }
+                dev_def.dev_channel[i].update_flag = true;
+            }
+        }
+        else
+        {
+            if(relays[lock_channel - 1])
+            {
+                if(!(h595_val & relay_array[lock_channel - 1]))
+                {
+                    h595_val |= relay_array[lock_channel - 1];
+                    dev_def.dev_channel[0].update_flag = true;
+                    dev_def.dev_channel[1].update_flag = true;
+                    dev_def.dev_channel[2].update_flag = true;
+                    dev_def.dev_channel[3].update_flag = true;
+                }
+               
+            }
+            else
+            {
+                if(h595_val & relay_array[lock_channel - 1])
+                {
+                    h595_val &= ~relay_array[lock_channel - 1];
+                    dev_def.dev_channel[0].update_flag = true;
+                    dev_def.dev_channel[1].update_flag = true;
+                    dev_def.dev_channel[2].update_flag = true;
+                    dev_def.dev_channel[3].update_flag = true;
+                }
+            }
+        }
+    }
+    else
+    {
+
+    }
+    if(h595_val != last_key)
     {
         SendTo595(h595_val);
     }
 }
-*/
+static void updateLocal(void)
+{
+    static bool high_flag[4] = {false};
+    uint8_t i = 0;
+    uint8_t last_key = h595_val;
+    uint8_t relays[4] = {0};
+    dev_def.update_local_cnt++;
+    if(dev_def.update_local_cnt == 5)
+    {
+        //dev_def.update_local_cnt = 0;
+        relays[0] = (uint8_t)RELAY1;
+        relays[1] = (uint8_t)RELAY2;
+        relays[2] = (uint8_t)RELAY3;
+        relays[3] = (uint8_t)RELAY4;
+        for(i = 0; i < 4; i++)
+        {
+            if(dev_def.dev_channel[i].update_flag)
+            {
+                if((relays[i] << (7 - i)) != (h595_val & relay_array[i]))
+                {
+                    high_flag[i] = true;
+                    h595_val &= ~key_array[i];
+                }
+                else
+                {
+                    dev_def.dev_channel[i].update_flag = false;
+                }
+            }
+        }
+    }
+    if(dev_def.update_local_cnt >= 6)
+    {
+        dev_def.update_local_cnt = 0;
+        for(i = 0; i < 4; i++)
+        {
+            if(high_flag[i] == true)
+            {
+                h595_val |= key_array[i];
+                high_flag[i] = false;
+            }
+        }
+    }
+    if(h595_val != last_key)
+    {
+        SendTo595(h595_val);
+    }
+}
 void dealLogic(void)
 {
     if(key_scan_flag)
@@ -259,7 +368,19 @@ void dealLogic(void)
         key_scan_flag = false;
         keyScan();
     }
-    
+    if(syn_app_flag)
+    {
+        syn_app_flag = false;
+        syncApp();
+    }
+#if 1
+    if(update_local_flag)
+    {
+        update_local_flag = false;
+        updateLocal();//要在同步APP之后
+    }
+#endif
+ #if 0
     if(deal_jogging)
     {
         dealJogging();
@@ -275,6 +396,7 @@ void dealLogic(void)
         updateDeviceStatus();
         update_status_flag = false;
     }
+#endif
 }
 void logicInit(void)
 {

@@ -24,17 +24,18 @@ typedef struct
 typedef struct
 {
     DevChannelDef dev_channel[4];
+    uint8_t update_local_cnt;
     bool lock;
     bool lock_update;
     uint16_t lock_cnt;
 }DevDef;
-extern DevDef dev_def;
+extern xdata DevDef dev_def;
 extern uint8_t h595_val;
 extern bool key_scan_flag;
-extern bool update_status_flag;
-extern bool led_blink_flag;
+extern bool update_local_flag;
+extern bool syn_app_flag;
 extern bool deal_jogging;
-extern bool lock_flag;
+extern bool deal_lock;
 extern uint16_t jogging_cnt;
 
 void logicInit(void);
