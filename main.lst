@@ -1,10 +1,10 @@
-C51 COMPILER V9.01   MAIN                                                                  07/03/2017 19:39:55 PAGE 1   
+C51 COMPILER V9.01   MAIN                                                                  07/03/2017 23:12:18 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN main.obj
 COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\sant4ch\main.c BROWSE INCDIR(.\code\key;.\code\logic;.\c
-                    -ode\timer;.\code\driver;.\code\led;.\code\common) DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(main.obj)
+                    -ode\timer;.\code\driver;.\code\led;.\code\common;.\code\flash) DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(main.obj)
 
 line level    source
 
@@ -17,12 +17,13 @@ line level    source
    7   1              while(1)
    8   1              {
    9   2              dealLogic();
-  10   2              }
-  11   1      }
+  10   2              saveModeToFlash();
+  11   2              }
+  12   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =      8    ----
+   CODE SIZE        =     11    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

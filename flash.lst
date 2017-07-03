@@ -1,0 +1,129 @@
+C51 COMPILER V9.01   FLASH                                                                 07/03/2017 23:12:18 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE FLASH
+OBJECT MODULE PLACED IN flash.obj
+COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\flash\flash.c BROWSE INCDIR(.\code\key;.\code\logic;.\co
+                    -de\timer;.\code\driver;.\code\led;.\code\common;.\code\flash) DEBUG OBJECTEXTEND PRINT(.\flash.lst) OBJECT(flash.obj)
+
+line level    source
+
+   1          #include "flash.h"
+   2          #include <stdio.h>
+   3          #include "N76E003.h"
+   4          #include "typedef.h"
+   5          
+   6          bit BIT_TMP;
+   7          #define set_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON|=0x01 ;EA=BIT_TMP;
+   8          #define set_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=0x01;EA=BIT_TMP
+   9          #define set_IAPGO   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG|=0x01 ;EA=BIT_TMP
+  10          #define clr_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=~0x01;EA=BIT_TMP
+  11          #define clr_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON&=~0x01;EA=BIT_TMP;
+  12          
+  13          uint8_t read_APROM_BYTE(uint16_t code *u16_addr)
+  14          {
+  15   1              uint8_t rdata;
+  16   1              rdata = *u16_addr>>8;
+  17   1              return rdata;
+  18   1      }
+  19          
+  20          void write_DATAFLASH_BYTE(uint16_t u16_addr,uint8_t u8_data)
+  21          {
+  22   1              uint8_t looptmp=0,u8_addrl_r;
+  23   1              unsigned char code *cd_longaddr;
+  24   1              unsigned char xdata *xd_tmp;
+  25   1              
+  26   1      //Check page start address
+  27   1              u8_addrl_r = u16_addr;
+  28   1              if (u8_addrl_r<0x80)
+  29   1              {
+  30   2                      u8_addrl_r = 0;
+  31   2              }
+  32   1              else 
+  33   1              {
+  34   2                      u8_addrl_r = 0x80;
+  35   2              }
+  36   1      //Save APROM data to XRAM
+  37   1              xd_tmp = 0x80;
+  38   1              cd_longaddr = (u16_addr&0xff00)+u8_addrl_r;     
+  39   1              while (xd_tmp !=0x100)
+  40   1              {
+  41   2                      *xd_tmp = *cd_longaddr;
+  42   2                      looptmp++;
+  43   2                      xd_tmp++;
+  44   2                      cd_longaddr++;
+  45   2              }
+  46   1      // Modify customer data in XRAM
+  47   1              u8_addrl_r = u16_addr;
+  48   1              if (u8_addrl_r<0x80)
+  49   1              {
+  50   2                      xd_tmp = u8_addrl_r+0x80;
+  51   2              }
+  52   1              else
+  53   1              {
+  54   2                      xd_tmp = u8_addrl_r+0;
+C51 COMPILER V9.01   FLASH                                                                 07/03/2017 23:12:18 PAGE 2   
+
+  55   2              }
+  56   1              *xd_tmp = u8_data;
+  57   1      //Erase APROM DATAFLASH page
+  58   1          IAPAL = u16_addr;
+  59   1          IAPAH = u16_addr>>8;
+  60   1          IAPFD = 0xFF;
+  61   1          set_IAPEN; 
+  62   1          set_APUEN;
+  63   1          IAPCN = 0x22;               
+  64   1          set_IAPGO; 
+  65   1      //Save changed RAM data to APROM DATAFLASH
+  66   1              u8_addrl_r = u16_addr;
+  67   1              if (u8_addrl_r<0x80)
+  68   1              {
+  69   2                      u8_addrl_r =0;
+  70   2              }
+  71   1              else
+  72   1              {
+  73   2                      u8_addrl_r = 0x80;
+  74   2              }
+  75   1          xd_tmp = 0x80;
+  76   1          IAPAL = u8_addrl_r;
+  77   1          IAPAH = u16_addr>>8;
+  78   1          set_IAPEN; 
+  79   1          set_APUEN;
+  80   1          IAPCN = 0x21;
+  81   1          while (xd_tmp !=0xFF)
+  82   1          {
+  83   2              IAPFD = *xd_tmp;
+  84   2              set_IAPGO;
+  85   2              IAPAL++;
+  86   2              xd_tmp++;
+  87   2          }
+  88   1          clr_APUEN;
+  89   1          clr_IAPEN;
+  90   1      }       
+  91          
+  92          #if 0
+              void main (void) 
+              {
+                  UINT8 datatemp;
+                  write_DATAFLASH_BYTE (0x3881,0x55);
+                  write_DATAFLASH_BYTE (0x3882,0x56);
+                  write_DATAFLASH_BYTE (0x3855,0xaa);
+                  write_DATAFLASH_BYTE (0x3856,0x66);
+                  datatemp = read_APROM_BYTE(0x3882);
+                  while(1);
+              }
+              #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    329    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

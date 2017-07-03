@@ -84,10 +84,6 @@ static void key4_short_press(void)
     	SendTo595(h595_val);
 	}
 }
-static void key5_short_press(void)
-{
-    
-}
 static void key1_short_up_press(void)
 {
     if(RELAY1)
@@ -107,10 +103,11 @@ static void key1_short_up_press(void)
     if(dev_def.setting == true)
     {
         dev_def.setting = false;
+        update_time = 10;
     }
     else
     {
-        update_time = 10;
+        update_time = 5;
     }
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -137,10 +134,11 @@ static void key2_short_up_press(void)
     if(dev_def.setting == true)
     {
         dev_def.setting = false;
+        update_time = 10;
     }
     else
     {
-        update_time = 10;
+        update_time = 5;
     }
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -168,10 +166,11 @@ static void key3_short_up_press(void)
     if(dev_def.setting == true)
     {
         dev_def.setting = false;
+        update_time = 10;
     }
     else
     {
-        update_time = 10;
+        update_time = 5;
     }
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -199,10 +198,11 @@ static void key4_short_up_press(void)
     if(dev_def.setting == true)
     {
         dev_def.setting = false;
+        update_time = 10;
     }
     else
     {
-        update_time = 10;
+        update_time = 5;
     }
     dev_def.dev_channel[0].update_flag = true;
     dev_def.dev_channel[1].update_flag = true;
@@ -250,6 +250,7 @@ static void key1_twice_press(void)
     }
     dev_def.dev_channel[0].update_flag = true; 
     dev_def.update_local_cnt = 0;
+    save_mode_flag = true;
 }
 static void key2_twice_press(void)
 {
@@ -263,6 +264,7 @@ static void key2_twice_press(void)
     }
     dev_def.dev_channel[1].update_flag = true; 
     dev_def.update_local_cnt = 0;
+    save_mode_flag = true;
 }
 static void key3_twice_press(void)
 {
@@ -276,6 +278,7 @@ static void key3_twice_press(void)
     }
     dev_def.dev_channel[2].update_flag = true; 
     dev_def.update_local_cnt = 0;
+    save_mode_flag = true;
 }
 static void key4_twice_press(void)
 {
@@ -289,6 +292,26 @@ static void key4_twice_press(void)
     }
     dev_def.dev_channel[3].update_flag = true; 
     dev_def.update_local_cnt = 0;
+    save_mode_flag = true;
+}
+static void key5_twice_press(void)
+{
+    if(dev_def.lock == false)
+    {
+        dev_def.lock = true;
+    }
+    else
+    {
+        dev_def.lock = false;
+    }
+    h595_val &= 0x0f;
+    SendTo595(h595_val);
+    dev_def.dev_channel[0].update_flag = true;
+    dev_def.dev_channel[1].update_flag = true;
+    dev_def.dev_channel[2].update_flag = true;
+    dev_def.dev_channel[3].update_flag = true;
+    dev_def.update_local_cnt = 0;
+    save_mode_flag = true;
 }
 static void registerKeys(void)
 {
@@ -296,7 +319,7 @@ static void registerKeys(void)
     keyRegisterSingle(key2_is_press,key2_short_press,key2_short_up_press,NULL,key2_long_up_press,key2_twice_press);
     keyRegisterSingle(key3_is_press,key3_short_press,key3_short_up_press,NULL,key3_long_up_press,key3_twice_press);
     keyRegisterSingle(key4_is_press,key4_short_press,key4_short_up_press,NULL,key4_long_up_press,key4_twice_press);
-    keyRegisterSingle(key5_is_press,key5_short_press,NULL,NULL,NULL,NULL);
+    keyRegisterSingle(key5_is_press,NULL,NULL,NULL,NULL,key5_twice_press);
 }
 void keyInit(void)
 {

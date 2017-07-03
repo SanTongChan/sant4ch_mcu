@@ -35,8 +35,9 @@ extern bool syn_app_flag;
 extern bool deal_jogging;
 extern bool deal_lock;
 extern uint8_t update_time;
+extern bool save_mode_flag;
 void logicInit(void);
 void SendTo595(uint8_t val);
 void dealLogic(void);
-
+void saveModeToFlash(void);
 #endif

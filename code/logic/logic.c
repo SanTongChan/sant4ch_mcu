@@ -5,6 +5,7 @@
 #include "led.h"
 #include "timer.h"
 #include "key_driver.h"
+#include "flash.h"
 
 sbit RCK = P1^7;
 sbit SCK = P1^6;
@@ -16,6 +17,7 @@ bool update_local_flag = false;
 bool deal_jogging = false;
 bool deal_lock = false;
 bool syn_app_flag = false;
+bool save_mode_flag = false;
 uint8_t update_time = 5;
 
 uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
@@ -191,7 +193,6 @@ static void updateLocal(void)
         }
         if(h595_val != last_key)
         {
-            MODE_LED = !MODE_LED;
             SendTo595(h595_val);
         }
     }
@@ -208,7 +209,6 @@ static void updateLocal(void)
         }
         if(h595_val != last_key)
         {
-            MODE_LED = !MODE_LED;
             SendTo595(h595_val);
         }
     }
@@ -232,22 +232,49 @@ void dealLogic(void)
         update_local_flag = false;
         updateLocal();//要在同步APP之后
     }
-    
+}
+void saveModeToFlash(void)
+{
+    if(save_mode_flag)
+    {
+        save_mode_flag = false;
+        write_DATAFLASH_BYTE (0x3881,dev_def.lock);
+        write_DATAFLASH_BYTE (0x3882,(uint8_t)dev_def.dev_channel[0].channel_mode);
+        write_DATAFLASH_BYTE (0x3883,(uint8_t)dev_def.dev_channel[1].channel_mode);
+        write_DATAFLASH_BYTE (0x3884,(uint8_t)dev_def.dev_channel[2].channel_mode);
+        write_DATAFLASH_BYTE (0x3885,(uint8_t)dev_def.dev_channel[3].channel_mode);
+    }
+}
+static void modeInit(void)
+{
+    dev_def.lock = read_APROM_BYTE(0x3881);
+    dev_def.dev_channel[0].channel_mode = read_APROM_BYTE(0x3882);
+    dev_def.dev_channel[1].channel_mode = read_APROM_BYTE(0x3883);
+    dev_def.dev_channel[2].channel_mode = read_APROM_BYTE(0x3884);
+    dev_def.dev_channel[3].channel_mode = read_APROM_BYTE(0x3885);
+    if(dev_def.lock == 0xff 
+        || dev_def.dev_channel[0].channel_mode == 0xff
+        || dev_def.dev_channel[1].channel_mode == 0xff
+        || dev_def.dev_channel[2].channel_mode == 0xff
+        || dev_def.dev_channel[3].channel_mode == 0xff)
+    {
+        dev_def.lock = false;
+        dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
+        dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
+        dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
+        dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+        MODE_LED = 1;
+    }
 }
 void logicInit(void)
 {
+    modeInit();
     h595Init();
     SendTo595(0x0f);
     ledInit();   
 	keyInit();
     relayInit();
     timer0Init();
-    dev_def.dev_channel[0].channel_mode = DEV_JOGGING;
-    dev_def.dev_channel[1].channel_mode = DEV_JOGGING;
-    dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
-    dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
-    dev_def.lock = false;
-    MODE_LED = 0;
 }
 void SendTo595(uint8_t val)
 {

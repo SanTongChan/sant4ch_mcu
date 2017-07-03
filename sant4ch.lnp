@@ -4,6 +4,7 @@
 "STARTUP.obj",
 "main.obj",
 "key_driver.obj",
-"led.obj" 
+"led.obj",
+"flash.obj" 
 TO "sant4ch" 
 RAMSIZE(256) 
