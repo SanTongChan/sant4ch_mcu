@@ -18,7 +18,6 @@ typedef struct
     uint16_t timer_cnt;
     uint8_t update_flag;
     bool get_status;
-    bool lock;
     ChannelMode channel_mode;
 }DevChannelDef;
 typedef struct
@@ -26,8 +25,6 @@ typedef struct
     DevChannelDef dev_channel[4];
     uint8_t update_local_cnt;
     bool lock;
-    bool lock_update;
-    uint16_t lock_cnt;
 }DevDef;
 extern xdata DevDef dev_def;
 extern uint8_t h595_val;
