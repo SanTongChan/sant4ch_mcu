@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 23:12:17 PAGE 1   
+C51 COMPILER V9.01   TIMER                                                                 07/10/2017 23:59:34 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   2              syn_app_flag = true;
   53   2          }
   54   1          if(jogging_cnt >= 10000 - jogging_threod)
-C51 COMPILER V9.01   TIMER                                                                 07/03/2017 23:12:17 PAGE 2   
+C51 COMPILER V9.01   TIMER                                                                 07/10/2017 23:59:34 PAGE 2   
 
   55   1          {
   56   2              jogging_threod = 9900;
@@ -75,16 +75,18 @@ line level    source
   63   2              lock_cnt = 0;
   64   2              deal_lock = true;
   65   2          }
-  66   1          if(led_cnt >= 5000)
-  67   1              {
-  68   2              led_cnt = 0;
-  69   2              RF_LED = ~RF_LED;
-  70   2              }
-  71   1      }
+  66   1          /*
+  67   1          if(led_cnt >= 5000)
+  68   1              {
+  69   1              led_cnt = 0;
+  70   1              RF_LED = ~RF_LED;
+  71   1              }
+  72   1              */
+  73   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    269    ----
+   CODE SIZE        =    250    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

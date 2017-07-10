@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -62,7 +62,7 @@ line level    source
   52   2              static uint8_t lock_channel = 0;
   53   2              static uint8_t last_lock_channel = 0;
   54   2              static uint8_t last_relay_val[4] = {0};
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 2   
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 2   
 
   55   2              if(dev_def.dev_channel[0].update_flag 
   56   2                  || dev_def.dev_channel[1].update_flag 
@@ -126,7 +126,7 @@ line level    source
  114   5                          dev_def.dev_channel[3].update_flag = true;
  115   5                          dev_def.update_local_cnt = 0;
  116   5                          dev_def.setting = false;
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 3   
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 3   
 
  117   5                          update_time = 5;
  118   5                      }
@@ -190,7 +190,7 @@ line level    source
  176   2              relays[1] = (uint8_t)RELAY2;
  177   2              relays[2] = (uint8_t)RELAY3;
  178   2              relays[3] = (uint8_t)RELAY4;
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 4   
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 4   
 
  179   2              for(i = 0; i < 4; i++)
  180   2              {
@@ -254,7 +254,7 @@ line level    source
  238   1          if(save_mode_flag)
  239   1          {
  240   2              save_mode_flag = false;
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 5   
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 5   
 
  241   2              write_DATAFLASH_BYTE (0x3881,dev_def.lock);
  242   2              write_DATAFLASH_BYTE (0x3882,(uint8_t)dev_def.dev_channel[0].channel_mode);
@@ -281,46 +281,53 @@ line level    source
  263   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
  264   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
  265   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
- 266   2              MODE_LED = 1;
- 267   2          }
- 268   1      }
- 269          void logicInit(void)
- 270          {
- 271   1          modeInit();
- 272   1          h595Init();
- 273   1          SendTo595(0x0f);
- 274   1          ledInit();   
- 275   1              keyInit();
- 276   1          relayInit();
- 277   1          timer0Init();
- 278   1      }
- 279          void SendTo595(uint8_t val)
- 280          {
- 281   1              char i=0;
- 282   1              uint8_t temp = val;
- 283   1              EA = 0;
- 284   1              for(i = 0; i < 8; i++)
- 285   1              {
- 286   2                      SER = temp>>7;
- 287   2                      temp= temp<<1;
- 288   2                      SCK = 0;
- 289   2                      _nop_();
- 290   2                      SCK = 1;
- 291   2              }
- 292   1              RCK = 0;
- 293   1              _nop_();
- 294   1              RCK = 1;
- 295   1              SER = 0;
- 296   1              EA = 1;
- 297   1      }
- 298          
- 299          
+ 266   2          }
+ 267   1          if(dev_def.lock)
+ 268   1          {
+ 269   2              MODE_LED = 1;
+ 270   2          }
+ 271   1          else
+ 272   1          {
+ 273   2              MODE_LED = 0;
+ 274   2          }
+ 275   1      }
+ 276          void logicInit(void)
+ 277          {
+ 278   1          modeInit();
+ 279   1          h595Init();
+ 280   1          SendTo595(0x0f);
+ 281   1          ledInit();   
+ 282   1              keyInit();
+ 283   1          relayInit();
+ 284   1          timer0Init();
+ 285   1      }
+ 286          void SendTo595(uint8_t val)
+ 287          {
+ 288   1              char i=0;
+ 289   1              uint8_t temp = val;
+ 290   1              EA = 0;
+ 291   1              for(i = 0; i < 8; i++)
+ 292   1              {
+ 293   2                      SER = temp>>7;
+ 294   2                      temp= temp<<1;
+ 295   2                      SCK = 0;
+ 296   2                      _nop_();
+ 297   2                      SCK = 1;
+ 298   2              }
+ 299   1              RCK = 0;
+ 300   1              _nop_();
+ 301   1              RCK = 1;
+ 302   1              SER = 0;
+C51 COMPILER V9.01   LOGIC                                                                 07/10/2017 23:59:34 PAGE 6   
+
+ 303   1              EA = 1;
+ 304   1      }
+ 305          
+ 306          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-C51 COMPILER V9.01   LOGIC                                                                 07/03/2017 23:12:18 PAGE 6   
-
-   CODE SIZE        =   1057    ----
+   CODE SIZE        =   1066    ----
    CONSTANT SIZE    =     16    ----
    XDATA SIZE       =     23    ----
    PDATA SIZE       =   ----    ----

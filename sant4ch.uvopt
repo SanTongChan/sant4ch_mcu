@@ -151,7 +151,7 @@
 
   <Group>
     <GroupName>timer</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -160,10 +160,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>44</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>21</TopLine>
-      <CurrentLine>36</CurrentLine>
+      <TopLine>8</TopLine>
+      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\code\timer\timer.c</PathWithFileName>
       <FilenameWithoutPath>timer.c</FilenameWithoutPath>
@@ -172,7 +172,7 @@
 
   <Group>
     <GroupName>logic</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -183,8 +183,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>22</TopLine>
-      <CurrentLine>29</CurrentLine>
+      <TopLine>118</TopLine>
+      <CurrentLine>130</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\code\logic\logic.c</PathWithFileName>
       <FilenameWithoutPath>logic.c</FilenameWithoutPath>
@@ -193,7 +193,7 @@
 
   <Group>
     <GroupName>key</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -202,10 +202,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>125</TopLine>
-      <CurrentLine>125</CurrentLine>
+      <TopLine>172</TopLine>
+      <CurrentLine>181</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\code\key\key.c</PathWithFileName>
       <FilenameWithoutPath>key.c</FilenameWithoutPath>
@@ -244,7 +244,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
       <CurrentLine>11</CurrentLine>
@@ -295,6 +295,105 @@
       <FilenameWithoutPath>led.c</FilenameWithoutPath>
     </File>
   </Group>
+
+  <Group>
+    <GroupName>flash</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>8</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\code\flash\flash.c</PathWithFileName>
+      <FilenameWithoutPath>flash.c</FilenameWithoutPath>
+    </File>
+  </Group>
+
+  <AlienFiles>
+    <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\FLASH\FLASH.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>10</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\COMMON\N76E003.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>1</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\DRIVER\KEY_DRIVER.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>6</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
 
   <AlienFiles>
     <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\LOGIC\LOGIC.H</PathWithFilename>
@@ -352,58 +451,6 @@
     <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\KEY\KEY.H</PathWithFilename>
     <TopLine>1</TopLine>
     <CurrentLine>15</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\DRIVER\KEY_DRIVER.H</PathWithFilename>
-    <TopLine>4</TopLine>
-    <CurrentLine>10</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>G:\三同学习\sant_4ch\sant4ch_code\CODE\COMMON\N76E003.H</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1771,15 +1818,15 @@
       <Documents>
         <Doc>
           <Name>.\code\sant4ch\main.c</Name>
-          <ColumnNumber>16</ColumnNumber>
+          <ColumnNumber>0</ColumnNumber>
           <TopLine>1</TopLine>
           <CurrentLine>11</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\code\key\key.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>125</TopLine>
-          <CurrentLine>125</CurrentLine>
+          <ColumnNumber>33</ColumnNumber>
+          <TopLine>172</TopLine>
+          <CurrentLine>181</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\CODE\KEY\KEY.H</Name>
@@ -1801,9 +1848,9 @@
         </Doc>
         <Doc>
           <Name>.\code\timer\timer.c</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>21</TopLine>
-          <CurrentLine>36</CurrentLine>
+          <ColumnNumber>44</ColumnNumber>
+          <TopLine>8</TopLine>
+          <CurrentLine>15</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\CODE\LOGIC\LOGIC.H</Name>
@@ -1814,20 +1861,26 @@
         <Doc>
           <Name>.\code\logic\logic.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>22</TopLine>
-          <CurrentLine>29</CurrentLine>
+          <TopLine>118</TopLine>
+          <CurrentLine>130</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\CODE\DRIVER\KEY_DRIVER.H</Name>
-          <ColumnNumber>28</ColumnNumber>
-          <TopLine>4</TopLine>
-          <CurrentLine>10</CurrentLine>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>6</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\CODE\COMMON\N76E003.H</Name>
           <ColumnNumber>0</ColumnNumber>
           <TopLine>1</TopLine>
           <CurrentLine>1</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\CODE\FLASH\FLASH.H</Name>
+          <ColumnNumber>32</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>10</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

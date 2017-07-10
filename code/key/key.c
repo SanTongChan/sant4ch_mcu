@@ -299,10 +299,12 @@ static void key5_twice_press(void)
     if(dev_def.lock == false)
     {
         dev_def.lock = true;
+        MODE_LED = 1;
     }
     else
     {
         dev_def.lock = false;
+        MODE_LED = 0;
     }
     h595_val &= 0x0f;
     SendTo595(h595_val);

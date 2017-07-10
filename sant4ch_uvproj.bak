@@ -46,7 +46,7 @@
           <OutputName>sant4ch</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -128,7 +128,7 @@
           <Target>
             <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>0</RunToMain>
+            <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
@@ -136,7 +136,7 @@
             <RestoreToolbox>1</RestoreToolbox>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>-1</TargetSelection>
+          <TargetSelection>9</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -150,20 +150,20 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver></Driver>
+            <Driver>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
-            <UseTargetDll>0</UseTargetDll>
+            <UseTargetDll>1</UseTargetDll>
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
+            <Capability>1</Capability>
+            <DriverSelection>4101</DriverSelection>
           </Flash1>
-          <Flash2></Flash2>
-          <Flash3></Flash3>
+          <Flash2>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
         </Utilities>
         <Target51>
@@ -213,7 +213,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x10000</Size>
+                <Size>0xffff</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -294,7 +294,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\code\key;.\code\logic;.\code\timer</IncludePath>
+              <IncludePath>.\code\key;.\code\logic;.\code\timer;.\code\driver;.\code\led;.\code\common</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -400,6 +400,16 @@
               <FileName>key_driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\code\driver\key_driver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>led</GroupName>
+          <Files>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\code\led\led.c</FilePath>
             </File>
           </Files>
         </Group>

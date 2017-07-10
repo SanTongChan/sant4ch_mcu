@@ -63,9 +63,11 @@ void Timer0_ISR(void) interrupt 1
         lock_cnt = 0;
         deal_lock = true;
     }
+    /*
     if(led_cnt >= 5000)
 	{
         led_cnt = 0;
         RF_LED = ~RF_LED;
 	}
+	*/
 }

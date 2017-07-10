@@ -263,7 +263,14 @@ static void modeInit(void)
         dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
         dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
         dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+    }
+    if(dev_def.lock)
+    {
         MODE_LED = 1;
+    }
+    else
+    {
+        MODE_LED = 0;
     }
 }
 void logicInit(void)

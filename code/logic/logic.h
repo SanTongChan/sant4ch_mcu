@@ -6,8 +6,8 @@
 
 sbit RELAY1 = P0^1;
 sbit RELAY2 = P0^0;
-sbit RELAY3 = P0^3;
-sbit RELAY4 = P0^2;
+sbit RELAY3 = P0^4;
+sbit RELAY4 = P0^3;
 typedef enum
 {
     DEV_SELFLOCK = 0,
