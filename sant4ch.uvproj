@@ -294,7 +294,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\code\key;.\code\logic;.\code\timer;.\code\driver;.\code\led;.\code\common;.\code\flash</IncludePath>
+              <IncludePath>.\code\key;.\code\logic;.\code\timer;.\code\driver;.\code\led;.\code\common;.\code\flash;.\code\remote</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -420,6 +420,16 @@
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\code\flash\flash.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>remote</GroupName>
+          <Files>
+            <File>
+              <FileName>remote.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\code\remote\remote.c</FilePath>
             </File>
           </Files>
         </Group>

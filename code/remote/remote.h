@@ -13,7 +13,7 @@ typedef struct
 	uint16_t timer_cnt;
 }IrData;
 
-extern xdata IrData ir_data;
+extern  IrData ir_data;
 
 void captureInit(void);
 void analyzeRfData(void);
