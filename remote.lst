@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:07:34 PAGE 1   
+C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:31:03 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE REMOTE
@@ -12,7 +12,7 @@ line level    source
    1          #include "remote.h"
    2          #include "N76E003.h"
    3          #include "led.h"
-   4          
+   4          #if 1
    5          sbit RF_PIN = P1^5;
    6          
    7          typedef struct
@@ -62,7 +62,7 @@ line level    source
   51          void analyzeRfData(void)
   52          {
   53   1              uint8_t i = 0;
-C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:07:34 PAGE 2   
+C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:31:03 PAGE 2   
 
   54   1              uint32_t temp = 0;
   55   1              uint16_t unit_time = 0;
@@ -120,13 +120,13 @@ line level    source
  107   3                              ir_data.timer_cnt = 0;
  108   3                              ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
  109   3                              ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
- 110   3                              MODE_LED = !MODE_LED;
+ 110   3                              RF_LED = !RF_LED;
  111   3                      }
  112   2                      else
  113   2                      {
  114   3                              ir_data.cnt++;
  115   3                              ir_data.timer_cnt = 0;
-C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:07:34 PAGE 3   
+C51 COMPILER V9.01   REMOTE                                                                07/13/2017 16:31:03 PAGE 3   
 
  116   3                      }
  117   2              }
@@ -172,6 +172,7 @@ line level    source
  157   2                      
  158   2              }
  159   1      }
+ 160          #endif
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -1,7 +1,7 @@
 #include "remote.h"
 #include "N76E003.h"
 #include "led.h"
-
+#if 1
 sbit RF_PIN = P1^5;
 
 typedef struct
@@ -107,7 +107,7 @@ void analyzeRfData(void)
 			ir_data.timer_cnt = 0;
 			ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
 			ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
-			MODE_LED = !MODE_LED;
+			RF_LED = !RF_LED;
 		}
 		else
 		{
@@ -157,3 +157,4 @@ void Capture_ISR (void) interrupt 12
 		
 	}
 }
+#endif

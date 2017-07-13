@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -30,312 +30,323 @@ line level    source
   19          bool deal_lock = false;
   20          bool syn_app_flag = false;
   21          bool save_mode_flag = false;
-  22          uint8_t update_time = 5;
-  23          
-  24          uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
-  25          uint8_t code key_array[4] = {0x04,0x02,0x01,0x08};
-  26          
-  27          DevDef xdata dev_def = {0};
-  28          static void h595Init(void)
-  29          {
-  30   1          //初始化P16 P17 P30为推挽输出
-  31   1          P1M1 &= 0x3f;
-  32   1              P1M2 |= 0Xc0;
-  33   1              P3M1 &= 0xfe;
-  34   1          P3M2 |= 0x01;
-  35   1          SER = 1;
-  36   1      }
-  37          static void relayInit(void)
-  38          {
-  39   1          P0M1 |= 0x0f;//初始化relay脚 P00 -> P03     为输入
-  40   1              P0M2 &= 0Xf0;  
-  41   1      }
-  42          static void syncApp(void)
-  43          {
-  44   1          uint8_t last_key = h595_val;
-  45   1          uint8_t relays[4] = {0};
-  46   1          uint8_t i = 0;
-  47   1          relays[0] = RELAY1;
-  48   1          relays[1] = RELAY2;
-  49   1          relays[2] = RELAY3;
-  50   1          relays[3] = RELAY4;
-  51   1          if(dev_def.lock)
-  52   1          {
-  53   2              static uint8_t lock_channel = 0;
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 2   
+  22          bool deal_remote_flag = false;
+  23          uint8_t update_time = 5;
+  24          
+  25          uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
+  26          uint8_t code key_array[4] = {0x04,0x02,0x01,0x08};
+  27          
+  28          DevDef xdata dev_def = {0};
+  29          static void h595Init(void)
+  30          {
+  31   1          //初始化P16 P17 P30为推挽输出
+  32   1          P1M1 &= 0x3f;
+  33   1              P1M2 |= 0Xc0;
+  34   1              P3M1 &= 0xfe;
+  35   1          P3M2 |= 0x01;
+  36   1          SER = 1;
+  37   1      }
+  38          static void relayInit(void)
+  39          {
+  40   1          P0M1 |= 0x0f;//初始化relay脚 P00 -> P03     为输入
+  41   1              P0M2 &= 0Xf0;  
+  42   1      }
+  43          static void syncApp(void)
+  44          {
+  45   1          uint8_t last_key = h595_val;
+  46   1          uint8_t relays[4] = {0};
+  47   1          uint8_t i = 0;
+  48   1          relays[0] = RELAY1;
+  49   1          relays[1] = RELAY2;
+  50   1          relays[2] = RELAY3;
+  51   1          relays[3] = RELAY4;
+  52   1          if(dev_def.lock)
+  53   1          {
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 2   
 
-  54   2              static uint8_t last_lock_channel = 0;
-  55   2              static uint8_t last_relay_val[4] = {0};
-  56   2              if(dev_def.dev_channel[0].update_flag 
-  57   2                  || dev_def.dev_channel[1].update_flag 
-  58   2                  || dev_def.dev_channel[2].update_flag
-  59   2                  || dev_def.dev_channel[3].update_flag)
-  60   2              {
-  61   3                  return;
-  62   3              }
-  63   2              for(i = 0; i < 4;i++)
-  64   2              {
-  65   3                  if(relays[i] != last_relay_val[i] && relays[i] == 1)
-  66   3                  {
-  67   4                      lock_channel = i + 1;
-  68   4                  }
-  69   3                  last_relay_val[i] = relays[i];
-  70   3              }
-  71   2              if(last_lock_channel != lock_channel)
-  72   2              {
-  73   3                  last_lock_channel = lock_channel;
-  74   3                  for(i = 0; i < 4; i++)
-  75   3                  {
-  76   4                      if(lock_channel == (i + 1))
-  77   4                      {
-  78   5                          h595_val &= 0x0f;
-  79   5                          h595_val |= relay_array[i];
-  80   5                      }
-  81   4                  }
-  82   3                  dev_def.dev_channel[0].update_flag = true;
-  83   3                  dev_def.dev_channel[1].update_flag = true;
-  84   3                  dev_def.dev_channel[2].update_flag = true;
-  85   3                  dev_def.dev_channel[3].update_flag = true;
-  86   3                  dev_def.update_local_cnt = 0;
-  87   3                  dev_def.setting = false;
-  88   3                  update_time = 5;
-  89   3              }
-  90   2              else
-  91   2              {
-  92   3                  if(relays[lock_channel - 1])
-  93   3                  {
-  94   4                      if(!(h595_val & relay_array[lock_channel - 1]))
-  95   4                      {
-  96   5                          h595_val |= relay_array[lock_channel - 1];
-  97   5                          dev_def.dev_channel[0].update_flag = true;
-  98   5                          dev_def.dev_channel[1].update_flag = true;
-  99   5                          dev_def.dev_channel[2].update_flag = true;
- 100   5                          dev_def.dev_channel[3].update_flag = true;
- 101   5                          dev_def.update_local_cnt = 0;
- 102   5                          dev_def.setting = false;
- 103   5                          update_time = 5;
- 104   5                      }
- 105   4                     
- 106   4                  }
- 107   3                  else
- 108   3                  {
- 109   4                      if(h595_val & relay_array[lock_channel - 1])
- 110   4                      {
- 111   5                          h595_val &= ~relay_array[lock_channel - 1];
- 112   5                          dev_def.dev_channel[0].update_flag = true;
- 113   5                          dev_def.dev_channel[1].update_flag = true;
- 114   5                          dev_def.dev_channel[2].update_flag = true;
- 115   5                          dev_def.dev_channel[3].update_flag = true;
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 3   
+  54   2              static uint8_t lock_channel = 0;
+  55   2              static uint8_t last_lock_channel = 0;
+  56   2              static uint8_t last_relay_val[4] = {0};
+  57   2              if(dev_def.dev_channel[0].update_flag 
+  58   2                  || dev_def.dev_channel[1].update_flag 
+  59   2                  || dev_def.dev_channel[2].update_flag
+  60   2                  || dev_def.dev_channel[3].update_flag)
+  61   2              {
+  62   3                  return;
+  63   3              }
+  64   2              for(i = 0; i < 4;i++)
+  65   2              {
+  66   3                  if(relays[i] != last_relay_val[i] && relays[i] == 1)
+  67   3                  {
+  68   4                      lock_channel = i + 1;
+  69   4                  }
+  70   3                  last_relay_val[i] = relays[i];
+  71   3              }
+  72   2              if(last_lock_channel != lock_channel)
+  73   2              {
+  74   3                  last_lock_channel = lock_channel;
+  75   3                  for(i = 0; i < 4; i++)
+  76   3                  {
+  77   4                      if(lock_channel == (i + 1))
+  78   4                      {
+  79   5                          h595_val &= 0x0f;
+  80   5                          h595_val |= relay_array[i];
+  81   5                      }
+  82   4                  }
+  83   3                  dev_def.dev_channel[0].update_flag = true;
+  84   3                  dev_def.dev_channel[1].update_flag = true;
+  85   3                  dev_def.dev_channel[2].update_flag = true;
+  86   3                  dev_def.dev_channel[3].update_flag = true;
+  87   3                  dev_def.update_local_cnt = 0;
+  88   3                  dev_def.setting = false;
+  89   3                  update_time = 5;
+  90   3              }
+  91   2              else
+  92   2              {
+  93   3                  if(relays[lock_channel - 1])
+  94   3                  {
+  95   4                      if(!(h595_val & relay_array[lock_channel - 1]))
+  96   4                      {
+  97   5                          h595_val |= relay_array[lock_channel - 1];
+  98   5                          dev_def.dev_channel[0].update_flag = true;
+  99   5                          dev_def.dev_channel[1].update_flag = true;
+ 100   5                          dev_def.dev_channel[2].update_flag = true;
+ 101   5                          dev_def.dev_channel[3].update_flag = true;
+ 102   5                          dev_def.update_local_cnt = 0;
+ 103   5                          dev_def.setting = false;
+ 104   5                          update_time = 5;
+ 105   5                      }
+ 106   4                     
+ 107   4                  }
+ 108   3                  else
+ 109   3                  {
+ 110   4                      if(h595_val & relay_array[lock_channel - 1])
+ 111   4                      {
+ 112   5                          h595_val &= ~relay_array[lock_channel - 1];
+ 113   5                          dev_def.dev_channel[0].update_flag = true;
+ 114   5                          dev_def.dev_channel[1].update_flag = true;
+ 115   5                          dev_def.dev_channel[2].update_flag = true;
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 3   
 
- 116   5                          dev_def.update_local_cnt = 0;
- 117   5                          dev_def.setting = false;
- 118   5                          update_time = 5;
- 119   5                      }
- 120   4                  }
- 121   3              }
- 122   2          }
- 123   1          else
- 124   1          {
- 125   2              for(i =  0; i < 4; i++)
- 126   2              {
- 127   3                  if(dev_def.dev_channel[i].channel_mode == DEV_JOGGING)
- 128   3                  {
- 129   4                      dev_def.dev_channel[i].timer_cnt++;
- 130   4                      if((h595_val & relay_array[i]))//如果relay1是按下的
- 131   4                      {
- 132   5                          if(dev_def.dev_channel[i].get_status == false)
- 133   5                          {
- 134   6                              dev_def.dev_channel[i].timer_cnt = 0;
- 135   6                              dev_def.dev_channel[i].get_status = true;
- 136   6                          }
- 137   5                          if(dev_def.dev_channel[i].timer_cnt >= 7)
- 138   5                          {
- 139   6                              dev_def.dev_channel[i].timer_cnt = 0;
- 140   6                              dev_def.dev_channel[i].get_status = false;
- 141   6                              h595_val &= (~relay_array[i]);//关掉relay1
- 142   6                              dev_def.dev_channel[i].update_flag = true;//允许更新标志位
- 143   6                              dev_def.update_local_cnt = 0;
- 144   6                              dev_def.setting = false;
- 145   6                              update_time = 5;
- 146   6                          }
- 147   5                      }
- 148   4                  }
- 149   3                  if(!dev_def.dev_channel[i].update_flag)
- 150   3                  {
- 151   4                      if(relays[i])
- 152   4                      {
- 153   5                          h595_val |= relay_array[i];
- 154   5                      }
- 155   4                      else
- 156   4                      {
- 157   5                          h595_val &= (~relay_array[i]);
- 158   5                      }
- 159   4                  }
- 160   3              }
- 161   2          }
- 162   1          if(h595_val != last_key)
- 163   1          {
- 164   2              SendTo595(h595_val);
- 165   2          }
- 166   1      }
- 167          static void updateLocal(void)
- 168          {
- 169   1          static bool high_flag[4] = {false};
- 170   1          uint8_t i = 0;
- 171   1          uint8_t last_key = h595_val;
- 172   1          uint8_t relays[4] = {0};
- 173   1          dev_def.update_local_cnt++;
- 174   1          if(dev_def.update_local_cnt == update_time)
- 175   1          {
- 176   2              relays[0] = (uint8_t)RELAY1;
- 177   2              relays[1] = (uint8_t)RELAY2;
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 4   
+ 116   5                          dev_def.dev_channel[3].update_flag = true;
+ 117   5                          dev_def.update_local_cnt = 0;
+ 118   5                          dev_def.setting = false;
+ 119   5                          update_time = 5;
+ 120   5                      }
+ 121   4                  }
+ 122   3              }
+ 123   2          }
+ 124   1          else
+ 125   1          {
+ 126   2              for(i =  0; i < 4; i++)
+ 127   2              {
+ 128   3                  if(dev_def.dev_channel[i].channel_mode == DEV_JOGGING)
+ 129   3                  {
+ 130   4                      dev_def.dev_channel[i].timer_cnt++;
+ 131   4                      if((h595_val & relay_array[i]))//如果relay1是按下的
+ 132   4                      {
+ 133   5                          if(dev_def.dev_channel[i].get_status == false)
+ 134   5                          {
+ 135   6                              dev_def.dev_channel[i].timer_cnt = 0;
+ 136   6                              dev_def.dev_channel[i].get_status = true;
+ 137   6                          }
+ 138   5                          if(dev_def.dev_channel[i].timer_cnt >= 7)
+ 139   5                          {
+ 140   6                              dev_def.dev_channel[i].timer_cnt = 0;
+ 141   6                              dev_def.dev_channel[i].get_status = false;
+ 142   6                              h595_val &= (~relay_array[i]);//关掉relay1
+ 143   6                              dev_def.dev_channel[i].update_flag = true;//允许更新标志位
+ 144   6                              dev_def.update_local_cnt = 0;
+ 145   6                              dev_def.setting = false;
+ 146   6                              update_time = 5;
+ 147   6                          }
+ 148   5                      }
+ 149   4                  }
+ 150   3                  if(!dev_def.dev_channel[i].update_flag)
+ 151   3                  {
+ 152   4                      if(relays[i])
+ 153   4                      {
+ 154   5                          h595_val |= relay_array[i];
+ 155   5                      }
+ 156   4                      else
+ 157   4                      {
+ 158   5                          h595_val &= (~relay_array[i]);
+ 159   5                      }
+ 160   4                  }
+ 161   3              }
+ 162   2          }
+ 163   1          if(h595_val != last_key)
+ 164   1          {
+ 165   2              SendTo595(h595_val);
+ 166   2          }
+ 167   1      }
+ 168          static void updateLocal(void)
+ 169          {
+ 170   1          static bool high_flag[4] = {false};
+ 171   1          uint8_t i = 0;
+ 172   1          uint8_t last_key = h595_val;
+ 173   1          uint8_t relays[4] = {0};
+ 174   1          dev_def.update_local_cnt++;
+ 175   1          if(dev_def.update_local_cnt == update_time)
+ 176   1          {
+ 177   2              relays[0] = (uint8_t)RELAY1;
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 4   
 
- 178   2              relays[2] = (uint8_t)RELAY3;
- 179   2              relays[3] = (uint8_t)RELAY4;
- 180   2              for(i = 0; i < 4; i++)
- 181   2              {
- 182   3                  if(dev_def.dev_channel[i].update_flag)
- 183   3                  {
- 184   4                      if((relays[i] << (7 - i)) != (h595_val & relay_array[i]))
- 185   4                      {
- 186   5                          high_flag[i] = true;
- 187   5                          h595_val &= ~key_array[i];
- 188   5                      }
- 189   4                      else
- 190   4                      {
- 191   5                          dev_def.dev_channel[i].update_flag = false;
- 192   5                      }
- 193   4                  }
- 194   3              }
- 195   2              if(h595_val != last_key)
- 196   2              {
- 197   3                  SendTo595(h595_val);
- 198   3              }
- 199   2          }
- 200   1          else if(dev_def.update_local_cnt >= update_time + 1)
- 201   1          {
- 202   2              dev_def.update_local_cnt = 0;
- 203   2              for(i = 0; i < 4; i++)
- 204   2              {
- 205   3                  if(high_flag[i] == true)
- 206   3                  {
- 207   4                      h595_val |= key_array[i];
- 208   4                      high_flag[i] = false;
- 209   4                  }
- 210   3              }
- 211   2              if(h595_val != last_key)
- 212   2              {
- 213   3                  SendTo595(h595_val);
- 214   3              }
- 215   2          }
- 216   1      
- 217   1          
- 218   1      }
- 219          void dealLogic(void)
- 220          {
- 221   1          if(key_scan_flag)
- 222   1          {
- 223   2              key_scan_flag = false;
- 224   2              keyScan();
- 225   2          }
- 226   1          if(syn_app_flag)
- 227   1          {
- 228   2              syn_app_flag = false;
- 229   2              syncApp();
- 230   2          }
- 231   1          if(update_local_flag)
- 232   1          {
- 233   2              update_local_flag = false;
- 234   2              updateLocal();//要在同步APP之后
- 235   2          }
- 236   1      }
- 237          void saveModeToFlash(void)
- 238          {
- 239   1          if(save_mode_flag)
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 5   
+ 178   2              relays[1] = (uint8_t)RELAY2;
+ 179   2              relays[2] = (uint8_t)RELAY3;
+ 180   2              relays[3] = (uint8_t)RELAY4;
+ 181   2              for(i = 0; i < 4; i++)
+ 182   2              {
+ 183   3                  if(dev_def.dev_channel[i].update_flag)
+ 184   3                  {
+ 185   4                      if((relays[i] << (7 - i)) != (h595_val & relay_array[i]))
+ 186   4                      {
+ 187   5                          high_flag[i] = true;
+ 188   5                          h595_val &= ~key_array[i];
+ 189   5                      }
+ 190   4                      else
+ 191   4                      {
+ 192   5                          dev_def.dev_channel[i].update_flag = false;
+ 193   5                      }
+ 194   4                  }
+ 195   3              }
+ 196   2              if(h595_val != last_key)
+ 197   2              {
+ 198   3                  SendTo595(h595_val);
+ 199   3              }
+ 200   2          }
+ 201   1          else if(dev_def.update_local_cnt >= update_time + 1)
+ 202   1          {
+ 203   2              dev_def.update_local_cnt = 0;
+ 204   2              for(i = 0; i < 4; i++)
+ 205   2              {
+ 206   3                  if(high_flag[i] == true)
+ 207   3                  {
+ 208   4                      h595_val |= key_array[i];
+ 209   4                      high_flag[i] = false;
+ 210   4                  }
+ 211   3              }
+ 212   2              if(h595_val != last_key)
+ 213   2              {
+ 214   3                  SendTo595(h595_val);
+ 215   3              }
+ 216   2          }
+ 217   1      
+ 218   1          
+ 219   1      }
+ 220          void dealLogic(void)
+ 221          {
+ 222   1          if(key_scan_flag)
+ 223   1          {
+ 224   2              key_scan_flag = false;
+ 225   2              keyScan();
+ 226   2          }
+ 227   1          if(syn_app_flag)
+ 228   1          {
+ 229   2              syn_app_flag = false;
+ 230   2              syncApp();
+ 231   2          }
+ 232   1          if(update_local_flag)
+ 233   1          {
+ 234   2              update_local_flag = false;
+ 235   2              updateLocal();//要在同步APP之后
+ 236   2          }
+ 237   1      }
+ 238          void saveModeToFlash(void)
+ 239          {
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 5   
 
- 240   1          {
- 241   2              save_mode_flag = false;
- 242   2              write_DATAFLASH_BYTE (0x3881,dev_def.lock);
- 243   2              write_DATAFLASH_BYTE (0x3882,(uint8_t)dev_def.dev_channel[0].channel_mode);
- 244   2              write_DATAFLASH_BYTE (0x3883,(uint8_t)dev_def.dev_channel[1].channel_mode);
- 245   2              write_DATAFLASH_BYTE (0x3884,(uint8_t)dev_def.dev_channel[2].channel_mode);
- 246   2              write_DATAFLASH_BYTE (0x3885,(uint8_t)dev_def.dev_channel[3].channel_mode);
- 247   2          }
- 248   1      }
- 249          static void modeInit(void)
- 250          {
- 251   1          dev_def.lock = read_APROM_BYTE(0x3881);
- 252   1          dev_def.dev_channel[0].channel_mode = read_APROM_BYTE(0x3882);
- 253   1          dev_def.dev_channel[1].channel_mode = read_APROM_BYTE(0x3883);
- 254   1          dev_def.dev_channel[2].channel_mode = read_APROM_BYTE(0x3884);
- 255   1          dev_def.dev_channel[3].channel_mode = read_APROM_BYTE(0x3885);
- 256   1          if(dev_def.lock == 0xff 
- 257   1              || dev_def.dev_channel[0].channel_mode == 0xff
- 258   1              || dev_def.dev_channel[1].channel_mode == 0xff
- 259   1              || dev_def.dev_channel[2].channel_mode == 0xff
- 260   1              || dev_def.dev_channel[3].channel_mode == 0xff)
- 261   1          {
- 262   2              dev_def.lock = false;
- 263   2              dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
- 264   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
- 265   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
- 266   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
- 267   2          }
- 268   1          if(dev_def.lock)
- 269   1          {
- 270   2              MODE_LED = 1;
- 271   2          }
- 272   1          else
- 273   1          {
- 274   2              MODE_LED = 0;
- 275   2          }
- 276   1      }
- 277          void logicInit(void)
- 278          {
- 279   1          modeInit();
- 280   1          h595Init();
- 281   1          SendTo595(0x0f);
- 282   1          ledInit();   
- 283   1              keyInit();
- 284   1          relayInit();
- 285   1      //      captureInit();
- 286   1      //      timer1Init();
- 287   1          timer0Init();
- 288   1      }
- 289          void SendTo595(uint8_t val)
- 290          {
- 291   1              char i=0;
- 292   1              uint8_t temp = val;
- 293   1              EA = 0;
- 294   1              for(i = 0; i < 8; i++)
- 295   1              {
- 296   2                      SER = temp>>7;
- 297   2                      temp= temp<<1;
- 298   2                      SCK = 0;
- 299   2                      _nop_();
- 300   2                      SCK = 1;
- 301   2              }
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:07:33 PAGE 6   
+ 240   1          if(save_mode_flag)
+ 241   1          {
+ 242   2              save_mode_flag = false;
+ 243   2              write_DATAFLASH_BYTE (0x3881,dev_def.lock);
+ 244   2              write_DATAFLASH_BYTE (0x3882,(uint8_t)dev_def.dev_channel[0].channel_mode);
+ 245   2              write_DATAFLASH_BYTE (0x3883,(uint8_t)dev_def.dev_channel[1].channel_mode);
+ 246   2              write_DATAFLASH_BYTE (0x3884,(uint8_t)dev_def.dev_channel[2].channel_mode);
+ 247   2              write_DATAFLASH_BYTE (0x3885,(uint8_t)dev_def.dev_channel[3].channel_mode);
+ 248   2          }
+ 249   1      }
+ 250          void dealRemote(void)
+ 251          {
+ 252   1              if(deal_remote_flag)
+ 253   1              {
+ 254   2                      deal_remote_flag = false;
+ 255   2                      analyzeRfData();
+ 256   2              }
+ 257   1      }
+ 258          static void modeInit(void)
+ 259          {
+ 260   1          dev_def.lock = read_APROM_BYTE(0x3881);
+ 261   1          dev_def.dev_channel[0].channel_mode = read_APROM_BYTE(0x3882);
+ 262   1          dev_def.dev_channel[1].channel_mode = read_APROM_BYTE(0x3883);
+ 263   1          dev_def.dev_channel[2].channel_mode = read_APROM_BYTE(0x3884);
+ 264   1          dev_def.dev_channel[3].channel_mode = read_APROM_BYTE(0x3885);
+ 265   1          if(dev_def.lock == 0xff 
+ 266   1              || dev_def.dev_channel[0].channel_mode == 0xff
+ 267   1              || dev_def.dev_channel[1].channel_mode == 0xff
+ 268   1              || dev_def.dev_channel[2].channel_mode == 0xff
+ 269   1              || dev_def.dev_channel[3].channel_mode == 0xff)
+ 270   1          {
+ 271   2              dev_def.lock = false;
+ 272   2              dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
+ 273   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
+ 274   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
+ 275   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+ 276   2          }
+ 277   1          if(dev_def.lock)
+ 278   1          {
+ 279   2              MODE_LED = 1;
+ 280   2          }
+ 281   1          else
+ 282   1          {
+ 283   2              MODE_LED = 0;
+ 284   2          }
+ 285   1      }
+ 286          void logicInit(void)
+ 287          {
+ 288   1          modeInit();
+ 289   1          h595Init();
+ 290   1          SendTo595(0x0f);
+ 291   1          ledInit();   
+ 292   1              keyInit();
+ 293   1          relayInit();
+ 294   1      #if 1
+ 295   1              captureInit();
+ 296   1              timer1Init();
+ 297   1      #endif
+ 298   1          timer0Init();
+ 299   1      }
+ 300          void SendTo595(uint8_t val)
+ 301          {
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 6   
 
- 302   1              RCK = 0;
- 303   1              _nop_();
- 304   1              RCK = 1;
- 305   1              SER = 0;
- 306   1              EA = 1;
- 307   1      }
- 308          
- 309          
+ 302   1              char i=0;
+ 303   1              uint8_t temp = val;
+ 304   1              EA = 0;
+ 305   1              for(i = 0; i < 8; i++)
+ 306   1              {
+ 307   2                      SER = temp>>7;
+ 308   2                      temp= temp<<1;
+ 309   2                      SCK = 0;
+ 310   2                      _nop_();
+ 311   2                      SCK = 1;
+ 312   2              }
+ 313   1              RCK = 0;
+ 314   1              _nop_();
+ 315   1              RCK = 1;
+ 316   1              SER = 0;
+ 317   1              EA = 1;
+ 318   1      }
+ 319          
+ 320          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1066    ----
+   CODE SIZE        =   1083    ----
    CONSTANT SIZE    =     16    ----
    XDATA SIZE       =     23    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     18      11
+   DATA SIZE        =     19      11
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

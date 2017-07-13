@@ -19,6 +19,7 @@ bool deal_jogging = false;
 bool deal_lock = false;
 bool syn_app_flag = false;
 bool save_mode_flag = false;
+bool deal_remote_flag = false;
 uint8_t update_time = 5;
 
 uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
@@ -246,6 +247,14 @@ void saveModeToFlash(void)
         write_DATAFLASH_BYTE (0x3885,(uint8_t)dev_def.dev_channel[3].channel_mode);
     }
 }
+void dealRemote(void)
+{
+	if(deal_remote_flag)
+	{
+		deal_remote_flag = false;
+		analyzeRfData();
+	}
+}
 static void modeInit(void)
 {
     dev_def.lock = read_APROM_BYTE(0x3881);
@@ -282,8 +291,10 @@ void logicInit(void)
     ledInit();   
 	keyInit();
     relayInit();
-//	captureInit();
-//	timer1Init();
+#if 1
+	captureInit();
+	timer1Init();
+#endif
     timer0Init();
 }
 void SendTo595(uint8_t val)
