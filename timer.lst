@@ -1,10 +1,11 @@
-C51 COMPILER V9.01   TIMER                                                                 07/10/2017 23:59:34 PAGE 1   
+C51 COMPILER V9.01   TIMER                                                                 07/13/2017 16:07:33 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
 OBJECT MODULE PLACED IN timer.obj
 COMPILER INVOKED BY: F:\Program Files\Keil\C51\BIN\C51.EXE code\timer\timer.c BROWSE INCDIR(.\code\key;.\code\logic;.\co
-                    -de\timer;.\code\driver;.\code\led;.\code\common;.\code\flash) DEBUG OBJECTEXTEND PRINT(.\timer.lst) OBJECT(timer.obj)
+                    -de\timer;.\code\driver;.\code\led;.\code\common;.\code\flash;.\code\remote) DEBUG OBJECTEXTEND PRINT(.\timer.lst) OBJECT
+                    -(timer.obj)
 
 line level    source
 
@@ -13,80 +14,96 @@ line level    source
    3          #include "typedef.h"
    4          #include "led.h"
    5          #include "logic.h"
-   6          
-   7          void timer0Init(void)
-   8          {
-   9   1              TMOD &= 0xf0;
-  10   1              TMOD |= 0X02; //开启定时器0模式2
-  11   1              CKCON &= 0xf7; //定时器时钟为1/12系统时钟
-  12   1              TH0 = 123;   //100us
-  13   1              TL0 = 123;
-  14   1              ET0 = 1;
-  15   1              EA = 1;
-  16   1              TR0 = 1;
-  17   1      }
-  18          
-  19          void Timer0_ISR(void) interrupt 1
+   6          #include "remote.h"
+   7          
+   8          void timer0Init(void)
+   9          {
+  10   1              TMOD &= 0xf0;
+  11   1              TMOD |= 0X02; //开启定时器0模式2
+  12   1              CKCON &= 0xf7; //定时器时钟为1/12系统时钟
+  13   1              TH0 = 123;   //100us
+  14   1              TL0 = 123;
+  15   1              ET0 = 1;
+  16   1              EA = 1;
+  17   1              TR0 = 1;
+  18   1      }
+  19          void timer1Init(void)
   20          {
-  21   1          static uint16_t key_cnt = 0;
-  22   1          static uint16_t update_local_cnt = 0;
-  23   1          static uint16_t syn_app_cnt = 0;
-  24   1          static uint16_t jogging_cnt = 0;
-  25   1          static uint16_t lock_cnt = 0;
-  26   1          static uint16_t update_threod = 0;
-  27   1          static uint16_t syn_threod = 0;
-  28   1          static uint16_t jogging_threod = 0;
-  29   1          static uint16_t lock_threod = 0;
-  30   1          static uint16_t led_cnt = 0;
-  31   1          key_cnt++;
-  32   1          update_local_cnt++;
-  33   1          syn_app_cnt++;
-  34   1          jogging_cnt++;
-  35   1          lock_cnt++;
-  36   1          led_cnt++;
-  37   1          if(key_cnt >= 100)
-  38   1          {
-  39   2              key_cnt = 0;
-  40   2              key_scan_flag = true;
-  41   2          }
-  42   1          if(update_local_cnt >= 10000 - update_threod)
-  43   1          {
-  44   2              update_threod = 9000;
-  45   2              update_local_cnt = 0;
-  46   2              update_local_flag = true;
-  47   2          }
-  48   1          if(syn_app_cnt >= 10000 - syn_threod)
-  49   1          {
-  50   2              syn_threod = 9000;
-  51   2              syn_app_cnt = 0;
-  52   2              syn_app_flag = true;
-  53   2          }
-  54   1          if(jogging_cnt >= 10000 - jogging_threod)
-C51 COMPILER V9.01   TIMER                                                                 07/10/2017 23:59:34 PAGE 2   
+  21   1              TMOD &= 0x0f;
+  22   1              TMOD |= 0x10;
+  23   1              CKCON &= 0x7f;
+  24   1              TH1 = 245;
+  25   1              TL1 = 149;
+  26   1              ET1 = 1;
+  27   1              TR1 = 1;
+  28   1      }
+  29          void Timer1_ISR (void) interrupt 3
+  30          {
+  31   1              TH1 = 245;
+  32   1              TL1 = 149;
+  33   1      //      analyzeRfData();
+  34   1      }
+  35          void Timer0_ISR(void) interrupt 1
+  36          {
+  37   1          static uint16_t key_cnt = 0;
+  38   1          static uint16_t update_local_cnt = 0;
+  39   1          static uint16_t syn_app_cnt = 0;
+  40   1          static uint16_t jogging_cnt = 0;
+  41   1          static uint16_t lock_cnt = 0;
+  42   1          static uint16_t update_threod = 0;
+  43   1          static uint16_t syn_threod = 0;
+  44   1          static uint16_t jogging_threod = 0;
+  45   1          static uint16_t lock_threod = 0;
+  46   1          static uint16_t led_cnt = 0;
+  47   1          key_cnt++;
+  48   1          update_local_cnt++;
+  49   1          syn_app_cnt++;
+  50   1          jogging_cnt++;
+  51   1          lock_cnt++;
+  52   1          led_cnt++;
+  53   1          if(key_cnt >= 100)
+C51 COMPILER V9.01   TIMER                                                                 07/13/2017 16:07:33 PAGE 2   
 
-  55   1          {
-  56   2              jogging_threod = 9900;
-  57   2              jogging_cnt = 0;
-  58   2              deal_jogging = true;
-  59   2          }
-  60   1          if(lock_cnt >= 10000 - lock_threod)
-  61   1          {
-  62   2              lock_threod = 9900;
-  63   2              lock_cnt = 0;
-  64   2              deal_lock = true;
-  65   2          }
-  66   1          /*
-  67   1          if(led_cnt >= 5000)
-  68   1              {
-  69   1              led_cnt = 0;
-  70   1              RF_LED = ~RF_LED;
-  71   1              }
-  72   1              */
-  73   1      }
+  54   1          {
+  55   2              key_cnt = 0;
+  56   2              key_scan_flag = true;
+  57   2          }
+  58   1          if(update_local_cnt >= 10000 - update_threod)
+  59   1          {
+  60   2              update_threod = 9000;
+  61   2              update_local_cnt = 0;
+  62   2              update_local_flag = true;
+  63   2          }
+  64   1          if(syn_app_cnt >= 10000 - syn_threod)
+  65   1          {
+  66   2              syn_threod = 9000;
+  67   2              syn_app_cnt = 0;
+  68   2              syn_app_flag = true;
+  69   2          }
+  70   1          if(jogging_cnt >= 10000 - jogging_threod)
+  71   1          {
+  72   2              jogging_threod = 9900;
+  73   2              jogging_cnt = 0;
+  74   2              deal_jogging = true;
+  75   2          }
+  76   1          if(lock_cnt >= 10000 - lock_threod)
+  77   1          {
+  78   2              lock_threod = 9900;
+  79   2              lock_cnt = 0;
+  80   2              deal_lock = true;
+  81   2          }
+  82   1          /*
+  83   1          if(led_cnt >= 5000)
+  84   1              {
+  85   1              led_cnt = 0;
+  86   1              RF_LED = ~RF_LED;
+  87   1              }
+  88   1              */
+  89   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    250    ----
+   CODE SIZE        =    277    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -3,6 +3,7 @@
 #include "typedef.h"
 #include "led.h"
 #include "logic.h"
+#include "remote.h"
 
 void timer0Init(void)
 {
@@ -15,7 +16,22 @@ void timer0Init(void)
 	EA = 1;
 	TR0 = 1;
 }
-
+void timer1Init(void)
+{
+	TMOD &= 0x0f;
+	TMOD |= 0x10;
+	CKCON &= 0x7f;
+	TH1 = 245;
+	TL1 = 149;
+	ET1 = 1;
+	TR1 = 1;
+}
+void Timer1_ISR (void) interrupt 3
+{
+	TH1 = 245;
+	TL1 = 149;
+//	analyzeRfData();
+}
 void Timer0_ISR(void) interrupt 1
 {
     static uint16_t key_cnt = 0;

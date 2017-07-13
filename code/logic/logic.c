@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "key_driver.h"
 #include "flash.h"
+#include "remote.h"
 
 sbit RCK = P1^7;
 sbit SCK = P1^6;
@@ -281,6 +282,8 @@ void logicInit(void)
     ledInit();   
 	keyInit();
     relayInit();
+//	captureInit();
+//	timer1Init();
     timer0Init();
 }
 void SendTo595(uint8_t val)

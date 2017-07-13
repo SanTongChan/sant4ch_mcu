@@ -5,6 +5,7 @@
 "main.obj",
 "key_driver.obj",
 "led.obj",
-"flash.obj" 
+"flash.obj",
+"remote.obj" 
 TO "sant4ch" 
 RAMSIZE(256) 
