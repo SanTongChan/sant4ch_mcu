@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -62,7 +62,7 @@ line level    source
   51   1          relays[3] = RELAY4;
   52   1          if(dev_def.lock)
   53   1          {
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 2   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 2   
 
   54   2              static uint8_t lock_channel = 0;
   55   2              static uint8_t last_lock_channel = 0;
@@ -126,7 +126,7 @@ line level    source
  113   5                          dev_def.dev_channel[0].update_flag = true;
  114   5                          dev_def.dev_channel[1].update_flag = true;
  115   5                          dev_def.dev_channel[2].update_flag = true;
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 3   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 3   
 
  116   5                          dev_def.dev_channel[3].update_flag = true;
  117   5                          dev_def.update_local_cnt = 0;
@@ -190,7 +190,7 @@ line level    source
  175   1          if(dev_def.update_local_cnt == update_time)
  176   1          {
  177   2              relays[0] = (uint8_t)RELAY1;
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 4   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 4   
 
  178   2              relays[1] = (uint8_t)RELAY2;
  179   2              relays[2] = (uint8_t)RELAY3;
@@ -254,7 +254,7 @@ line level    source
  237   1      }
  238          void saveModeToFlash(void)
  239          {
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 5   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 5   
 
  240   1          if(save_mode_flag)
  241   1          {
@@ -318,7 +318,7 @@ line level    source
  299   1      }
  300          void SendTo595(uint8_t val)
  301          {
-C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:31:03 PAGE 6   
+C51 COMPILER V9.01   LOGIC                                                                 07/13/2017 16:39:30 PAGE 6   
 
  302   1              char i=0;
  303   1              uint8_t temp = val;

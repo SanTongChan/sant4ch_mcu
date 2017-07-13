@@ -13,7 +13,7 @@ typedef struct
 }RecvData;
 static RecvData xdata recv_data = {0};
 
-IrData ir_data = {0};
+IrData xdata ir_data = {0};
 
 static void getCaptureVal(uint16_t capture_value)
 {

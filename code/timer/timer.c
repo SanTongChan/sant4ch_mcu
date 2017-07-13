@@ -30,7 +30,6 @@ void timer1Init(void)
 
 void Timer1_ISR (void) interrupt 3
 {
-	cnt++;
 	TH1 = 245;
 	TL1 = 149;
 	deal_remote_flag = true;
