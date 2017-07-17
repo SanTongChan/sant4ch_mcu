@@ -24,6 +24,7 @@ typedef struct
 {
     DevChannelDef dev_channel[4];
     uint8_t update_local_cnt;
+    uint8_t remote_channel;
     bool lock;
     bool setting;
     bool remote;

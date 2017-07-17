@@ -246,12 +246,37 @@ void saveModeToFlash(void)
 		save_mode_flag = false;
     }
 }
+void dealRemoteLed(void)
+{
+    static uint8_t remote_led_cnt = 0;
+    remote_led_cnt++;
+    if(dev_def.remote)
+	{
+        if(remote_led_cnt >= 100)
+        {
+            remote_led_cnt = 0;
+            MODE_LED = !MODE_LED;
+        }
+	}
+	else
+	{
+        if(dev_def.lock)
+        {
+            MODE_LED = 1;
+        }
+        else
+        {
+            MODE_LED = 0;
+        }
+	}
+}
 void dealRemote(void)
 {
 	if(deal_remote_flag)
 	{
 		deal_remote_flag = false;
 		analyzeRfData();
+		dealRemoteLed();
 	}
 }
 static void modeInit(void)
