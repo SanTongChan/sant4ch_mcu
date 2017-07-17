@@ -243,6 +243,18 @@ void saveModeToFlash(void)
 		flash_data[2] = (uint8_t)dev_def.dev_channel[1].channel_mode;
 		flash_data[3] = (uint8_t)dev_def.dev_channel[2].channel_mode;
 		flash_data[4] = (uint8_t)dev_def.dev_channel[3].channel_mode;
+		flash_data[5] = (uint8_t)(dev_def.dev_channel[0].remote_val >> 16);
+		flash_data[6] = (uint8_t)(dev_def.dev_channel[0].remote_val >> 8);
+		flash_data[7] = (uint8_t)dev_def.dev_channel[0].remote_val;
+		flash_data[8] = (uint8_t)(dev_def.dev_channel[1].remote_val >> 16);
+		flash_data[9] = (uint8_t)(dev_def.dev_channel[1].remote_val >> 8);
+		flash_data[10] = (uint8_t)dev_def.dev_channel[1].remote_val;
+		flash_data[11] = (uint8_t)(dev_def.dev_channel[2].remote_val >> 16);
+		flash_data[12] = (uint8_t)(dev_def.dev_channel[2].remote_val >> 8);
+		flash_data[13] = (uint8_t)dev_def.dev_channel[2].remote_val;
+		flash_data[14] = (uint8_t)(dev_def.dev_channel[3].remote_val >> 16);
+		flash_data[15] = (uint8_t)(dev_def.dev_channel[3].remote_val >> 8);
+		flash_data[16] = (uint8_t)dev_def.dev_channel[3].remote_val;
 		flashWrite();
 		save_mode_flag = false;
     }
@@ -339,6 +351,7 @@ void dealRemoteStudy(void)
             dev_def.dev_channel[dev_def.remote_channel - 1].remote_val = ir_data.ir_data;
             clearIrData();
             dev_def.remote_channel = 0;
+            save_mode_flag = true;
         }
     }
 }
@@ -418,17 +431,41 @@ static void modeInit(void)
 	dev_def.dev_channel[1].channel_mode = flash_data[2];
 	dev_def.dev_channel[2].channel_mode = flash_data[3];
 	dev_def.dev_channel[3].channel_mode = flash_data[4];
+	dev_def.dev_channel[0].remote_val = 
+	        (uint32_t)flash_data[5] << 16
+	        | (uint32_t)flash_data[6] << 8 
+	        | flash_data[7];
+    dev_def.dev_channel[1].remote_val = 
+            (uint32_t)flash_data[8] << 16 
+            | (uint32_t)flash_data[9] << 8 
+            | flash_data[10];
+    dev_def.dev_channel[2].remote_val = 
+            (uint32_t)flash_data[11] << 16 
+            | (uint32_t)flash_data[12] << 8 
+            | flash_data[13];
+    dev_def.dev_channel[3].remote_val = 
+            (uint32_t)flash_data[14] << 16 
+            | (uint32_t)flash_data[15] << 8 
+            | flash_data[16];
     if(dev_def.lock == 0xff 
         || dev_def.dev_channel[0].channel_mode == 0xff
         || dev_def.dev_channel[1].channel_mode == 0xff
         || dev_def.dev_channel[2].channel_mode == 0xff
-        || dev_def.dev_channel[3].channel_mode == 0xff)
+        || dev_def.dev_channel[3].channel_mode == 0xff
+        || dev_def.dev_channel[0].remote_val == 0xffffff
+        || dev_def.dev_channel[1].remote_val == 0xffffff
+        || dev_def.dev_channel[2].remote_val == 0xffffff
+        || dev_def.dev_channel[3].remote_val == 0xffffff)
     {
         dev_def.lock = false;
         dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
         dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
         dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
         dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+        dev_def.dev_channel[0].remote_val = 0x0;
+        dev_def.dev_channel[1].remote_val = 0x0;
+        dev_def.dev_channel[2].remote_val = 0x0;
+        dev_def.dev_channel[3].remote_val = 0x0;
     }
     if(dev_def.lock)
     {

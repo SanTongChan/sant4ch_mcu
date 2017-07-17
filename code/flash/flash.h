@@ -3,7 +3,7 @@
 
 #include "typedef.h"
 
-#define FLASH_MAX_LEN     (10)
+#define FLASH_MAX_LEN     (20)
 #define FLASH_START_ADDR_BASE (0X3800)
 #define FLASH_START_ADDR_H   (0x38)
 #define FLASH_START_ADDR_L   (0X00)
