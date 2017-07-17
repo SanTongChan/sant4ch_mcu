@@ -16,7 +16,6 @@ void timer0Init(void)
 	EA = 1;
 	TR0 = 1;
 }
-#if 1
 void timer1Init(void)
 {
 	TMOD &= 0x0f;
@@ -34,24 +33,17 @@ void Timer1_ISR (void) interrupt 3
 	TL1 = 149;
 	deal_remote_flag = true;
 }
-#endif
 void Timer0_ISR(void) interrupt 1
 {
     static uint16_t key_cnt = 0;
     static uint16_t update_local_cnt = 0;
     static uint16_t syn_app_cnt = 0;
-    static uint16_t jogging_cnt = 0;
-    static uint16_t lock_cnt = 0;
     static uint16_t update_threod = 0;
     static uint16_t syn_threod = 0;
-    static uint16_t jogging_threod = 0;
-    static uint16_t lock_threod = 0;
     static uint16_t led_cnt = 0;
     key_cnt++;
     update_local_cnt++;
     syn_app_cnt++;
-    jogging_cnt++;
-    lock_cnt++;
     led_cnt++;
     if(key_cnt >= 100)
     {
@@ -70,23 +62,5 @@ void Timer0_ISR(void) interrupt 1
         syn_app_cnt = 0;
         syn_app_flag = true;
     }
-    if(jogging_cnt >= 10000 - jogging_threod)
-    {
-        jogging_threod = 9900;
-        jogging_cnt = 0;
-        deal_jogging = true;
-    }
-    if(lock_cnt >= 10000 - lock_threod)
-    {
-        lock_threod = 9900;
-        lock_cnt = 0;
-        deal_lock = true;
-    }
-    /*
-    if(led_cnt >= 5000)
-	{
-        led_cnt = 0;
-        RF_LED = ~RF_LED;
-	}
-	*/
+
 }

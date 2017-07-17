@@ -26,14 +26,13 @@ typedef struct
     uint8_t update_local_cnt;
     bool lock;
     bool setting;
+    bool remote;
 }DevDef;
 extern xdata DevDef dev_def;
 extern uint8_t h595_val;
 extern bool key_scan_flag;
 extern bool update_local_flag;
 extern bool syn_app_flag;
-extern bool deal_jogging;
-extern bool deal_lock;
 extern uint8_t update_time;
 extern bool save_mode_flag;
 extern bool deal_remote_flag;
