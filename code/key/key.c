@@ -127,6 +127,7 @@ static void key5_short_up_press(void)
         dev_def.remote = false;
         dev_def.remote_channel = 0;
         RF_LED = 0;
+        save_mode_flag = true;
     }
 }
 
@@ -291,6 +292,7 @@ static void key5_long_press(void)
         dev_def.remote = false;
         dev_def.remote_channel = 0;
         RF_LED = 0;
+        save_mode_flag = true;
     }
     else
     {

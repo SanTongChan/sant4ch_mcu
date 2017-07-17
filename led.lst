@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LED                                                                   07/17/2017 23:00:21 PAGE 1   
+C51 COMPILER V9.01   LED                                                                   07/17/2017 23:09:22 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LED
@@ -15,14 +15,15 @@ line level    source
    4          {
    5   1          P0M1 &= 0x3f;
    6   1              P0M2 |= 0XC0; 
-   7   1      }
-   8          
+   7   1              RF_LED = 0;
+   8   1      }
    9          
   10          
+  11          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =      7    ----
+   CODE SIZE        =      9    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

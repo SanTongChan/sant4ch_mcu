@@ -351,7 +351,6 @@ void dealRemoteStudy(void)
             dev_def.dev_channel[dev_def.remote_channel - 1].remote_val = ir_data.ir_data;
             clearIrData();
             dev_def.remote_channel = 0;
-            save_mode_flag = true;
         }
     }
 }

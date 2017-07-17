@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -62,7 +62,7 @@ line level    source
   51   1          if(dev_def.lock)
   52   1          {
   53   2              static uint8_t lock_channel = 0;
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 2   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 2   
 
   54   2              static uint8_t last_lock_channel = 0;
   55   2              static uint8_t last_relay_val[4] = {0};
@@ -126,7 +126,7 @@ line level    source
  113   5                          dev_def.dev_channel[1].update_flag = true;
  114   5                          dev_def.dev_channel[2].update_flag = true;
  115   5                          dev_def.dev_channel[3].update_flag = true;
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 3   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 3   
 
  116   5                          dev_def.update_local_cnt = 0;
  117   5                          dev_def.setting = false;
@@ -190,7 +190,7 @@ line level    source
  175   1          {
  176   2              relays[0] = (uint8_t)RELAY1;
  177   2              relays[1] = (uint8_t)RELAY2;
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 4   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 4   
 
  178   2              relays[2] = (uint8_t)RELAY3;
  179   2              relays[3] = (uint8_t)RELAY4;
@@ -254,7 +254,7 @@ line level    source
  237          void saveModeToFlash(void)
  238          {
  239   1          if(save_mode_flag)
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 5   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 5   
 
  240   1          {
  241   2                      flash_data[0] = dev_def.lock;
@@ -318,7 +318,7 @@ line level    source
  299   2              {
  300   3                  RF_LED = 1;
  301   3              }
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 6   
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 6   
 
  302   2          }
  303   1          if((remote_led_blink >= 4) && remote_led_study)
@@ -372,176 +372,175 @@ line level    source
  351   3                  dev_def.dev_channel[dev_def.remote_channel - 1].remote_val = ir_data.ir_data;
  352   3                  clearIrData();
  353   3                  dev_def.remote_channel = 0;
- 354   3                  save_mode_flag = true;
- 355   3              }
- 356   2          }
- 357   1      }
- 358          void dealRemoteNormal(void)
- 359          {
- 360   1          static uint16_t cnt = 0;
- 361   1          uint8_t i = 0;
- 362   1              uint8_t relays[4] = {0};
- 363   1          cnt++;
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 7   
+ 354   3              }
+ 355   2          }
+ 356   1      }
+ 357          void dealRemoteNormal(void)
+ 358          {
+ 359   1          static uint16_t cnt = 0;
+ 360   1          uint8_t i = 0;
+ 361   1              uint8_t relays[4] = {0};
+ 362   1          cnt++;
+ 363   1          if(!dev_def.remote)
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 7   
 
- 364   1          if(!dev_def.remote)
- 365   1          {
- 366   2              relays[0] = RELAY1;
- 367   2              relays[1] = RELAY2;
- 368   2              relays[2] = RELAY3;
- 369   2              relays[3] = RELAY4;
- 370   2              if(ir_data.cnt == 1)
- 371   2              {
- 372   3                  for(i = 0; i < 4; i++)
- 373   3                  {
- 374   4                      if(ir_data.ir_data == dev_def.dev_channel[i].remote_val)
- 375   4                      {
- 376   5                          h595_val |= 0x0f;
- 377   5                          h595_val &= (~key_array[i]);
- 378   5                          dev_def.remote_channel = i;
- 379   5                          SendTo595(h595_val);   
- 380   5                          cnt = 0;
- 381   5                      }
- 382   4                  }
- 383   3              }
- 384   2              else if(ir_data.timer_cnt >= 150 && ir_data.cnt >= 1
- 385   2              && ir_data.ir_data == dev_def.dev_channel[dev_def.remote_channel].remote_val)
- 386   2              {
- 387   3                  h595_val |= 0x0f;
- 388   3                  if(cnt <= 2500)
- 389   3                  {
- 390   4                      if(relays[dev_def.remote_channel])
- 391   4                      {
- 392   5                          h595_val &= (~relay_array[dev_def.remote_channel]);    
- 393   5                      }
- 394   4                      else
- 395   4                      {
- 396   5                          if(dev_def.lock)
- 397   5                          {
- 398   6                              h595_val &= 0x0f;
- 399   6                          }
- 400   5                          h595_val |= relay_array[dev_def.remote_channel] ;
- 401   5                      }
- 402   4                      dev_def.remote_channel = 0;
- 403   4                      dev_def.dev_channel[0].update_flag = true;
- 404   4                      dev_def.dev_channel[1].update_flag = true;
- 405   4                      dev_def.dev_channel[2].update_flag = true;
- 406   4                      dev_def.dev_channel[3].update_flag = true;
- 407   4                      dev_def.update_local_cnt = 0;
- 408   4                      update_time = 10;
- 409   4                  }
- 410   3                  SendTo595(h595_val);
- 411   3                  clearIrData();
- 412   3              }
- 413   2          }
- 414   1      }
- 415          void dealRemote(void)
- 416          {
- 417   1              if(deal_remote_flag)
- 418   1              {
- 419   2                      deal_remote_flag = false;
- 420   2                      analyzeRfData();
- 421   2                      dealRemoteLed();
- 422   2                      dealRemoteStudy();
- 423   2                      dealRemoteNormal();
- 424   2              }
- 425   1      }
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 8   
+ 364   1          {
+ 365   2              relays[0] = RELAY1;
+ 366   2              relays[1] = RELAY2;
+ 367   2              relays[2] = RELAY3;
+ 368   2              relays[3] = RELAY4;
+ 369   2              if(ir_data.cnt == 1)
+ 370   2              {
+ 371   3                  for(i = 0; i < 4; i++)
+ 372   3                  {
+ 373   4                      if(ir_data.ir_data == dev_def.dev_channel[i].remote_val)
+ 374   4                      {
+ 375   5                          h595_val |= 0x0f;
+ 376   5                          h595_val &= (~key_array[i]);
+ 377   5                          dev_def.remote_channel = i;
+ 378   5                          SendTo595(h595_val);   
+ 379   5                          cnt = 0;
+ 380   5                      }
+ 381   4                  }
+ 382   3              }
+ 383   2              else if(ir_data.timer_cnt >= 150 && ir_data.cnt >= 1
+ 384   2              && ir_data.ir_data == dev_def.dev_channel[dev_def.remote_channel].remote_val)
+ 385   2              {
+ 386   3                  h595_val |= 0x0f;
+ 387   3                  if(cnt <= 2500)
+ 388   3                  {
+ 389   4                      if(relays[dev_def.remote_channel])
+ 390   4                      {
+ 391   5                          h595_val &= (~relay_array[dev_def.remote_channel]);    
+ 392   5                      }
+ 393   4                      else
+ 394   4                      {
+ 395   5                          if(dev_def.lock)
+ 396   5                          {
+ 397   6                              h595_val &= 0x0f;
+ 398   6                          }
+ 399   5                          h595_val |= relay_array[dev_def.remote_channel] ;
+ 400   5                      }
+ 401   4                      dev_def.remote_channel = 0;
+ 402   4                      dev_def.dev_channel[0].update_flag = true;
+ 403   4                      dev_def.dev_channel[1].update_flag = true;
+ 404   4                      dev_def.dev_channel[2].update_flag = true;
+ 405   4                      dev_def.dev_channel[3].update_flag = true;
+ 406   4                      dev_def.update_local_cnt = 0;
+ 407   4                      update_time = 10;
+ 408   4                  }
+ 409   3                  SendTo595(h595_val);
+ 410   3                  clearIrData();
+ 411   3              }
+ 412   2          }
+ 413   1      }
+ 414          void dealRemote(void)
+ 415          {
+ 416   1              if(deal_remote_flag)
+ 417   1              {
+ 418   2                      deal_remote_flag = false;
+ 419   2                      analyzeRfData();
+ 420   2                      dealRemoteLed();
+ 421   2                      dealRemoteStudy();
+ 422   2                      dealRemoteNormal();
+ 423   2              }
+ 424   1      }
+ 425          static void modeInit(void)
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 8   
 
- 426          static void modeInit(void)
- 427          {
- 428   1              flashRead();
- 429   1              dev_def.lock = flash_data[0];
- 430   1              dev_def.dev_channel[0].channel_mode = flash_data[1];
- 431   1              dev_def.dev_channel[1].channel_mode = flash_data[2];
- 432   1              dev_def.dev_channel[2].channel_mode = flash_data[3];
- 433   1              dev_def.dev_channel[3].channel_mode = flash_data[4];
- 434   1              dev_def.dev_channel[0].remote_val = 
- 435   1                      (uint32_t)flash_data[5] << 16
- 436   1                      | (uint32_t)flash_data[6] << 8 
- 437   1                      | flash_data[7];
- 438   1          dev_def.dev_channel[1].remote_val = 
- 439   1                  (uint32_t)flash_data[8] << 16 
- 440   1                  | (uint32_t)flash_data[9] << 8 
- 441   1                  | flash_data[10];
- 442   1          dev_def.dev_channel[2].remote_val = 
- 443   1                  (uint32_t)flash_data[11] << 16 
- 444   1                  | (uint32_t)flash_data[12] << 8 
- 445   1                  | flash_data[13];
- 446   1          dev_def.dev_channel[3].remote_val = 
- 447   1                  (uint32_t)flash_data[14] << 16 
- 448   1                  | (uint32_t)flash_data[15] << 8 
- 449   1                  | flash_data[16];
- 450   1          if(dev_def.lock == 0xff 
- 451   1              || dev_def.dev_channel[0].channel_mode == 0xff
- 452   1              || dev_def.dev_channel[1].channel_mode == 0xff
- 453   1              || dev_def.dev_channel[2].channel_mode == 0xff
- 454   1              || dev_def.dev_channel[3].channel_mode == 0xff
- 455   1              || dev_def.dev_channel[0].remote_val == 0xffffff
- 456   1              || dev_def.dev_channel[1].remote_val == 0xffffff
- 457   1              || dev_def.dev_channel[2].remote_val == 0xffffff
- 458   1              || dev_def.dev_channel[3].remote_val == 0xffffff)
- 459   1          {
- 460   2              dev_def.lock = false;
- 461   2              dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
- 462   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
- 463   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
- 464   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
- 465   2              dev_def.dev_channel[0].remote_val = 0x0;
- 466   2              dev_def.dev_channel[1].remote_val = 0x0;
- 467   2              dev_def.dev_channel[2].remote_val = 0x0;
- 468   2              dev_def.dev_channel[3].remote_val = 0x0;
- 469   2          }
- 470   1          if(dev_def.lock)
- 471   1          {
- 472   2              MODE_LED = 1;
- 473   2          }
- 474   1          else
- 475   1          {
- 476   2              MODE_LED = 0;
- 477   2          }
- 478   1      }
- 479          void logicInit(void)
- 480          {
- 481   1          modeInit();
- 482   1          h595Init();
- 483   1          SendTo595(0x0f);
- 484   1          ledInit();   
- 485   1              keyInit();
- 486   1          relayInit();
- 487   1      #if 1
-C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:00:20 PAGE 9   
+ 426          {
+ 427   1              flashRead();
+ 428   1              dev_def.lock = flash_data[0];
+ 429   1              dev_def.dev_channel[0].channel_mode = flash_data[1];
+ 430   1              dev_def.dev_channel[1].channel_mode = flash_data[2];
+ 431   1              dev_def.dev_channel[2].channel_mode = flash_data[3];
+ 432   1              dev_def.dev_channel[3].channel_mode = flash_data[4];
+ 433   1              dev_def.dev_channel[0].remote_val = 
+ 434   1                      (uint32_t)flash_data[5] << 16
+ 435   1                      | (uint32_t)flash_data[6] << 8 
+ 436   1                      | flash_data[7];
+ 437   1          dev_def.dev_channel[1].remote_val = 
+ 438   1                  (uint32_t)flash_data[8] << 16 
+ 439   1                  | (uint32_t)flash_data[9] << 8 
+ 440   1                  | flash_data[10];
+ 441   1          dev_def.dev_channel[2].remote_val = 
+ 442   1                  (uint32_t)flash_data[11] << 16 
+ 443   1                  | (uint32_t)flash_data[12] << 8 
+ 444   1                  | flash_data[13];
+ 445   1          dev_def.dev_channel[3].remote_val = 
+ 446   1                  (uint32_t)flash_data[14] << 16 
+ 447   1                  | (uint32_t)flash_data[15] << 8 
+ 448   1                  | flash_data[16];
+ 449   1          if(dev_def.lock == 0xff 
+ 450   1              || dev_def.dev_channel[0].channel_mode == 0xff
+ 451   1              || dev_def.dev_channel[1].channel_mode == 0xff
+ 452   1              || dev_def.dev_channel[2].channel_mode == 0xff
+ 453   1              || dev_def.dev_channel[3].channel_mode == 0xff
+ 454   1              || dev_def.dev_channel[0].remote_val == 0xffffff
+ 455   1              || dev_def.dev_channel[1].remote_val == 0xffffff
+ 456   1              || dev_def.dev_channel[2].remote_val == 0xffffff
+ 457   1              || dev_def.dev_channel[3].remote_val == 0xffffff)
+ 458   1          {
+ 459   2              dev_def.lock = false;
+ 460   2              dev_def.dev_channel[0].channel_mode = DEV_SELFLOCK;
+ 461   2              dev_def.dev_channel[1].channel_mode = DEV_SELFLOCK;
+ 462   2              dev_def.dev_channel[2].channel_mode = DEV_SELFLOCK;
+ 463   2              dev_def.dev_channel[3].channel_mode = DEV_SELFLOCK;
+ 464   2              dev_def.dev_channel[0].remote_val = 0x0;
+ 465   2              dev_def.dev_channel[1].remote_val = 0x0;
+ 466   2              dev_def.dev_channel[2].remote_val = 0x0;
+ 467   2              dev_def.dev_channel[3].remote_val = 0x0;
+ 468   2          }
+ 469   1          if(dev_def.lock)
+ 470   1          {
+ 471   2              MODE_LED = 1;
+ 472   2          }
+ 473   1          else
+ 474   1          {
+ 475   2              MODE_LED = 0;
+ 476   2          }
+ 477   1      }
+ 478          void logicInit(void)
+ 479          {
+ 480   1          modeInit();
+ 481   1          h595Init();
+ 482   1          SendTo595(0x0f);
+ 483   1          ledInit();   
+ 484   1              keyInit();
+ 485   1          relayInit();
+ 486   1      #if 1
+ 487   1              captureInit();
+C51 COMPILER V9.01   LOGIC                                                                 07/17/2017 23:09:22 PAGE 9   
 
- 488   1              captureInit();
- 489   1              timer1Init();
- 490   1      #endif
- 491   1          timer0Init();
- 492   1      }
- 493          void SendTo595(uint8_t val)
- 494          {
- 495   1              char i=0;
- 496   1              uint8_t temp = val;
- 497   1              EA = 0;
- 498   1              for(i = 0; i < 8; i++)
- 499   1              {
- 500   2                      SER = temp>>7;
- 501   2                      temp= temp<<1;
- 502   2                      SCK = 0;
- 503   2                      _nop_();
- 504   2                      SCK = 1;
- 505   2              }
- 506   1              RCK = 0;
- 507   1              _nop_();
- 508   1              RCK = 1;
- 509   1              SER = 0;
- 510   1              EA = 1;
- 511   1      }
+ 488   1              timer1Init();
+ 489   1      #endif
+ 490   1          timer0Init();
+ 491   1      }
+ 492          void SendTo595(uint8_t val)
+ 493          {
+ 494   1              char i=0;
+ 495   1              uint8_t temp = val;
+ 496   1              EA = 0;
+ 497   1              for(i = 0; i < 8; i++)
+ 498   1              {
+ 499   2                      SER = temp>>7;
+ 500   2                      temp= temp<<1;
+ 501   2                      SCK = 0;
+ 502   2                      _nop_();
+ 503   2                      SCK = 1;
+ 504   2              }
+ 505   1              RCK = 0;
+ 506   1              _nop_();
+ 507   1              RCK = 1;
+ 508   1              SER = 0;
+ 509   1              EA = 1;
+ 510   1      }
+ 511          
  512          
- 513          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   2452    ----
+   CODE SIZE        =   2449    ----
    CONSTANT SIZE    =     20    ----
    XDATA SIZE       =     41    ----
    PDATA SIZE       =   ----    ----
