@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   FLASH                                                                 07/17/2017 15:00:20 PAGE 1   
+C51 COMPILER V9.01   FLASH                                                                 07/17/2017 15:06:04 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE FLASH
@@ -14,170 +14,79 @@ line level    source
    3          #include "N76E003.h"
    4          #include "typedef.h"
    5          
-   6          #if 0
-              bit BIT_TMP;
-              #define set_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON|=0x01 ;EA=BIT_TMP;
-              #define set_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=0x01;EA=BIT_TMP
-              #define set_IAPGO   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG|=0x01 ;EA=BIT_TMP
-              #define clr_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=~0x01;EA=BIT_TMP
-              #define clr_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON&=~0x01;EA=BIT_TMP;
-              
-              uint8_t read_APROM_BYTE(uint16_t code *u16_addr)
-              {
-                      uint8_t rdata;
-                      rdata = *u16_addr>>8;
-                      return rdata;
-              }
-              
-              void write_DATAFLASH_BYTE(uint16_t u16_addr,uint8_t u8_data)
-              {
-                      uint8_t looptmp=0,u8_addrl_r;
-                      uint16_t code *cd_longaddr;
-                      unsigned char xdata *xd_tmp;
-                      
-              //Check page start address
-                      u8_addrl_r = u16_addr;
-                      if (u8_addrl_r<0x80)
-                      {
-                              u8_addrl_r = 0;
-                      }
-                      else 
-                      {
-                              u8_addrl_r = 0x80;
-                      }
-              //Save APROM data to XRAM
-                      xd_tmp = 0x80;
-                      cd_longaddr = (uint16_t code*)((u16_addr&0xff00)+u8_addrl_r);   
-                      while (xd_tmp !=0x100)
-                      {
-                              *xd_tmp = (uint8_t)(*cd_longaddr);
-                              looptmp++;
-                              xd_tmp++;
-                              cd_longaddr++;
-                      }
-              // Modify customer data in XRAM
-                      u8_addrl_r = u16_addr;
-                      if (u8_addrl_r<0x80)
-                      {
-                              xd_tmp = u8_addrl_r+0x80;
-                      }
-                      else
-C51 COMPILER V9.01   FLASH                                                                 07/17/2017 15:00:20 PAGE 2   
+   6          #define PAGE_ERASE_AP  (0X22)
+   7          #define BYTE_PROGRAM_AP (0x21)
+   8          uint8_t xdata flash_data[FLASH_MAX_LEN] = {0xff};
+   9          
+  10          static void flashEnableAprom(void)
+  11          {
+  12   1              TA = 0xAA; //CHPCON is TA protected
+  13   1              TA = 0x55;
+  14   1              CHPCON |= 0x01; //IAPEN = 1, enable IAP mode
+  15   1              TA = 0xAA; //IAPUEN is TA protected
+  16   1              TA = 0x55;
+  17   1              IAPUEN |= 0x01; //APUEN = 1, enable APROM update
+  18   1      }
+  19          
+  20          
+  21          static void flashErase(void)
+  22          {
+  23   1              IAPCN = PAGE_ERASE_AP; //Erase page 
+  24   1              IAPAH = FLASH_START_ADDR_H;
+  25   1              IAPAL = FLASH_START_ADDR_L;
+  26   1              IAPFD = 0xFF;
+  27   1              TA = 0xAA; //IAPTRG is TA protected
+  28   1              TA = 0x55;
+  29   1              IAPTRG |= 0x01; //write ¡®1¡¯ to IAPGO to trigger IAP process
+  30   1      }
+  31          
+  32          static void flashDisableAprom(void)
+  33          {
+  34   1              TA = 0xAA; //IAPUEN is TA protected
+  35   1              TA = 0x55;
+  36   1              IAPUEN &= ~0x01; //APUEN = 0, disable APROM update
+  37   1              TA = 0xAA; //CHPCON is TA protected
+  38   1              TA = 0x55;
+  39   1              CHPCON &= ~0x01; //IAPEN = 0, disable IAP mode  
+  40   1      }
+  41          
+  42          static void flashWriteBytes(void)
+  43          {
+  44   1      #if 1
+  45   1              uint8_t i = 0;  
+  46   1              for(i = 0; i < FLASH_MAX_LEN; i++)
+  47   1              {
+  48   2                      IAPCN = BYTE_PROGRAM_AP;
+  49   2                      IAPAH = FLASH_START_ADDR_H;
+  50   2                      IAPAL = FLASH_START_ADDR_L + i;
+  51   2                      IAPFD = flash_data[i];
+  52   2                      TA = 0XAA;
+  53   2                      TA = 0X55;
+C51 COMPILER V9.01   FLASH                                                                 07/17/2017 15:06:04 PAGE 2   
 
-                      {
-                              xd_tmp = u8_addrl_r+0;
-                      }
-                      *xd_tmp = u8_data;
-              //Erase APROM DATAFLASH page
-                  IAPAL = u16_addr;
-                  IAPAH = u16_addr>>8;
-                  IAPFD = 0xFF;
-                  set_IAPEN; 
-                  set_APUEN;
-                  IAPCN = 0x22;               
-                  set_IAPGO; 
-              //Save changed RAM data to APROM DATAFLASH
-                      u8_addrl_r = u16_addr;
-                      if (u8_addrl_r<0x80)
-                      {
-                              u8_addrl_r =0;
-                      }
-                      else
-                      {
-                              u8_addrl_r = 0x80;
-                      }
-                  xd_tmp = 0x80;
-                  IAPAL = u8_addrl_r;
-                  IAPAH = u16_addr>>8;
-                  set_IAPEN; 
-                  set_APUEN;
-                  IAPCN = 0x21;
-                  while (xd_tmp !=0xFF)
-                  {
-                      IAPFD = *xd_tmp;
-                      set_IAPGO;
-                      IAPAL++;
-                      xd_tmp++;
-                  }
-                  clr_APUEN;
-                  clr_IAPEN;
-              }       
-              #endif
-  93          
-  94          #define PAGE_ERASE_AP  (0X22)
-  95          #define BYTE_PROGRAM_AP (0x21)
-  96          uint8_t xdata flash_data[FLASH_MAX_LEN] = {0xff};
-  97          
-  98          static void flashEnableAprom(void)
-  99          {
- 100   1              TA = 0xAA; //CHPCON is TA protected
- 101   1              TA = 0x55;
- 102   1              CHPCON |= 0x01; //IAPEN = 1, enable IAP mode
- 103   1              TA = 0xAA; //IAPUEN is TA protected
- 104   1              TA = 0x55;
- 105   1              IAPUEN |= 0x01; //APUEN = 1, enable APROM update
- 106   1      }
- 107          
- 108          
- 109          static void flashErase(void)
- 110          {
- 111   1              IAPCN = PAGE_ERASE_AP; //Erase page 
- 112   1              IAPAH = 0x38;
- 113   1              IAPAL = 0x00;
- 114   1              IAPFD = 0xFF;
- 115   1              TA = 0xAA; //IAPTRG is TA protected
-C51 COMPILER V9.01   FLASH                                                                 07/17/2017 15:00:20 PAGE 3   
-
- 116   1              TA = 0x55;
- 117   1              IAPTRG |= 0x01; //write ¡®1¡¯ to IAPGO to trigger IAP process
- 118   1      }
- 119          
- 120          static void flashDisableAprom(void)
- 121          {
- 122   1              TA = 0xAA; //IAPUEN is TA protected
- 123   1              TA = 0x55;
- 124   1              IAPUEN &= ~0x01; //APUEN = 0, disable APROM update
- 125   1              TA = 0xAA; //CHPCON is TA protected
- 126   1              TA = 0x55;
- 127   1              CHPCON &= ~0x01; //IAPEN = 0, disable IAP mode  
- 128   1      }
- 129          
- 130          static void flashWriteBytes(void)
- 131          {
- 132   1      #if 1
- 133   1              uint8_t i = 0;  
- 134   1              for(i = 0; i < FLASH_MAX_LEN; i++)
- 135   1              {
- 136   2                      IAPCN = BYTE_PROGRAM_AP;
- 137   2                      IAPAH = 0X38;
- 138   2                      IAPAL = i;
- 139   2                      IAPFD = flash_data[i];
- 140   2                      TA = 0XAA;
- 141   2                      TA = 0X55;
- 142   2                      IAPTRG |= 0X01;
- 143   2              }       
- 144   1      #endif
- 145   1      }
- 146          void flashRead(void)
- 147          {
- 148   1              unsigned char i = 0;
- 149   1              for(i = 0; i < FLASH_MAX_LEN; i++)
- 150   1              {
- 151   2                      flash_data[i] = *(uint16_t code *)(0x3800 + i)>>8;
- 152   2                      //flash_data[i] = Data_Flash[i];
- 153   2              }               
- 154   1      }
- 155          
- 156          
- 157          void flashWrite(void)
- 158          {
- 159   1              flashEnableAprom();
- 160   1              flashErase();
- 161   1              flashWriteBytes();
- 162   1              flashDisableAprom();    
- 163   1      }
- 164          
- 165          
+  54   2                      IAPTRG |= 0X01;
+  55   2              }       
+  56   1      #endif
+  57   1      }
+  58          void flashRead(void)
+  59          {
+  60   1              unsigned char i = 0;
+  61   1              for(i = 0; i < FLASH_MAX_LEN; i++)
+  62   1              {
+  63   2                      flash_data[i] = *(uint16_t code *)(FLASH_START_ADDR_BASE + i)>>8;
+  64   2              }               
+  65   1      }
+  66          
+  67          
+  68          void flashWrite(void)
+  69          {
+  70   1              flashEnableAprom();
+  71   1              flashErase();
+  72   1              flashWriteBytes();
+  73   1              flashDisableAprom();    
+  74   1      }
+  75          
+  76          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -4,7 +4,9 @@
 #include "typedef.h"
 
 #define FLASH_MAX_LEN     (10)
-#define FLASH_START_ADDR   (0x3800)
+#define FLASH_START_ADDR_BASE (0X3800)
+#define FLASH_START_ADDR_H   (0x38)
+#define FLASH_START_ADDR_L   (0X00)
 extern uint8_t xdata flash_data[FLASH_MAX_LEN];
 
 void flashRead(void);
