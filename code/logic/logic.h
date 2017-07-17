@@ -19,6 +19,7 @@ typedef struct
     uint8_t update_flag;
     bool get_status;
     ChannelMode channel_mode;
+    uint32_t remote_val;
 }DevChannelDef;
 typedef struct
 {

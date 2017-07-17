@@ -48,6 +48,13 @@ static void getCaptureVal(uint16_t capture_value)
 	}
 
 }
+
+void clearIrData(void)
+{
+	ir_data.cnt = 0;
+	ir_data.ir_data = 0;
+	ir_data.sync_time = 0;
+}
 void analyzeRfData(void)
 {
 	uint8_t i = 0;
@@ -107,7 +114,6 @@ void analyzeRfData(void)
 			ir_data.timer_cnt = 0;
 			ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
 			ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
-			RF_LED = !RF_LED;
 		}
 		else
 		{

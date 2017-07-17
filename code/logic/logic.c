@@ -12,12 +12,13 @@ sbit RCK = P1^7;
 sbit SCK = P1^6;
 sbit SER = P3^0;
 
-bool led_blink_flag = false;
 bool key_scan_flag = false;
 bool update_local_flag = false;
 bool syn_app_flag = false;
 bool save_mode_flag = false;
 bool deal_remote_flag = false;
+bool remote_led_study = false;
+uint8_t remote_led_blink = 0;
 uint8_t update_time = 5;
 
 uint8_t code relay_array[4] = {0x80,0x40,0x20,0x10};
@@ -246,7 +247,7 @@ void saveModeToFlash(void)
 		save_mode_flag = false;
     }
 }
-void dealRemoteLed(void)
+static void dealRemoteModeLed(void)
 {
     static uint8_t remote_led_cnt = 0;
     remote_led_cnt++;
@@ -270,6 +271,134 @@ void dealRemoteLed(void)
         }
 	}
 }
+void dealRemoteStudyLed(void)
+{
+    static uint8_t cnt = 0;
+    cnt++;
+    if(cnt >= 100 && remote_led_study)
+    {
+        cnt = 0;
+        if(RF_LED)
+        {
+            RF_LED = 0;
+            remote_led_blink++;
+        }
+        else
+        {
+            RF_LED = 1;
+        }
+    }
+    if((remote_led_blink >= 4) && remote_led_study)
+    {
+        RF_LED = 0;
+        remote_led_blink = 0;
+        remote_led_study = false;
+    }
+}
+void dealRemoteNormalLed(void)
+{
+    static uint8_t cnt = 0;
+    cnt++;
+    if(!dev_def.remote 
+    && (ir_data.ir_data == dev_def.dev_channel[1].remote_val
+    || ir_data.ir_data == dev_def.dev_channel[0].remote_val
+    || ir_data.ir_data == dev_def.dev_channel[2].remote_val
+    || ir_data.ir_data == dev_def.dev_channel[3].remote_val)
+    )
+    {
+        if(ir_data.cnt > 0 && cnt >= 15)
+        {
+            cnt = 0;
+            RF_LED = !RF_LED;
+        }
+        if(ir_data.timer_cnt >= 100)
+        {
+            RF_LED = 0;
+        }
+    }
+}
+void dealRemoteLed(void)
+{
+    dealRemoteModeLed();
+	dealRemoteStudyLed();
+	dealRemoteNormalLed();
+}
+void dealRemoteStudy(void)
+{
+    if(dev_def.remote_channel != 0 && dev_def.remote)
+    {
+        if(ir_data.cnt == 10)
+        {
+            remote_led_study = true;
+            remote_led_blink = 0;
+            RF_LED = 0;
+        }
+        if(ir_data.cnt >= 10 && ir_data.timer_cnt >= 150)
+        {
+            //ir_data.cnt = 0;
+            dev_def.dev_channel[dev_def.remote_channel - 1].remote_val = ir_data.ir_data;
+            clearIrData();
+            dev_def.remote_channel = 0;
+        }
+    }
+}
+void dealRemoteNormal(void)
+{
+    static uint16_t cnt = 0;
+    uint8_t i = 0;
+	uint8_t relays[4] = {0};
+    cnt++;
+    if(!dev_def.remote)
+    {
+        relays[0] = RELAY1;
+        relays[1] = RELAY2;
+        relays[2] = RELAY3;
+        relays[3] = RELAY4;
+        if(ir_data.cnt == 1)
+        {
+            for(i = 0; i < 4; i++)
+            {
+                if(ir_data.ir_data == dev_def.dev_channel[i].remote_val)
+                {
+                    h595_val |= 0x0f;
+                    h595_val &= (~key_array[i]);
+                    dev_def.remote_channel = i;
+    	            SendTo595(h595_val);   
+    	            cnt = 0;
+                }
+            }
+        }
+        else if(ir_data.timer_cnt >= 150 && ir_data.cnt >= 1
+        && ir_data.ir_data == dev_def.dev_channel[dev_def.remote_channel].remote_val)
+        {
+            h595_val |= 0x0f;
+            if(cnt <= 2500)
+            {
+                if(relays[dev_def.remote_channel])
+                {
+                    h595_val &= (~relay_array[dev_def.remote_channel]);    
+                }
+                else
+                {
+                    if(dev_def.lock)
+                    {
+                        h595_val &= 0x0f;
+                    }
+                    h595_val |= relay_array[dev_def.remote_channel] ;
+                }
+                dev_def.remote_channel = 0;
+                dev_def.dev_channel[0].update_flag = true;
+                dev_def.dev_channel[1].update_flag = true;
+                dev_def.dev_channel[2].update_flag = true;
+                dev_def.dev_channel[3].update_flag = true;
+                dev_def.update_local_cnt = 0;
+                update_time = 10;
+            }
+            SendTo595(h595_val);
+            clearIrData();
+        }
+    }
+}
 void dealRemote(void)
 {
 	if(deal_remote_flag)
@@ -277,6 +406,8 @@ void dealRemote(void)
 		deal_remote_flag = false;
 		analyzeRfData();
 		dealRemoteLed();
+		dealRemoteStudy();
+		dealRemoteNormal();
 	}
 }
 static void modeInit(void)

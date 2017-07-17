@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   REMOTE                                                                07/17/2017 16:18:52 PAGE 1   
+C51 COMPILER V9.01   REMOTE                                                                07/17/2017 20:56:11 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE REMOTE
@@ -59,131 +59,139 @@ line level    source
   48   2              }
   49   1      
   50   1      }
-  51          void analyzeRfData(void)
-  52          {
-  53   1              uint8_t i = 0;
-C51 COMPILER V9.01   REMOTE                                                                07/17/2017 16:18:52 PAGE 2   
+  51          
+  52          void clearIrData(void)
+  53          {
+C51 COMPILER V9.01   REMOTE                                                                07/17/2017 20:56:11 PAGE 2   
 
-  54   1              uint32_t temp = 0;
-  55   1              uint16_t unit_time = 0;
-  56   1              uint16_t temp_time = 0;
-  57   1              uint16_t threshold_time = 0;
-  58   1              uint16_t sync_threshold = 0;
-  59   1              uint16_t short_time = 0;
-  60   1              uint16_t long_time = 0;
-  61   1              if(recv_data.end_flag == true)
-  62   1              {
-  63   2                      recv_data.end_flag = false;
-  64   2                      if(ir_data.cnt == 0)
-  65   2                      {
-  66   3                              ir_data.high_time = recv_data.rf_data[0];
-  67   3                              ir_data.low_time = recv_data.rf_data[1];
-  68   3                              ir_data.sync_time = recv_data.sync_time;
-  69   3                      }
-  70   2                      unit_time = ir_data.high_time + ir_data.low_time;
-  71   2                      threshold_time = unit_time / 5;
-  72   2                      sync_threshold = ir_data.sync_time / 5;
-  73   2                      for(i = 0; i < 48; i = i + 2)
-  74   2                      {
-  75   3                              temp_time = recv_data.rf_data[i] + recv_data.rf_data[i + 1];
-  76   3                              if((temp_time > unit_time + threshold_time)
-  77   3                                      || (temp_time < unit_time - threshold_time))
-  78   3                              {
-  79   4                                      ir_data.timer_cnt++;
-  80   4                                      return;
-  81   4                              }
-  82   3                              if(recv_data.rf_data[i] > recv_data.rf_data[i + 1])
-  83   3                              {
-  84   4                                      temp = (temp << 1) | 0x01;
-  85   4                                      short_time += recv_data.rf_data[i + 1];
-  86   4                                      long_time += recv_data.rf_data[i];
-  87   4                              }
-  88   3                              else if(recv_data.rf_data[i] < recv_data.rf_data[i + 1])
-  89   3                              {
-  90   4                                      temp = temp << 1;
-  91   4                                      long_time += recv_data.rf_data[i + 1];
-  92   4                                      short_time += recv_data.rf_data[i];
-  93   4                              }
-  94   3                              else
-  95   3                              {
-  96   4                                      ir_data.timer_cnt++;
-  97   4                                      return;
-  98   4                              }
-  99   3                      }
- 100   2                      if(!(ir_data.sync_time < threshold_time + recv_data.sync_time
- 101   2                              && ir_data.sync_time > recv_data.sync_time - threshold_time
- 102   2                              && temp == ir_data.ir_data))
- 103   2                      {
- 104   3                              ir_data.sync_time = recv_data.sync_time;
- 105   3                              ir_data.ir_data = temp;
- 106   3                              ir_data.cnt = 1;
- 107   3                              ir_data.timer_cnt = 0;
- 108   3                              ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
- 109   3                              ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
- 110   3                              RF_LED = !RF_LED;
- 111   3                      }
- 112   2                      else
- 113   2                      {
- 114   3                              ir_data.cnt++;
- 115   3                              ir_data.timer_cnt = 0;
-C51 COMPILER V9.01   REMOTE                                                                07/17/2017 16:18:52 PAGE 3   
+  54   1              ir_data.cnt = 0;
+  55   1              ir_data.ir_data = 0;
+  56   1              ir_data.sync_time = 0;
+  57   1      }
+  58          void analyzeRfData(void)
+  59          {
+  60   1              uint8_t i = 0;
+  61   1              uint32_t temp = 0;
+  62   1              uint16_t unit_time = 0;
+  63   1              uint16_t temp_time = 0;
+  64   1              uint16_t threshold_time = 0;
+  65   1              uint16_t sync_threshold = 0;
+  66   1              uint16_t short_time = 0;
+  67   1              uint16_t long_time = 0;
+  68   1              if(recv_data.end_flag == true)
+  69   1              {
+  70   2                      recv_data.end_flag = false;
+  71   2                      if(ir_data.cnt == 0)
+  72   2                      {
+  73   3                              ir_data.high_time = recv_data.rf_data[0];
+  74   3                              ir_data.low_time = recv_data.rf_data[1];
+  75   3                              ir_data.sync_time = recv_data.sync_time;
+  76   3                      }
+  77   2                      unit_time = ir_data.high_time + ir_data.low_time;
+  78   2                      threshold_time = unit_time / 5;
+  79   2                      sync_threshold = ir_data.sync_time / 5;
+  80   2                      for(i = 0; i < 48; i = i + 2)
+  81   2                      {
+  82   3                              temp_time = recv_data.rf_data[i] + recv_data.rf_data[i + 1];
+  83   3                              if((temp_time > unit_time + threshold_time)
+  84   3                                      || (temp_time < unit_time - threshold_time))
+  85   3                              {
+  86   4                                      ir_data.timer_cnt++;
+  87   4                                      return;
+  88   4                              }
+  89   3                              if(recv_data.rf_data[i] > recv_data.rf_data[i + 1])
+  90   3                              {
+  91   4                                      temp = (temp << 1) | 0x01;
+  92   4                                      short_time += recv_data.rf_data[i + 1];
+  93   4                                      long_time += recv_data.rf_data[i];
+  94   4                              }
+  95   3                              else if(recv_data.rf_data[i] < recv_data.rf_data[i + 1])
+  96   3                              {
+  97   4                                      temp = temp << 1;
+  98   4                                      long_time += recv_data.rf_data[i + 1];
+  99   4                                      short_time += recv_data.rf_data[i];
+ 100   4                              }
+ 101   3                              else
+ 102   3                              {
+ 103   4                                      ir_data.timer_cnt++;
+ 104   4                                      return;
+ 105   4                              }
+ 106   3                      }
+ 107   2                      if(!(ir_data.sync_time < threshold_time + recv_data.sync_time
+ 108   2                              && ir_data.sync_time > recv_data.sync_time - threshold_time
+ 109   2                              && temp == ir_data.ir_data))
+ 110   2                      {
+ 111   3                              ir_data.sync_time = recv_data.sync_time;
+ 112   3                              ir_data.ir_data = temp;
+ 113   3                              ir_data.cnt = 1;
+ 114   3                              ir_data.timer_cnt = 0;
+ 115   3                              ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
+C51 COMPILER V9.01   REMOTE                                                                07/17/2017 20:56:11 PAGE 3   
 
- 116   3                      }
- 117   2              }
- 118   1              else
- 119   1              {
- 120   2                      ir_data.timer_cnt++;
- 121   2              }
- 122   1      }
- 123          static void Timer2Init(void)
- 124          {
- 125   1              T2CON&=~0x01;
- 126   1              T2MOD &= 0X0F;
- 127   1              T2MOD|=0xD0;
- 128   1              T2MOD|=0X08;    
- 129   1      
- 130   1              CAPCON0|=0x10;
- 131   1              CAPCON1|=0x03;
- 132   1              CAPCON1&=0xfe;
- 133   1              //CAPCON2|=0x10;
- 134   1              CAPCON3&=0xF0;
- 135   1              CAPCON3|=0x08;
- 136   1      }
- 137          static void captureIOInit(void)
- 138          {
- 139   1              P1M1 &= 0xDF;
- 140   1              P1M2 &= 0XDF;
- 141   1      }
- 142          void captureInit(void)
- 143          {
- 144   1              captureIOInit();
- 145   1              Timer2Init();
- 146   1              EIE |= 0X84;
- 147   1              TR2 = 1;
- 148   1      }
- 149          void Capture_ISR (void) interrupt 12
- 150          {
- 151   1              uint16_t capture_val = 0;
- 152   1              if(CAPCON0 & 0X01 )
- 153   1              {
- 154   2                      CAPCON0 &= ~0x01;
- 155   2                      capture_val = C0H << 8 | C0L;   
- 156   2                      getCaptureVal(capture_val);        
- 157   2                      
- 158   2              }
- 159   1      }
- 160          #endif
+ 116   3                              ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
+ 117   3                      }
+ 118   2                      else
+ 119   2                      {
+ 120   3                              ir_data.cnt++;
+ 121   3                              ir_data.timer_cnt = 0;
+ 122   3                      }
+ 123   2              }
+ 124   1              else
+ 125   1              {
+ 126   2                      ir_data.timer_cnt++;
+ 127   2              }
+ 128   1      }
+ 129          static void Timer2Init(void)
+ 130          {
+ 131   1              T2CON&=~0x01;
+ 132   1              T2MOD &= 0X0F;
+ 133   1              T2MOD|=0xD0;
+ 134   1              T2MOD|=0X08;    
+ 135   1      
+ 136   1              CAPCON0|=0x10;
+ 137   1              CAPCON1|=0x03;
+ 138   1              CAPCON1&=0xfe;
+ 139   1              //CAPCON2|=0x10;
+ 140   1              CAPCON3&=0xF0;
+ 141   1              CAPCON3|=0x08;
+ 142   1      }
+ 143          static void captureIOInit(void)
+ 144          {
+ 145   1              P1M1 &= 0xDF;
+ 146   1              P1M2 &= 0XDF;
+ 147   1      }
+ 148          void captureInit(void)
+ 149          {
+ 150   1              captureIOInit();
+ 151   1              Timer2Init();
+ 152   1              EIE |= 0X84;
+ 153   1              TR2 = 1;
+ 154   1      }
+ 155          void Capture_ISR (void) interrupt 12
+ 156          {
+ 157   1              uint16_t capture_val = 0;
+ 158   1              if(CAPCON0 & 0X01 )
+ 159   1              {
+ 160   2                      CAPCON0 &= ~0x01;
+ 161   2                      capture_val = C0H << 8 | C0L;   
+ 162   2                      getCaptureVal(capture_val);        
+ 163   2                      
+ 164   2              }
+ 165   1      }
+ 166          #endif
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    937    ----
+   CODE SIZE        =    976    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =    113    ----
+   XDATA SIZE       =    114    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      1      16
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
+
+C51 COMPILER V9.01   REMOTE                                                                07/17/2017 20:56:11 PAGE 4   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
