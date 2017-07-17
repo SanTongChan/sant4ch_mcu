@@ -38,8 +38,8 @@ typedef struct
     KEY_CTL key_ctl[KEY_MAX_NUM];
 }KeysCtl;
 
-KeysDev idata keys_dev = {0};
-KeysCtl idata keys_ctl = {0};
+KeysDev xdata keys_dev = {0};
+KeysCtl xdata keys_ctl = {0};
 
 static int8_t keyGet(void)
 {
