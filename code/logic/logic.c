@@ -239,12 +239,20 @@ void saveModeToFlash(void)
 {
     if(save_mode_flag)
     {
-        save_mode_flag = false;
+		flash_data[0] = dev_def.lock;
+		flash_data[1] = (uint8_t)dev_def.dev_channel[0].channel_mode;
+		flash_data[2] = (uint8_t)dev_def.dev_channel[1].channel_mode;
+		flash_data[3] = (uint8_t)dev_def.dev_channel[2].channel_mode;
+		flash_data[4] = (uint8_t)dev_def.dev_channel[3].channel_mode;
+		flashWrite();
+		save_mode_flag = false;
+#if 0
         write_DATAFLASH_BYTE (0x3881,dev_def.lock);
         write_DATAFLASH_BYTE (0x3882,(uint8_t)dev_def.dev_channel[0].channel_mode);
         write_DATAFLASH_BYTE (0x3883,(uint8_t)dev_def.dev_channel[1].channel_mode);
         write_DATAFLASH_BYTE (0x3884,(uint8_t)dev_def.dev_channel[2].channel_mode);
         write_DATAFLASH_BYTE (0x3885,(uint8_t)dev_def.dev_channel[3].channel_mode);
+#endif
     }
 }
 void dealRemote(void)
@@ -257,11 +265,19 @@ void dealRemote(void)
 }
 static void modeInit(void)
 {
+#if 0
     dev_def.lock = read_APROM_BYTE(0x3881);
     dev_def.dev_channel[0].channel_mode = read_APROM_BYTE(0x3882);
     dev_def.dev_channel[1].channel_mode = read_APROM_BYTE(0x3883);
     dev_def.dev_channel[2].channel_mode = read_APROM_BYTE(0x3884);
     dev_def.dev_channel[3].channel_mode = read_APROM_BYTE(0x3885);
+#endif
+	flashRead();
+	dev_def.lock = flash_data[0];
+	dev_def.dev_channel[0].channel_mode = flash_data[1];
+	dev_def.dev_channel[1].channel_mode = flash_data[2];
+	dev_def.dev_channel[2].channel_mode = flash_data[3];
+	dev_def.dev_channel[3].channel_mode = flash_data[4];
     if(dev_def.lock == 0xff 
         || dev_def.dev_channel[0].channel_mode == 0xff
         || dev_def.dev_channel[1].channel_mode == 0xff
