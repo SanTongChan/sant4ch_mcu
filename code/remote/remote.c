@@ -149,7 +149,7 @@ void captureInit(void)
 {
 	captureIOInit();
 	Timer2Init();
-	EIE |= 0X84;
+	EIE |= 0X04;
 	TR2 = 1;
 }
 void Capture_ISR (void) interrupt 12
