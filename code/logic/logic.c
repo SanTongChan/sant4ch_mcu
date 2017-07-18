@@ -374,21 +374,21 @@ void dealRemoteNormal(void)
                 {
                     h595_val |= 0x0f;
                     h595_val &= (~key_array[i]);
-                    dev_def.remote_channel = i;
+                    dev_def.remote_channel = i + 1;
     	            SendTo595(h595_val);   
     	            cnt = 0;
                 }
             }
         }
-        else if(ir_data.timer_cnt >= 150 && ir_data.cnt >= 1
-        && ir_data.ir_data == dev_def.dev_channel[dev_def.remote_channel].remote_val)
+        if(ir_data.timer_cnt >= 150 && ir_data.cnt >= 1
+        && ir_data.ir_data == dev_def.dev_channel[dev_def.remote_channel - 1].remote_val)
         {
             h595_val |= 0x0f;
             if(cnt <= 2500)
             {
-                if(relays[dev_def.remote_channel])
+                if(relays[dev_def.remote_channel - 1])
                 {
-                    h595_val &= (~relay_array[dev_def.remote_channel]);    
+                    h595_val &= (~relay_array[dev_def.remote_channel - 1]);    
                 }
                 else
                 {
@@ -396,7 +396,7 @@ void dealRemoteNormal(void)
                     {
                         h595_val &= 0x0f;
                     }
-                    h595_val |= relay_array[dev_def.remote_channel] ;
+                    h595_val |= relay_array[dev_def.remote_channel - 1] ;
                 }
                 dev_def.remote_channel = 0;
                 dev_def.dev_channel[0].update_flag = true;

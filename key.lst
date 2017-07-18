@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 1   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE KEY
@@ -62,7 +62,7 @@ line level    source
   51   2          }
   52   1          return false;
   53   1      }
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 2   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 2   
 
   54          
   55          static void key1_short_press(void)
@@ -126,7 +126,7 @@ line level    source
  113   2          }
  114   1          else
  115   1          {
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 3   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 3   
 
  116   2              if(h595_val | KEY4_595)
  117   2              {
@@ -190,7 +190,7 @@ line level    source
  175   1          {
  176   2              if(RELAY2)
  177   2              {
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 4   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 4   
 
  178   3                  h595_val &= (~RELAY2_595);
  179   3              }
@@ -254,7 +254,7 @@ line level    source
  237   3              }
  238   2              dev_def.dev_channel[0].update_flag = true;
  239   2              dev_def.dev_channel[1].update_flag = true;
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 5   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 5   
 
  240   2              dev_def.dev_channel[2].update_flag = true;
  241   2              dev_def.dev_channel[3].update_flag = true;
@@ -318,7 +318,7 @@ line level    source
  299   2              dev_def.remote = true;
  300   2              dev_def.remote_channel = 0;
  301   2              RF_LED = 0;
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 6   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 6   
 
  302   2          }
  303   1      }
@@ -382,7 +382,7 @@ line level    source
  361   2              update_time = 10;
  362   2              dev_def.setting = true;
  363   2              SendTo595(h595_val);
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 7   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 7   
 
  364   2              }
  365   1      }
@@ -446,7 +446,7 @@ line level    source
  423   2          }
  424   1          else
  425   1          {
-C51 COMPILER V9.01   KEY                                                                   07/17/2017 23:09:22 PAGE 8   
+C51 COMPILER V9.01   KEY                                                                   07/18/2017 12:56:06 PAGE 8   
 
  426   2              dev_def.dev_channel[3].channel_mode = DEV_JOGGING;
  427   2          }
