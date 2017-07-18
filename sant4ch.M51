@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        07/18/2017  15:59:10  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/18/2017  16:54:17  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  sant4ch (TIMER)
             XDATA   012DH     0014H     UNIT         ?XD?FLASH
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 2
 
 
             CODE    0000H     0003H     ABSOLUTE     
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  sant4ch (TIMER)
             CODE    1E04H     0016H     UNIT         ?PR?TIMER0INIT?TIMER
             CODE    1E1AH     0016H     UNIT         ?PR?FLASHERASE?FLASH
             CODE    1E30H     0014H     UNIT         ?PR?TIMER1INIT?TIMER
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 3
 
 
             CODE    1E44H     0014H     UNIT         ?PR?DEALREMOTE?LOGIC
@@ -179,7 +179,7 @@ SEGMENT                                     DATA_GROUP
 
 ?PR?KEYINIT?KEY                           -----    -----
   +--> ?PR?REGISTERKEYS?KEY
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 4
 
 
 
@@ -239,7 +239,7 @@ SEGMENT                                     DATA_GROUP
 ?PR?KEY3_SHORT_PRESS?KEY                  -----    -----
   +--> ?PR?CLEARIRDATA?REMOTE
   +--> ?PR?_SENDTO595?LOGIC
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 5
 
 
 
@@ -299,7 +299,7 @@ SEGMENT                                     DATA_GROUP
 ?PR?ANALYZERFDATA?REMOTE                  001FH    0010H
 
 ?PR?DEALREMOTELED?LOGIC                   -----    -----
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 6
 
 
   +--> ?PR?DEALREMOTEMODELED?LOGIC
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   D:008BH         PUBLIC        TL1
   B:0088H.4       PUBLIC        TR0
   B:0088H.6       PUBLIC        TR1
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 7
 
 
   D:00E8H         PUBLIC        ADCCON0
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:17A1H         LINE#         49
   C:17A1H         LINE#         50
   C:17A7H         LINE#         51
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 8
 
 
   C:17AAH         LINE#         52
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:0B9AH         SYMBOL        modeInit
   C:1E60H         SYMBOL        _?ix1000
   C:1E64H         SYMBOL        _?ix1001
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 9
 
 
   D:001BH         PUBLIC        remote_led_study
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:0DE9H         LINE#         46
   C:0DEAH         LINE#         47
   C:0DEFH         LINE#         48
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 10
 
 
   C:0DF5H         LINE#         49
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:0EB1H         LINE#         113
   C:0EB5H         LINE#         114
   C:0EB9H         LINE#         115
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 11
 
 
   C:0EBDH         LINE#         116
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   D:0020H         SYMBOL        last_key
   D:0021H         SYMBOL        relays
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 12
 
 
   C:1503H         LINE#         167
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1D3BH         LINE#         223
   C:1D3EH         LINE#         224
   C:1D41H         LINE#         225
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 13
 
 
   C:1D41H         LINE#         226
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1BE6H         LINE#         275
   C:1BE6H         LINE#         276
   C:1BECH         LINE#         277
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 14
 
 
   C:1BECH         LINE#         278
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:176AH         LINE#         331
   -------         ENDPROC       DEALREMOTENORMALLED
   -------         PROC          DEALREMOTELED
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 15
 
 
   C:1F14H         LINE#         332
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:121AH         LINE#         380
   C:121AH         LINE#         381
   C:1223H         LINE#         382
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 16
 
 
   C:1223H         LINE#         383
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:0C5DH         LINE#         443
   C:0CA9H         LINE#         447
   C:0CF5H         LINE#         449
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 17
 
 
   C:0D8AH         LINE#         458
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1BA5H         LINE#         507
   C:1BA7H         LINE#         508
   C:1BA9H         LINE#         509
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 18
 
 
   C:1BABH         LINE#         510
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1DBFH         SYMBOL        key2_long_up_press
   C:19ACH         SYMBOL        key1_short_up_press
   D:00C8H         PUBLIC        T2CON
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 19
 
 
   C:1DD6H         SYMBOL        key3_long_up_press
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1F47H         LINE#         52
   C:1F49H         LINE#         53
   -------         ENDPROC       KEY5_IS_PRESS
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 20
 
 
   -------         PROC          KEY1_SHORT_PRESS
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   -------         PROC          KEY4_SHORT_PRESS
   C:1C55H         LINE#         106
   C:1C55H         LINE#         107
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 21
 
 
   C:1C55H         LINE#         108
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:19E5H         LINE#         162
   C:19E9H         LINE#         163
   C:19EDH         LINE#         164
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 22
 
 
   C:19F1H         LINE#         165
@@ -1319,7 +1319,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1A56H         LINE#         220
   C:1A5CH         LINE#         221
   C:1A5CH         LINE#         222
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 23
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 23
 
 
   C:1A5FH         LINE#         223
@@ -1379,7 +1379,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1ADBH         LINE#         281
   C:1AE0H         LINE#         282
   C:1AE1H         LINE#         284
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 24
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 24
 
 
   C:1AE1H         LINE#         285
@@ -1439,7 +1439,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1EA5H         LINE#         330
   C:1EABH         LINE#         331
   C:1EABH         LINE#         332
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 25
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 25
 
 
   C:1EB5H         LINE#         333
@@ -1499,7 +1499,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1CB7H         LINE#         377
   C:1CB7H         LINE#         378
   C:1CBEH         LINE#         379
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 26
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 26
 
 
   C:1CBEH         LINE#         380
@@ -1559,7 +1559,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   -------         ENDPROC       KEY4_TWICE_PRESS
   -------         PROC          KEY5_TWICE_PRESS
   C:001EH         LINE#         432
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 27
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 27
 
 
   C:001EH         LINE#         433
@@ -1619,7 +1619,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   N:0000H         SYMBOL        PPAGE
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 28
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 28
 
 
   D:0081H         SYMBOL        SP
@@ -1679,7 +1679,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   C:1B59H         SYMBOL        _keysDeal
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 29
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 29
 
 
   C:0066H         SYMBOL        _keyDeal
@@ -1739,7 +1739,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1665H         LINE#         77
   C:167EH         LINE#         78
   C:1697H         LINE#         79
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 30
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 30
 
 
   C:16B2H         LINE#         80
@@ -1799,7 +1799,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:023CH         LINE#         136
   C:023CH         LINE#         137
   C:024EH         LINE#         138
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 31
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 31
 
 
   C:0261H         LINE#         139
@@ -1859,7 +1859,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:04DDH         LINE#         200
   C:04F9H         LINE#         201
   C:04F9H         LINE#         202
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 32
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 32
 
 
   C:0511H         LINE#         203
@@ -1919,7 +1919,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          LEDINIT
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 33
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 33
 
 
   C:1F53H         LINE#         3
@@ -1979,7 +1979,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:1E1AH         LINE#         23
   C:1E1DH         LINE#         24
   C:1E20H         LINE#         25
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 34
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 34
 
 
   C:1E23H         LINE#         26
@@ -2039,7 +2039,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:0014H         LINE#         72
   C:0017H         LINE#         73
   -------         ENDPROC       FLASHWRITE
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 35
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 35
 
 
   -------         ENDMOD        FLASH
@@ -2099,7 +2099,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:18A8H         LINE#         32
   C:18C0H         LINE#         33
   C:18C0H         LINE#         34
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 36
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 36
 
 
   C:18D2H         LINE#         35
@@ -2159,7 +2159,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:093EH         LINE#         78
   C:094CH         LINE#         79
   C:095FH         LINE#         80
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 37
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 37
 
 
   C:096AH         LINE#         81
@@ -2219,7 +2219,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   -------         ENDPROC       TIMER2INIT
   -------         PROC          CAPTUREIOINIT
   C:1F63H         LINE#         143
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 38
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 38
 
 
   C:1F63H         LINE#         144
@@ -2279,7 +2279,7 @@ SYMBOL TABLE OF MODULE:  sant4ch (TIMER)
   C:07D1H         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  15:59:10  PAGE 39
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/18/2017  16:54:17  PAGE 39
 
 
   -------         MODULE        ?C?IILDX

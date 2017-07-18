@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 1   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE LOGIC
@@ -62,7 +62,7 @@ line level    source
   51   1          if(dev_def.lock)
   52   1          {
   53   2              static uint8_t lock_channel = 0;
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 2   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 2   
 
   54   2              static uint8_t last_lock_channel = 0;
   55   2              static uint8_t last_relay_val[4] = {0};
@@ -126,7 +126,7 @@ line level    source
  113   5                          dev_def.dev_channel[1].update_flag = true;
  114   5                          dev_def.dev_channel[2].update_flag = true;
  115   5                          dev_def.dev_channel[3].update_flag = true;
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 3   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 3   
 
  116   5                          dev_def.update_local_cnt = 0;
  117   5                          dev_def.setting = false;
@@ -190,7 +190,7 @@ line level    source
  175   1          {
  176   2              relays[0] = (uint8_t)RELAY1;
  177   2              relays[1] = (uint8_t)RELAY2;
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 4   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 4   
 
  178   2              relays[2] = (uint8_t)RELAY3;
  179   2              relays[3] = (uint8_t)RELAY4;
@@ -254,7 +254,7 @@ line level    source
  237          void saveModeToFlash(void)
  238          {
  239   1          if(save_mode_flag)
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 5   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 5   
 
  240   1          {
  241   2                      flash_data[0] = dev_def.lock;
@@ -318,7 +318,7 @@ line level    source
  299   2              {
  300   3                  RF_LED = 1;
  301   3              }
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 6   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 6   
 
  302   2          }
  303   1          if((remote_led_blink >= 4) && remote_led_study)
@@ -382,7 +382,7 @@ line level    source
  361   1              uint8_t relays[4] = {0};
  362   1          cnt++;
  363   1          if(!dev_def.remote)
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 7   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 7   
 
  364   1          {
  365   2              relays[0] = RELAY1;
@@ -446,7 +446,7 @@ line level    source
  423   2              }
  424   1      }
  425          static void modeInit(void)
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 8   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 8   
 
  426          {
  427   1              flashRead();
@@ -510,7 +510,7 @@ line level    source
  485   1          relayInit();
  486   1      #if 1
  487   1              captureInit();
-C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 15:59:09 PAGE 9   
+C51 COMPILER V9.01   LOGIC                                                                 07/18/2017 16:54:16 PAGE 9   
 
  488   1              timer1Init();
  489   1      #endif

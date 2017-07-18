@@ -142,7 +142,7 @@ static void Timer2Init(void)
 }
 static void captureIOInit(void)
 {
-	P1M1 &= 0xDF;
+	P1M1 |= 0x20;
 	P1M2 &= 0XDF;
 }
 void captureInit(void)
