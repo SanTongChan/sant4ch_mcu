@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   REMOTE                                                                07/18/2017 16:54:17 PAGE 1   
+C51 COMPILER V9.01   REMOTE                                                                07/27/2017 16:55:11 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE REMOTE
@@ -62,7 +62,7 @@ line level    source
   51          
   52          void clearIrData(void)
   53          {
-C51 COMPILER V9.01   REMOTE                                                                07/18/2017 16:54:17 PAGE 2   
+C51 COMPILER V9.01   REMOTE                                                                07/27/2017 16:55:11 PAGE 2   
 
   54   1              ir_data.cnt = 0;
   55   1              ir_data.ir_data = 0;
@@ -126,7 +126,7 @@ line level    source
  113   3                              ir_data.cnt = 1;
  114   3                              ir_data.timer_cnt = 0;
  115   3                              ir_data.low_time = (uint16_t)((short_time / 24) + 0.5);
-C51 COMPILER V9.01   REMOTE                                                                07/18/2017 16:54:17 PAGE 3   
+C51 COMPILER V9.01   REMOTE                                                                07/27/2017 16:55:11 PAGE 3   
 
  116   3                              ir_data.high_time = (uint16_t)((long_time / 24) + 0.5);
  117   3                      }
@@ -191,7 +191,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
-C51 COMPILER V9.01   REMOTE                                                                07/18/2017 16:54:17 PAGE 4   
+C51 COMPILER V9.01   REMOTE                                                                07/27/2017 16:55:11 PAGE 4   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

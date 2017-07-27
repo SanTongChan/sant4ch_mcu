@@ -1,0 +1,1 @@
+"code\logic\logic.c" BROWSE INCDIR(.\code\key;.\code\logic;.\code\timer;.\code\driver;.\code\led;.\code\common;.\code\flash;.\code\remote) DEBUG OBJECTEXTEND PRINT(.\logic.lst) OBJECT(logic.obj)

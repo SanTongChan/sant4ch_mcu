@@ -8,6 +8,8 @@
 #include "flash.h"
 #include "remote.h"
 
+#define  JOGGING_TIME   (20)
+
 sbit RCK = P1^7;
 sbit SCK = P1^6;
 sbit SER = P3^0;
@@ -134,7 +136,7 @@ static void syncApp(void)
                         dev_def.dev_channel[i].timer_cnt = 0;
                         dev_def.dev_channel[i].get_status = true;
                     }
-                    if(dev_def.dev_channel[i].timer_cnt >= 7)
+                    if(dev_def.dev_channel[i].timer_cnt >= JOGGING_TIME)
                     {
                         dev_def.dev_channel[i].timer_cnt = 0;
                         dev_def.dev_channel[i].get_status = false;
